@@ -1,0 +1,23 @@
+%=========================================================================
+% code-tut3-regincr-import2
+%=========================================================================
+
+%\begin{figure}
+
+  \begin{lstlisting}[gobble=4]
+    % cd ${TUTROOT}/build
+    % env PYTHONPATH=".." python
+    >>> from examples.regincr import RegIncr
+    >>> model = RegIncr()
+    >>> model.elaborate()
+    >>> [ x.name for x in model.get_ports() ]
+    ['reset', 'in_', 'clk', 'out']
+    >>> [ x.name for x in model.get_wires() ]
+    ['reg_out']
+\end{lstlisting}
+
+  \captionsetup{justification=centering}
+  \captionof{figure}{\textbf{Importing a PyMTL Package from the Build Directory}}
+  \label{code-tut3-regincr-import2}
+
+%\end{figure}

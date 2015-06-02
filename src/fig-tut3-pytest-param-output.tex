@@ -1,0 +1,39 @@
+%=========================================================================
+% fig-tut3-pytest-param-output
+%=========================================================================
+
+\begin{figure}
+
+  \footnotesize
+  \begin{Verbatim}[xleftmargin=0.8in]
+ ========================== test session starts ===========================
+ platform darwin -- Python 2.7.5 -- py-1.4.26 -- pytest-2.6.4
+ plugins: xdist
+ collected 14 items
+
+ ../examples/regincr/RegIncrNstage_test.py::test[2stage_small] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test[2stage_large] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test[2stage_overflow] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test[2stage_random] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test[3stage_small] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test[3stage_large] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test[3stage_overflow] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test[3stage_random] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test_random[1] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test_random[2] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test_random[3] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test_random[4] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test_random[5] PASSED
+ ../examples/regincr/RegIncrNstage_test.py::test_random[6] PASSED
+
+ ======================= 14 passed in 0.17 seconds ========================
+  \end{Verbatim}
+  \vspace{-0.1in}
+
+  \caption{\textbf{\TT{py.test} Parameterized Output --} Each line
+    corresponds to one test case. Test cases generated using
+    \TT{pytest.mark.parametrize} use square brackets to denote each
+    generated test case.}
+  \label{fig-tut3-pytest-param-output}
+
+\end{figure}

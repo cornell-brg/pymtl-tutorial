@@ -1,0 +1,41 @@
+%=========================================================================
+% code-tut3-sorter-ifc
+%=========================================================================
+
+\begin{figure}
+
+  \hspace{-0.25in}
+  \begin{minipage}[t]{0.45\tw}
+\begin{lstlisting}
+module ex_sorter_SorterFlat
+#(
+  parameter p_nbits = 1
+)(
+  input  logic               clk,
+  input  logic               reset,
+
+  input  logic               in_val,
+  input  logic [p_nbits-1:0] in0,
+  input  logic [p_nbits-1:0] in1,
+  input  logic [p_nbits-1:0] in2,
+  input  logic [p_nbits-1:0] in3,
+
+  output logic               out_val,
+  output logic [p_nbits-1:0] out0,
+  output logic [p_nbits-1:0] out1,
+  output logic [p_nbits-1:0] out2,
+  output logic [p_nbits-1:0] out3
+);
+\end{lstlisting}
+  \end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.47\tw}
+  \caption{\textbf{Interface for the Four-Element Sorter --} The
+    interface corresponds to the diagram in Figure~\ref{fig-tut3-sorter}
+    and is parameterized by the bitwidth of each element.}
+  \label{code-tut3-sorter-ifc}
+  \end{minipage}%
+  \hspace*{0.1in}\mbox{}
+
+\end{figure}
+

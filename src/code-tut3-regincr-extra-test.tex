@@ -1,0 +1,66 @@
+%=========================================================================
+% code-tut3-regincr-extra-test
+%=========================================================================
+
+\begin{figure}
+
+  \begin{lstlisting}[xleftmargin={0.9in}]
+#=========================================================================
+# RegIncr_extra_test
+#=========================================================================
+
+from pymtl      import *
+from pclib.test import run_test_vector_sim
+from RegIncr    import RegIncr
+
+#-------------------------------------------------------------------------
+# test_small
+#-------------------------------------------------------------------------
+
+def test_small( dump_vcd ):
+  run_test_vector_sim( RegIncr(), [
+    ('in_   out*'),
+    [ 0x00, '?'  ],
+    [ 0x03, 0x01 ],
+    [ 0x06, 0x04 ],
+    [ 0x00, 0x07 ],
+  ], dump_vcd )
+
+#-------------------------------------------------------------------------
+# test_large
+#-------------------------------------------------------------------------
+
+def test_large( dump_vcd ):
+  run_test_vector_sim( RegIncr(), [
+    ('in_   out*'),
+    [ 0xa0, '?'  ],
+    [ 0xb3, 0xa1 ],
+    [ 0xc6, 0xb4 ],
+    [ 0x00, 0xc7 ],
+  ], dump_vcd )
+
+#-------------------------------------------------------------------------
+# test_overflow
+#-------------------------------------------------------------------------
+
+def test_overflow( dump_vcd ):
+  run_test_vector_sim( RegIncr(), [
+    ('in_   out*'),
+    [ 0x00, '?'  ],
+    [ 0xfe, 0x01 ],
+    [ 0xff, 0xff ],
+    [ 0x00, 0x00 ],
+  ], dump_vcd )
+\end{lstlisting}
+
+  \centerline{\small Code at
+    \url{https://github.com/cbatten/y/blob/master/RegIncr_extra_test.py}}
+
+  \caption{\textbf{Unit Test Script using Test Vectors for Registered
+      Incrementer --} A unit test for the eight-bit registered
+    incrementer in Figure~\ref{code-tut3-regincr}, which uses test
+    vectors and the \TT{py.test} unit testing framework.}
+  \label{code-tut3-regincr-extra-test}
+
+\end{figure}
+

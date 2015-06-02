@@ -1,0 +1,46 @@
+%=========================================================================
+% code-tut3-basics-bits-ops1
+%=========================================================================
+
+%\begin{figure}
+
+  \begin{lstlisting}[gobble=4]
+    # Logical operators
+
+    >>> a = Bits( 4, 0b1010 )
+    >>> b = Bits( 4, 0b1100 )
+    >>> a & b
+    Bits( 4, 0x8 )  # 0b1000
+    >>> a | b
+    Bits( 4, 0xe )  # 0b0001
+    >>> a ^ b
+    Bits( 4, 0x6 )  # 0b0110
+    >>> a ^~ b
+    Bits( 4, 0x9 )  # 0b1001
+    >>> ~a
+    Bits( 4, 0x5 )  # 0b0101
+
+    # Implicit operand conversion
+
+    >>> a = Bits( 4, 0b1010 )
+    >>> a & 0b1100
+    Bits( 4, 0x8 )  # 0b1000
+    >>> 0b1100 & a
+    Bits( 4, 0x8 )  # 0b1000
+
+    # Reduction operators
+
+    >>> a = Bits( 8, 0b10101100 )
+    >>> reduce_and(a)
+    Bits( 1, 0x0 )
+    >>> reduce_or(a)
+    Bits( 1, 0x1 )
+    >>> reduce_xor(a)
+    Bits( 1, 0x0 )
+  \end{lstlisting}
+
+  \captionsetup{justification=centering}
+  \captionof{figure}{\textbf{\TT{Bits} Logical and Reduction Operators}}
+  \label{code-tut3-basics-bits-ops1}
+
+%\end{figure}

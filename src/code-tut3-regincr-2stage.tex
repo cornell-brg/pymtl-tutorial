@@ -1,0 +1,64 @@
+%=========================================================================
+% code-tut3-regincr-2stage
+%=========================================================================
+
+\begin{figure}
+
+  \begin{lstlisting}[xleftmargin={0.9in}]
+#=========================================================================
+# RegIncr2stage
+#=========================================================================
+# Two-stage registered incrementer that uses structural composition to
+# instantiate and connect two instances of the single-stage registered
+# incrementer.
+
+from pymtl   import *
+from RegIncr import RegIncr
+
+class RegIncr2stage( Model ):
+
+  # Constructor
+
+  def __init__( s ):
+
+    # Port-based interface
+
+    s.in_ = InPort  ( Bits(8) )
+    s.out = OutPort ( Bits(8) )
+
+    # First stage
+
+    s.reg_incr_0 = RegIncr()
+
+    s.connect( s.in_, s.reg_incr_0.in_ )
+
+    # Second stage
+
+    s.reg_incr_1 = RegIncr()
+
+    s.connect( s.reg_incr_0.out, s.reg_incr_1.in_ )
+    s.connect( s.reg_incr_1.out, s.out )
+
+  # Line Tracing
+
+  def line_trace( s ):
+    return "{} ({}|{}) {}".format(
+      s.in_,
+      s.reg_incr_0.line_trace(),
+      s.reg_incr_1.line_trace(),
+      s.out
+    )
+\end{lstlisting}
+
+  \centerline{\small Code at
+    \url{https://github.com/cbatten/y/blob/master/RegIncr2stage.py}}
+
+  \caption{\textbf{Two-Stage Registered Incrementer --} An eight-bit
+    two-stage registered incrementer corresponding to
+    Figure~\ref{fig-tut3-regincr-2stage}. This model is implemented using
+    structural composition to instantiate and connect two instances of the
+    single-stage register incrementer.}
+  \label{code-tut3-regincr-2stage}
+
+\end{figure}
+

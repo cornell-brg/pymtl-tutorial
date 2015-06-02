@@ -1,0 +1,72 @@
+%=========================================================================
+% code-tut3-gcd-dpath
+%=========================================================================
+
+\begin{figure}
+
+  \begin{lstlisting}[xleftmargin={0.9in}]
+#=========================================================================
+# GCD Unit RTL Datapath
+#=========================================================================
+
+class GcdUnitDpathRTL (Model):
+
+  # Constructor
+
+  def __init__( s ):
+
+    #---------------------------------------------------------------------
+    # Interface
+    #---------------------------------------------------------------------
+
+    s.req_msg_a  = InPort  (16)
+    s.req_msg_b  = InPort  (16)
+    s.resp_msg   = OutPort (16)
+
+    # Control signals (ctrl -> dpath)
+
+    s.a_mux_sel = InPort  (A_MUX_SEL_NBITS)
+    s.a_reg_en  = InPort  (1)
+    s.b_mux_sel = InPort  (B_MUX_SEL_NBITS)
+    s.b_reg_en  = InPort  (1)
+
+    # Status signals (dpath -> ctrl)
+
+    s.is_b_zero = OutPort (1)
+    s.is_a_lt_b = OutPort (1)
+
+    #---------------------------------------------------------------------
+    # Structural composition
+    #---------------------------------------------------------------------
+
+    # A mux
+
+    s.sub_out   = Wire(16)
+    s.b_reg_out = Wire(16)
+
+    s.a_mux = m = Mux( 16, 3 )
+    s.connect_dict({
+      m.sel                  : s.a_mux_sel,
+      m.in_[ A_MUX_SEL_IN  ] : s.req_msg_a,
+      m.in_[ A_MUX_SEL_SUB ] : s.sub_out,
+      m.in_[ A_MUX_SEL_B   ] : s.b_reg_out,
+    })
+
+    # A register
+
+    s.a_reg = m = RegEn(16)
+    s.connect_dict({
+      m.en    : s.a_reg_en,
+      m.in_   : s.a_mux.out,
+    })
+\end{lstlisting}
+
+  \caption{\textbf{Excerpt from Datapath in GCD Unit RTL Model --} We use
+    top-level constants for various control signal encodings (e.g.,
+    \TT{A_MUX_SEL_NBITS}, \TT{A_MUX_SEL_IN}), and we use
+    \TT{s.connect_dict} to enable more succinct structural composition in
+    datapaths.}
+  \label{code-tut3-gcd-dpath}
+
+\end{figure}
+

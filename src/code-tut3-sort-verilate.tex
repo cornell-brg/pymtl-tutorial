@@ -1,0 +1,35 @@
+%=========================================================================
+% code-tut3-sort-translate
+%=========================================================================
+
+\begin{figure}
+
+\begin{minipage}[t]{0.5\tw}
+  \begin{lstlisting}[gobble=4]
+    % cd ${TUTROOT}/build
+    % env PYTHONPATH=".." python
+    >>> from pymtl import *
+    >>> from examples.sort import SortUnitStructRTL
+    >>> model = SortUnitStructRTL
+    >>> model = TranslationTool( model )
+    % ls
+    SortUnitStructRTL_0x4b8e51bd8055176a.v
+    SortUnitStructRTL_0x4b8e51bd8055176a_v.cpp
+    SortUnitStructRTL_0x4b8e51bd8055176a_v.py
+    SortUnitStructRTL_0x4b8e51bd8055176a_v.pyc
+    libSortUnitStructRTL_0x4b8e51bd8055176a_v.so
+    obj_dir_SortUnitStructRTL_0x4b8e51bd8055176a
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\tw}
+  \caption{\textbf{Translating an RTL Model into Verilog --} The
+    \TT{TranslationTool} translates an RTL model into Verilog, but also
+    uses the Verilator tool and various generated wrappers to creates a
+    new PyMTL model that internally contains its own cycle-accurate
+    simulator for the translated Verilog.}
+  \label{code-tut3-sort-translate}
+\end{minipage}
+
+\end{figure}
+

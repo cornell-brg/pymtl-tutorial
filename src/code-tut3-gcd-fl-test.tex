@@ -1,0 +1,54 @@
+%=========================================================================
+% code-tut3-gcd-fl-test
+%=========================================================================
+
+\begin{figure}
+
+  \begin{lstlisting}[xleftmargin={0.9in}]
+#-------------------------------------------------------------------------
+# TestHarness
+#-------------------------------------------------------------------------
+
+class TestHarness (Model):
+
+  def __init__( s, GcdUnit, src_msgs, sink_msgs,
+                src_delay, sink_delay,
+                dump_vcd=False, test_verilog=False ):
+
+    # Instantiate models
+
+    s.src  = TestSource ( 32, src_msgs,  src_delay  )
+    s.gcd  = GcdUnit    ()
+    s.sink = TestSink   ( 16, sink_msgs, sink_delay )
+
+    # Dump VCD
+
+    if dump_vcd:
+      s.gcd.vcd_file = dump_vcd
+
+    # Translation
+
+    if test_verilog:
+      s.gcd = get_verilated( s.gcd )
+
+    # Connect
+
+    s.connect( s.src.out,  s.gcd.req  )
+    s.connect( s.gcd.resp, s.sink.in_ )
+
+  def done( s ):
+    return s.src.done and s.sink.done
+
+  def line_trace( s ):
+    return s.src.line_trace()  + " > " + \
+           s.gcd.line_trace()  + " > " + \
+           s.sink.line_trace()
+\end{lstlisting}
+
+  \caption{\textbf{Excerpt from Unit Test Script for GCD Unit FL Model
+      --} Latency insensitive interfaces enable us to use generic sources
+    and sinks for testing.}
+  \label{code-tut3-gcd-fl-test}
+
+\end{figure}
+

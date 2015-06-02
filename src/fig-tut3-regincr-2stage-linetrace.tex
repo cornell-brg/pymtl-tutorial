@@ -1,0 +1,33 @@
+%=========================================================================
+% fig-tut3-regincr-2stage-linetrace
+%=========================================================================
+
+\begin{figure}
+
+\hfill
+\begin{minipage}{0.39\tw}
+  \footnotesize
+  \begin{Verbatim}[xleftmargin=0.1in,commandchars=\\\{\}]
+          reg_incr_0  reg_incr_1
+          ----------- -----------
+ cycle in  in reg out in reg  out out
+ -------------------------------------
+    2: 00 (00 (00) 01|01 (00) 01) 01
+    3: \RD{03} (\RD{03} (00) 01|01 (01) 02) 02
+    4: 06 (06 (\RD{03}) \RD{04}|\RD{04} (01) 02) 02
+    5: 00 (00 (06) 07|07 (\RD{04}) \RD{05}) \RD{05}
+    6: 00 (00 (00) 01|01 (07) 08) 08
+  \end{Verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\tw}
+  \caption{\textbf{Line Trace Output for Two-Stage Registered Incrementer
+      --} This line trace is for the \TT{test\_small} test case and is
+    annotated to show what each column corresponds to in the model. The
+    data flow for the input value \TT{0x03} is highlighted.}
+  \label{fig-tut3-regincr-2stage-linetrace}
+\end{minipage}
+\hfill\mbox{}
+
+\end{figure}
+

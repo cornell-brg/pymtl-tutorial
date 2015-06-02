@@ -1,0 +1,70 @@
+%=========================================================================
+% code-tut3-sorter-struct
+%=========================================================================
+
+\begin{figure}
+
+\begin{lstlisting}
+//----------------------------------------------------------------------
+// Stage S0->S1 pipeline registers
+//----------------------------------------------------------------------
+
+logic val_S1;
+
+vc_ResetReg#(1) val_S0S1
+(
+ .clk   (clk),
+ .reset (reset),
+ .d     (in_val),
+ .q     (val_S1)
+);
+
+// This is probably the only place where it might be acceptable to use
+// positional port binding since (a) it is so common and (b) there are
+// very few ports to bind.
+
+logic [p_nbits-1:0] elm0_S1;
+logic [p_nbits-1:0] elm1_S1;
+logic [p_nbits-1:0] elm2_S1;
+logic [p_nbits-1:0] elm3_S1;
+
+vc_Reg#(p_nbits) elm0_S0S1( clk, elm0_S1, in0 );
+vc_Reg#(p_nbits) elm1_S0S1( clk, elm1_S1, in1 );
+vc_Reg#(p_nbits) elm2_S0S1( clk, elm2_S1, in2 );
+vc_Reg#(p_nbits) elm3_S0S1( clk, elm3_S1, in3 );
+
+//----------------------------------------------------------------------
+// Stage S1 combinational logic
+//----------------------------------------------------------------------
+
+logic [p_nbits-1:0] mmuA_out_min_S1;
+logic [p_nbits-1:0] mmuA_out_max_S1;
+
+ex_sorter_MinMaxUnit#(p_nbits) mmuA_S1
+(
+  .in0     (elm0_S1),
+  .in1     (elm1_S1),
+  .out_min (mmuA_out_min_S1),
+  .out_max (mmuA_out_max_S1)
+);
+
+logic [p_nbits-1:0] mmuB_out_min_S1;
+logic [p_nbits-1:0] mmuB_out_max_S1;
+
+ex_sorter_MinMaxUnit#(p_nbits) mmuB_S1
+(
+  .in0     (elm2_S1),
+  .in1     (elm3_S1),
+  .out_min (mmuB_out_min_S1),
+  .out_max (mmuB_out_max_S1)
+);
+\end{lstlisting}
+
+  \caption{\textbf{First Stage of the Structural Sorter Implementation
+      --} First pipeline stage of the sorter using a structural
+    implementation corresponding to the diagram in
+    Figure~\ref{fig-tut3-sorter}.}
+  \label{code-tut3-sorter-struct}
+
+\end{figure}
+

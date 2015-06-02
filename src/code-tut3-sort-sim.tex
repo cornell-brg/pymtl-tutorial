@@ -1,0 +1,79 @@
+%=========================================================================
+% code-tut3-sort-sim
+%=========================================================================
+
+\begin{figure}
+
+  \begin{lstlisting}[xleftmargin={0.9in},gobble=2]
+  opts = parse_cmdline()
+
+  # Create input datasets
+
+  ninputs = 100
+  inputs  = []
+
+  if opts.input == "random":
+    for i in xrange(ninputs):
+      inputs.append( [ randint(0,0xff) for i in xrange(4) ] )
+
+  ...
+
+  # Instantiate and elaborate the design
+
+  model_impl_dict = {
+    'cl'         : SortUnitCL,
+    'rtl-flat'   : SortUnitFlatRTL,
+    'rtl-struct' : SortUnitStructRTL,
+  }
+
+  model = model_impl_dict[ opts.impl ]()
+
+  dump_vcd = ""
+  if opts.dump_vcd:
+    dump_vcd = "sort-" + opts.impl + "-" + opts.input + ".vcd"
+
+  model.vcd_file = dump_vcd
+
+  model.elaborate()
+  sim = SimulationTool( model )
+  sim.reset()
+
+  # Tick simulator until evaluation is finished
+
+  counter = 0
+  while counter < ninputs:
+
+    if model.out_val:
+      counter += 1
+
+    if inputs:
+      model.in_val.value = True
+      for i,v in enumerate( inputs.pop() ):
+        model.in_[i].value = v
+
+    else:
+      model.in_val.value = False
+      for i in xrange(4):
+        model.in_[i].value = 0
+
+    if opts.trace:
+      sim.print_line_trace()
+
+    sim.cycle()
+
+  # Report various statistics
+
+  if opts.stats:
+    print( "num_cycles          = {}".format( sim.ncycles ) )
+    print( "num_cycles_per_sort = {:1.2f}".format( sim.ncycles/(1.0*ninputs) ) )
+\end{lstlisting}
+
+  \caption{\textbf{Simplified Simulator Script for Sort Unit --} The
+    simulator script is responsible for handling command line arguments,
+    creating input datasets, instantiating and elaborating the design,
+    ticking the simulator until the evaluation is finished, and reporting
+    various statistics.}
+  \label{code-tut3-sort-sim}
+
+\end{figure}
+

@@ -1,0 +1,76 @@
+%=========================================================================
+% code-tut3-gcd-cl
+%=========================================================================
+
+\begin{figure}
+
+  \begin{lstlisting}[xleftmargin={0.9in}]
+#-------------------------------------------------------------------------
+# GCD: algorithm and timing model
+#-------------------------------------------------------------------------
+
+def gcd( a, b ):
+
+  ncycles = 0
+  while True:
+    ncycles += 1
+    if a < b:
+      a,b = b,a
+    elif b != 0:
+      a = a - b
+    else:
+      return (a,ncycles)
+
+#-------------------------------------------------------------------------
+# GcdUnitCL
+#-------------------------------------------------------------------------
+
+class GcdUnitCL( Model ):
+
+  def __init__( s ):
+
+    # Interface
+
+    s.req    = InValRdyBundle  (32)
+    s.resp   = OutValRdyBundle (16)
+
+    # Adapters
+
+    s.req_q  = InValRdyQueueAdapter  ( s.req  )
+    s.resp_q = OutValRdyQueueAdapter ( s.resp )
+
+    # Member variables
+
+    s.result  = 0
+    s.counter = 0
+
+    # Concurrent block
+
+    @s.tick_cl
+    def block():
+
+      # Tick the queue adapters
+
+      s.req_q.xtick()
+      s.resp_q.xtick()
+
+      # Handle delay to model the gcd unit latency
+
+      if s.counter > 0:
+        s.counter -= 1
+        if s.counter == 0:
+          s.resp_q.enq( s.result )
+
+      # If we have a new message and the output queue is not full
+
+      elif not s.req_q.empty() and not s.resp_q.full():
+        req_msg = s.req_q.deq()
+        s.result,s.counter = gcd( req_msg[0:16], req_msg[16:32] )
+\end{lstlisting}
+
+  \caption{\textbf{Excerpt from Gcd Unit CL Model --} CL model of greatest-common
+    divisor unit corresponding to Figure~\ref{fig-tut3-gcd-cl}.}
+  \label{code-tut3-gcd-cl}
+
+\end{figure}
+

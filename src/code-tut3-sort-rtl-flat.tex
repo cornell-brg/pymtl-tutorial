@@ -1,0 +1,77 @@
+%=========================================================================
+% code-tut3-sort-rtl-flat
+%=========================================================================
+
+\begin{figure}
+
+  \begin{lstlisting}[xleftmargin={0.9in}]
+#=========================================================================
+# SortUnitFlatRTL
+#=========================================================================
+
+from pymtl import *
+
+class SortUnitFlatRTL( Model ):
+
+  def __init__( s, nbits=8 ):
+
+    #---------------------------------------------------------------------
+    # Interface
+    #---------------------------------------------------------------------
+
+    s.in_val  = InPort (1)
+    s.in_     = InPort [4](nbits)
+
+    s.out_val = OutPort(1)
+    s.out     = OutPort[4](nbits)
+
+    #---------------------------------------------------------------------
+    # Stage S0->S1 pipeline registers
+    #---------------------------------------------------------------------
+
+    s.val_S1 = Wire(1)
+    s.elm_S1 = Wire[4](nbits)
+
+    @s.tick_rtl
+    def pipereg_S0S1():
+      s.val_S1.next  = s.in_val if ~s.reset else 0
+      for i in xrange(4):
+        s.elm_S1[i].next = s.in_[i]
+
+    #---------------------------------------------------------------------
+    # Stage S1 combinational logic
+    #---------------------------------------------------------------------
+
+    s.elm_next_S1 = Wire[4](nbits)
+
+    @s.combinational
+    def stage_S1():
+
+      # Sort elements 0 and 1
+
+      if s.elm_S1[0] <= s.elm_S1[1]:
+        s.elm_next_S1[0].value = s.elm_S1[0]
+        s.elm_next_S1[1].value = s.elm_S1[1]
+      else:
+        s.elm_next_S1[0].value = s.elm_S1[1]
+        s.elm_next_S1[1].value = s.elm_S1[0]
+
+      # Sort elements 2 and 3
+
+      if s.elm_S1[2] <= s.elm_S1[3]:
+        s.elm_next_S1[2].value = s.elm_S1[2]
+        s.elm_next_S1[3].value = s.elm_S1[3]
+      else:
+        s.elm_next_S1[2].value = s.elm_S1[3]
+        s.elm_next_S1[3].value = s.elm_S1[2]
+
+    ...
+\end{lstlisting}
+
+  \caption{\textbf{Sort Unit Flat RTL Model --} RTL model of four-element
+    sort unit corresponding to Figure~\ref{fig-tut3-sort-rtl}. For
+    simplicity only the interface and first pipeline stage are shown.}
+  \label{code-tut3-sort-rtl-flat}
+
+\end{figure}
+

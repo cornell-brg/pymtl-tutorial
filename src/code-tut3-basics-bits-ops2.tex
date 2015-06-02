@@ -1,0 +1,69 @@
+%=========================================================================
+% code-tut3-basics-bits-ops2
+%=========================================================================
+
+%\begin{figure}
+
+  \begin{lstlisting}[gobble=4]
+    # Shift operators
+
+    >>> a = Bits( 4, 0b1011 )
+    >>> a << 2
+    Bits( 4, 0xc )  # 0b1100
+    >>> a >> 2
+    Bits( 4, 0x2 )  # 0b0010
+
+    >>> b = Bits( 8, 2 )
+    >>> a << b
+    Bits( 4, 0xc )  # 0b1100
+    >>> a >> b
+    Bits( 4, 0x2 )  # 0b0010
+
+    # Arithmetic operators
+
+    >>> a = Bits( 4, 3 )
+    >>> a + 2
+    Bits( 4, 0x5 )
+    >>> a + 15
+    Bits( 4, 0x2 )
+    >>> a - 2
+    Bits( 4, 0x1 )
+    >>> a - 15
+    Bits( 4, 0x4 )
+
+    >>> b = Bits( 8, 2 )
+    >>> a + b
+    Bits( 8, 0x05 )
+    >>> a - b
+    Bits( 8, 0x01 )
+
+    >>> c = Bits( 8, -2 )
+    >>> a + c
+    Bits( 8, 0x01 )
+    >>> a - c
+    Bits( 8, 0x05 )
+
+    # Relational operators
+
+    >>> a = Bits( 4, 3 )
+    >>> b = Bits( 4, 2 )
+    >>> a == b
+    False
+    >>> a != b
+    True
+    >>> a > b
+    True
+    >>> a >= b
+    True
+    >>> a < b
+    False
+    >>> a <= b
+    False
+  \end{lstlisting}
+
+  \captionsetup{justification=centering}
+  \captionof{figure}{\textbf{\TT{Bits} Shift, Arithmetic, and \\
+      Relational Operators}}
+  \label{code-tut3-basics-bits-ops2}
+
+%\end{figure}

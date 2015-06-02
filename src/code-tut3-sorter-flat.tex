@@ -1,0 +1,80 @@
+%=========================================================================
+% code-tut3-sorter-flat
+%=========================================================================
+
+\begin{figure}
+
+\begin{lstlisting}
+//----------------------------------------------------------------------
+// Stage S0->S1 pipeline registers
+//----------------------------------------------------------------------
+
+logic               val_S1;
+logic [p_nbits-1:0] elm0_S1;
+logic [p_nbits-1:0] elm1_S1;
+logic [p_nbits-1:0] elm2_S1;
+logic [p_nbits-1:0] elm3_S1;
+
+always @( posedge clk ) begin
+  val_S1  <= (reset) ? 0 : in_val;
+  elm0_S1 <= in0;
+  elm1_S1 <= in1;
+  elm2_S1 <= in2;
+  elm3_S1 <= in3;
+end
+
+//----------------------------------------------------------------------
+// Stage S1 combinational logic
+//----------------------------------------------------------------------
+// Note that we explicitly catch the case where the elements contain
+// X's and propagate X's appropriately. We would not need to do this if
+// we used a continuous assignment statement with a ternary conditional
+// operator.
+
+logic [p_nbits-1:0] elm0_next_S1;
+logic [p_nbits-1:0] elm1_next_S1;
+logic [p_nbits-1:0] elm2_next_S1;
+logic [p_nbits-1:0] elm3_next_S1;
+
+always @(*) begin
+
+  // Sort elms 0 and 1
+
+  if ( elm0_S1 <= elm1_S1 ) begin
+    elm0_next_S1 = elm0_S1;
+    elm1_next_S1 = elm1_S1;
+  end
+  else if ( elm0_S1 > elm1_S1 ) begin
+    elm0_next_S1 = elm1_S1;
+    elm1_next_S1 = elm0_S1;
+  end
+  else begin
+    elm0_next_S1 = 'hx;
+    elm1_next_S1 = 'hx;
+  end
+
+  // Sort elms 2 and 3
+
+  if ( elm2_S1 <= elm3_S1 ) begin
+    elm2_next_S1 = elm2_S1;
+    elm3_next_S1 = elm3_S1;
+  end
+  else if ( elm2_S1 > elm3_S1 ) begin
+    elm2_next_S1 = elm3_S1;
+    elm3_next_S1 = elm2_S1;
+  end
+  else begin
+    elm2_next_S1 = 'hx;
+    elm3_next_S1 = 'hx;
+  end
+
+end
+\end{lstlisting}
+
+  \caption{\textbf{First Stage of the Flat Sorter Implementation --}
+    First pipeline stage of the sorter using a flat implementation
+    corresponding to the diagram in Figure~\ref{fig-tut3-sorter}.}
+  \label{code-tut3-sorter-flat}
+
+\end{figure}
+

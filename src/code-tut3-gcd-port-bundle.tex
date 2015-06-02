@@ -1,0 +1,41 @@
+%=========================================================================
+% code-tut3-gcd-port-bundle
+%=========================================================================
+
+\begin{figure}
+
+  \begin{lstlisting}[xleftmargin={0.9in}]
+#=========================================================================
+# ValRdyBundle.py
+#=========================================================================
+# Defines a PortBundle for the val/rdy interface.
+
+from pymtl  import *
+from valrdy import valrdy_to_str
+
+class ValRdyBundle( PortBundle ):
+
+  def __init__( self, nbits ):
+    self.msg = InPort ( nbits )
+    self.val = InPort ( 1 )
+    self.rdy = OutPort( 1 )
+
+  def to_str( self, msg=None ):
+    msg = self.msg if None else msg
+    return valrdy_to_str( msg, self.val, self.rdy )
+
+  def __str__( self ):
+    return valrdy_to_str( self.msg, self.val, self.rdy )
+
+# Create InValRdyBundle and OutValRdyBundle
+
+InValRdyBundle, OutValRdyBundle = create_PortBundles( ValRdyBundle )
+\end{lstlisting}
+
+  \caption{\textbf{Val/Rdy Port Bundle from \TT{pclib} --} A
+    parameterized port bundle that groups together the valid, ready, and
+    message ports.}
+  \label{code-tut3-gcd-port-bundle}
+
+\end{figure}
+

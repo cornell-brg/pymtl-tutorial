@@ -1,0 +1,27 @@
+%=========================================================================
+% code-tut3-regincr-import1
+%=========================================================================
+
+%\begin{figure}
+
+  \begin{lstlisting}[gobble=4]
+    % cd ${TUTROOT}
+    % python
+    >>> from pymtl import *
+    >>> from examples.regincr import RegIncr
+    >>> model = RegIncr()
+    >>> model.elaborate()
+    >>> sim = SimulationTool( model )
+    >>> sim.reset()
+    >>> model.in_.value = 0x24
+    >>> sim.cycle()
+    >>> model.out
+    Bits( 8, 0x25 )
+\end{lstlisting}
+
+  \captionsetup{justification=centering}
+  \captionof{figure}{\textbf{Importing a PyMTL Package from the Tutorial
+      Root Directory}}
+  \label{code-tut3-regincr-import1}
+
+%\end{figure}

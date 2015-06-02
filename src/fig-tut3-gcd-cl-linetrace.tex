@@ -1,0 +1,52 @@
+%=========================================================================
+% fig-tut3-gcd-cl-linetrace
+%=========================================================================
+
+\begin{figure}
+
+  \begin{minipage}[t]{0.5\tw}
+  \footnotesize
+  \begin{Verbatim}[xleftmargin=0.3in]
+cycle src        A    B     out    sink
+---------------------------------------
+   2:          >          ()     >
+   3: 000f0005 > 0005:000f()     >
+   4: 00030009 > 0009:0003()     >
+   5: #        > #        ()     >
+   6: #        > #        ()     >
+   7: #        > #        ()     >
+   8: #        > #        ()     >
+   9: #        > #        ()     >
+  10: #        > #        ()0005 > 0005
+  11: 00000000 > 0000:0000().    > .
+  12: #        > #        ()     >
+  13: #        > #        ()     >
+  14: #        > #        ()     >
+  15: #        > #        ()     >
+  16: #        > #        ()0003 > 0003
+  17: 001b000f > 000f:001b().    > .
+  18: #        > #        ()#    > #
+  19: #        > #        ()#    > #
+  20: #        > #        ()#    > #
+  21: #        > #        ()#    > #
+  22: #        > #        ()0000 > 0000
+  23: 00150031 > 0031:0015().    > .
+  24: #        > #        ().    > .
+  \end{Verbatim}
+  \end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.47\tw}
+  \caption{\textbf{Line Trace for CL Implementation of GCD --} Extra
+    buffering means the GCD unit can accept the second transaction before
+    the first transaction is done. Recall that various characters
+    indicate the status of the val/rdy interface: \TT{.}~= val/rdy
+    interface is not valid and not ready; \TT{\#}~= val/rdy interface is
+    valid but not ready; space~= val/rdy interface is not valid and
+    ready; message is shown when it is actually transferred across
+    interface.}
+  \label{fig-tut3-gcd-cl-linetrace}
+  \end{minipage}
+  \hspace*{0.1in}\mbox{}
+
+\end{figure}
+

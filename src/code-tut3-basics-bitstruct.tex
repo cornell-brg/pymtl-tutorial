@@ -1,0 +1,53 @@
+%=========================================================================
+% code-tut3-basics-bitstruct
+%=========================================================================
+
+%\begin{figure}
+
+  \begin{lstlisting}[gobble=4]
+    # Point BitStruct
+
+    >>> class Point( BitStructDefinition ):
+    ...   def __init__( s ):
+    ...     s.x = BitField(4)
+    ...     s.y = BitField(4)
+    ...
+    >>> pt1 = Point()
+    >>> pt1.x = 3
+    >>> pt1.y = 4
+    >>> pt1
+    Bits( 8, 0x34 )
+    >>> pt1.x
+    Bits( 4, 0x3 )
+    >>> pt1.y
+    Bits( 4, 0x4 )
+
+    >> pt1 & Bits( 8, 0xf0 )
+    Bits( 8, 0x30 )
+    >> pt1[0:4]
+    Bits( 4, 0x3 )
+
+    # Parameterized Point BitStruct
+
+    >>> class PointN( BitStructDefinition ):
+    ...   def __init__( s, nbits ):
+    ...     s.x = BitField(nbits)
+    ...     s.y = BitField(nbits)
+    ...
+    >>> Point8 = PointN(8)
+    >>> pt2 = Point8()
+    >>> pt2.x = 3
+    >>> pt2.y = 4
+    >>> pt2
+    Bits( 16, 0x0304 )
+    >>> pt2.x
+    Bits( 8, 0x03 )
+    >>> pt2.y
+    Bits( 8, 0x04 )
+  \end{lstlisting}
+
+  \captionsetup{justification=centering}
+  \captionof{figure}{\textbf{Creating and Using \TT{BitStruct} Objects}}
+  \label{code-tut3-basics-bitstruct}
+
+%\end{figure}

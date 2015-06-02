@@ -1,0 +1,68 @@
+%=========================================================================
+% code-tut3-sort-fl-test
+%=========================================================================
+
+\begin{figure}
+
+  \begin{lstlisting}[xleftmargin={0.9in}]
+#=========================================================================
+# SortUnitFL_test
+#=========================================================================
+
+import random
+
+from pymtl      import *
+from pclib.test import run_test_vector_sim
+from SortUnitFL import SortUnitFL
+
+#-------------------------------------------------------------------------
+# test_basic
+#-------------------------------------------------------------------------
+
+def test_basic():
+  run_test_vector_sim( SortUnitFL(), [
+    ('in_[0] in_[1] in_[2] in_[3] out[0]* out[1]* out[2]* out[3]*'),
+    [ 4,     3,     2,     1,     '?',    '?',    '?',    '?'     ],
+    [ 9,     6,     7,     1,     1,      2,      3,      4       ],
+    [ 12,    16,    3,     42,    1,      6,      7,      9       ],
+    [ 0,     0,     0,     0,     3,      12,     16,     42      ],
+  ])
+
+#-------------------------------------------------------------------------
+# test_duplicates
+#-------------------------------------------------------------------------
+
+def test_duplicates():
+  run_test_vector_sim( SortUnitFL(), [
+    ('in_[0] in_[1] in_[2] in_[3] out[0]* out[1]* out[2]* out[3]*'),
+    [ 2,     8,     9,     9,     '?',    '?',    '?',    '?'     ],
+    [ 2,     8,     2,     8,     2,      8,      9,      9       ],
+    [ 1,     1,     1,     1,     2,      2,      8,      8       ],
+    [ 0,     0,     0,     0,     1,      1,      1,      1       ],
+  ])
+
+#-------------------------------------------------------------------------
+# test_random
+#-------------------------------------------------------------------------
+
+def test_random():
+
+  test_vector_table = \
+    [('in_[0] in_[1] in_[2] in_[3] out[0]* out[1]* out[2]* out[3]*')]
+
+  last_results = [ '?', '?', '?', '?' ]
+  for i in xrange(20):
+    inputs = [ random.randint(0,0xffff) for x in xrange(4) ]
+    test_vector_table.append( inputs + last_results )
+    last_results = sorted(inputs)
+
+  run_test_vector_sim( SortUnitFL(), test_vector_table )
+\end{lstlisting}
+
+  \caption{\textbf{Unit Test Script for Sort Unit FL Model --} A unit
+    test for the four-element sort unit in
+    Figure~\ref{code-tut3-sort-fl}.}
+  \label{code-tut3-sort-fl-test}
+
+\end{figure}
+

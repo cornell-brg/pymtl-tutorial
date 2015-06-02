@@ -1,0 +1,63 @@
+%=========================================================================
+% code-tut3-basics-bits1
+%=========================================================================
+
+%\begin{figure}
+
+  \begin{lstlisting}[gobble=4]
+    # Bits constructor specifies bitwidth
+    # and initial value
+
+    >>> a = Bits( 16, 37 )
+    >>> type(a)
+    <class 'pymtl.datatypes.Bits.Bits'>
+    >>> a
+    Bits( 16, 0x0025 )
+    >>> a = 47
+    >>> type(a)
+    <type 'int'>
+    >>> a
+    47
+
+    # Getting number of bits and value
+
+    >>> a = Bits( 16, 37 )
+    >>> a.nbits
+    16
+    >>> a.uint()
+    37
+
+    # Using binary and hexadecimal literals
+
+    >>> Bits( 8, 0b10101100 )
+    Bits( 8, 0xac )
+    >>> Bits( 32, 0xabcd0123 )
+    Bits( 32, 0xabcd0123 )
+
+    # Negative values stored in two's complement
+
+    >>> Bits( 8, -1 )
+    Bits( 8, 0xff )
+    >>> Bits( 8, -2 )
+    Bits( 8, 0xfe )
+    >>> Bits( 8, -128 )
+    Bits( 8, 0x80 )
+
+    # Initial values that cannot be stored with
+    # given bitwidth throw an exception
+
+    >>> Bits( 8,  300 )
+    >>> Bits( 8, -300 )
+
+    # Truncating initial values
+
+    >>> Bits( 8, 300, trunc=True )
+    Bits( 8, 0x2c )
+    >>> Bits( 8, 0xdeadbeef, trunc=True )
+    Bits( 8, 0xef )
+\end{lstlisting}
+
+  \captionof{figure}{\textbf{Creating \TT{Bits} Objects}}
+  \label{code-tut3-basics-bits1}
+
+%\end{figure}

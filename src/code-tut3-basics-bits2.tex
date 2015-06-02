@@ -1,0 +1,59 @@
+%=========================================================================
+% code-tut3-basics-bits2
+%=========================================================================
+
+%\begin{figure}
+
+  \begin{lstlisting}[gobble=4]
+    # Python slices for reading fields
+
+    >>> a = Bits( 32, 0xabcd0123 )
+    >>> a[28:32]
+    Bits( 4, 0xa )
+    >>> a[4:24]
+    Bits( 20, 0xcd012 )
+
+    # Python slices for writing fields
+
+    >>> a = Bits( 32, 0xabcd0123 )
+    >>> a[28:32] = 0xf
+    >>> a
+    Bits( 32, 0xfbcd0123 )
+    >>> a[4:24] = 0x210cd
+    >>> a
+    Bits( 32, 0xfb210cd3 )
+
+    # Creating two names that refer to
+    # the same Bits object
+
+    >>> a = Bits( 32, 0xabcd0123 )
+    >>> b = a
+    >>> a
+    Bits( 32, 0xabcd0123 )
+    >>> b
+    Bits( 32, 0xabcd0123 )
+    >>> a[24:32] = 0x67
+    >>> a
+    Bits( 32, 0x67cd0123 )
+    >>> b
+    Bits( 32, 0x67cd0123 )
+
+    # Copying a Bits object
+
+    >>> a = Bits( 32, 0xabcd0123 )
+    >>> b = Bits( 32, a )
+    >>> a
+    Bits( 32, 0xabcd0123 )
+    >>> b
+    Bits( 32, 0xabcd0123 )
+    >>> a[24:32] = 0x67
+    >>> a
+    Bits( 32, 0x67cd0123 )
+    >>> b
+    Bits( 32, 0xabcd0123 )
+  \end{lstlisting}
+
+  \captionof{figure}{\textbf{Slicing and Copying \TT{Bits} Objects}}
+  \label{code-tut3-basics-bits2}
+
+%\end{figure}

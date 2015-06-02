@@ -1,0 +1,65 @@
+%=========================================================================
+% code-tut3-sort-rtl-struct
+%=========================================================================
+
+\begin{figure}[b]
+
+  \begin{lstlisting}[xleftmargin={0.9in}]
+#=========================================================================
+# SortUnitStructRTL
+#=========================================================================
+
+from pymtl          import *
+from pclib.rtl.regs import Reg, RegRst
+from MinMaxUnit     import MinMaxUnit
+
+class SortUnitStructRTL( Model ):
+
+  def __init__( s, nbits=8 ):
+
+    #---------------------------------------------------------------------
+    # Interface
+    #---------------------------------------------------------------------
+
+    s.in_val  = InPort (1)
+    s.in_     = InPort [4](nbits)
+
+    s.out_val = OutPort(1)
+    s.out     = OutPort[4](nbits)
+
+    #---------------------------------------------------------------------
+    # Stage S0->S1 pipeline registers
+    #---------------------------------------------------------------------
+
+    s.val_S0S1 = RegRst(1)
+    s.elm_S0S1 = Reg[4](nbits)
+
+    s.connect( s.in_val, s.val_S0S1.in_ )
+    for i in xrange(4):
+      s.connect( s.in_[i], s.elm_S0S1[i].in_ )
+
+    #---------------------------------------------------------------------
+    # Stage S1 combinational logic
+    #---------------------------------------------------------------------
+
+    s.minmax0_S1 = MinMax(nbits)
+
+    s.connect( s.elm_S0S1[0].out, s.minmax0_S1.in0 )
+    s.connect( s.elm_S0S1[1].out, s.minmax0_S1.in1 )
+
+    s.minmax1_S1 = MinMax(nbits)
+
+    s.connect( s.elm_S0S1[2].out, s.minmax1_S1.in0 )
+    s.connect( s.elm_S0S1[3].out, s.minmax1_S1.in1 )
+
+    ...
+\end{lstlisting}
+
+  \caption{\textbf{Sort Unit Structural RTL Model --} RTL model of
+    four-element sort unit corresponding to
+    Figure~\ref{fig-tut3-sort-rtl}. For simplicity only the
+    interface and first pipeline stage are shown.}
+  \label{code-tut3-sort-rtl-struct}
+
+\end{figure}
+

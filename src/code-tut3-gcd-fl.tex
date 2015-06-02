@@ -1,0 +1,57 @@
+%=========================================================================
+% code-tut3-gcd-fl
+%=========================================================================
+
+\begin{figure}
+
+  \begin{lstlisting}[xleftmargin={0.9in}]
+#=========================================================================
+# GCD Unit FL Model
+#=========================================================================
+
+from fractions  import gcd
+
+from pymtl      import *
+from pclib.ifcs import InValRdyBundle, OutValRdyBundle
+from pclib.fl   import InValRdyQueueAdapter, OutValRdyQueueAdapter
+
+class GcdUnitFL( Model ):
+
+  # Constructor
+
+  def __init__( s ):
+
+    # Interface
+
+    s.req    = InValRdyBundle  (32)
+    s.resp   = OutValRdyBundle (16)
+
+    # Adapters
+
+    s.req_q  = InValRdyQueueAdapter  ( s.req  )
+    s.resp_q = OutValRdyQueueAdapter ( s.resp )
+
+    # Concurrent block
+
+    @s.tick_fl
+    def block():
+      req_msg = s.req_q.popleft()
+      result = gcd( req_msg[0:16], req_msg[16:32] )
+      s.resp_q.append( result )
+
+  # Line tracing
+
+  def line_trace( s ):
+    req_msg_str = "{}:{}".format( s.req.msg[0:16], s.req.msg[16:32] )
+    return "{}(){}".format(
+      valrdy_to_str( req_msg_str, s.req.val, s.req.rdy ),
+      s.resp
+    )
+\end{lstlisting}
+
+  \caption{\textbf{Gcd Unit FL Model --} FL model of greatest-common
+    divisor unit corresponding to Figure~\ref{fig-tut3-gcd-fl}.}
+  \label{code-tut3-gcd-fl}
+
+\end{figure}
+

@@ -1,0 +1,43 @@
+%=========================================================================
+% code-tut3-basics-bits-ops3
+%=========================================================================
+
+%\begin{figure}
+
+  \begin{lstlisting}[gobble=4]
+    # Concatenation
+
+    >>> a = Bits( 8,  0xab  )
+    >>> b = Bits( 12, 0xcde )
+    >>> concat( a, b )
+    Bits( 20, 0xabcde )
+    >>> concat( b, a )
+    Bits( 20, 0xcdeab )
+
+    >>> a = Bits( 4,  0xd   )
+    >>> b = Bits( 12, 0xead )
+    >>> c = Bits( 12, 0xbee )
+    >>> d = Bits( 4,  0xf   )
+    >>> concat( a, b, c, d )
+    Bits( 32, 0xdeadbeef )
+
+    # Zero/sign extension
+
+    >>> a = Bits( 4, 0xa )
+    >>> sext( a, 8 )
+    Bits( 8, 0xfa )
+    >>> zext( a, 8 )
+    Bits( 8, 0x0a )
+
+    >>> a = Bits( 4, 0x6 )
+    >>> sext( a, 8 )
+    Bits( 8, 0x06 )
+    >>> zext( a, 8 )
+    Bits( 8, 0x06 )
+  \end{lstlisting}
+
+  \captionsetup{justification=centering}
+  \captionof{figure}{\textbf{\TT{Bits} Other Operators}}
+  \label{code-tut3-basics-bits-ops3}
+
+%\end{figure}

@@ -1,0 +1,29 @@
+%=========================================================================
+% fig-tut3-pytest-verbose-output
+%=========================================================================
+
+\begin{figure}
+  \vspace{0.05in}
+
+  \footnotesize
+  \begin{Verbatim}[xleftmargin=0.8in]
+ ========================== test session starts ===========================
+ platform darwin -- Python 2.7.5 -- py-1.4.26 -- pytest-2.6.4
+ plugins: xdist
+ collected 4 items
+
+ ../examples/regincr/RegIncr_extra_test.py::test_small PASSED
+ ../examples/regincr/RegIncr_extra_test.py::test_large PASSED
+ ../examples/regincr/RegIncr_extra_test.py::test_overflow PASSED
+ ../examples/regincr/RegIncr_test.py::test_basic PASSED
+
+ ======================== 4 passed in 0.08 seconds =======================
+  \end{Verbatim}
+  \vspace{-0.1in}
+
+  \caption{\textbf{\TT{py.test} Verbose Output --} Each line corresponds
+    to one test case. Passing test cases are marked with \TT{PASSED} and
+    failing test cases are marked with \TT{FAILED}.}
+  \label{fig-tut3-pytest-verbose-output}
+
+\end{figure}

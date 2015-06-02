@@ -1,0 +1,87 @@
+%=========================================================================
+% tbl-tut-bits-ops
+%=========================================================================
+
+\newenvironment{optbl}[3][0.32in]
+{
+  \vspace{0pt}\centering
+  \BF{#2}\vphantom{g}
+  \smallskip
+
+  \begin{tabular}{>{\ttfamily\centering\arraybackslash}p{#1}p{#3}}
+\toprule
+}{
+\bottomrule
+  \end{tabular}
+}
+
+\begin{table}
+  \cbxcaptionsize\centering
+
+\begin{minipage}[t]{0.25\tw}
+
+\begin{optbl}{Logical Operators}{0.6\tw}
+  \verb|&|   & bitwise AND   \\
+  |          & bitwise OR    \\
+  \verb|^|   & bitwise XOR   \\
+  \verb|^~|  & bitwise XNOR  \\
+  \verb|~|   & bitwise NOT   \\
+\end{optbl}
+
+\smallskip
+
+\begin{optbl}{Arithmetic Operators}{0.6\tw}
+  \verb|+|   & addition         \\
+  \verb|-|   & subtraction      \\
+\end{optbl}
+
+\end{minipage}
+%
+\hfill
+%
+\begin{minipage}[t]{0.32\tw}
+
+\begin{optbl}[0.65in]{Reduction Operators}{0.52\tw}
+  \verb|reduce_and| & reduce via AND \\
+  \verb|reduce_or|  & reduce via OR  \\
+  \verb|reduce_xor| & reduce via XOR \\
+\end{optbl}
+
+\smallskip
+
+\begin{optbl}{Shift Operators}{0.693\tw}
+  \verb|>>|  & shift right            \\
+  \verb|<<|  & shift left             \\
+\end{optbl}
+
+\end{minipage}
+%
+\hfill
+%
+\begin{minipage}[t]{0.335\tw}
+
+\begin{optbl}{Relational Operators}{0.7\tw}
+  \verb|==|  & equal                  \\
+  \verb|!=|  & not equal              \\
+  \verb|>|   & greater than           \\
+  \verb|>=|  & greater than or equals \\
+  \verb|<|   & less than              \\
+  \verb|<=|  & less than or equals    \\
+\end{optbl}
+
+\smallskip
+
+\begin{optbl}{Other Functions}{0.7\tw}
+  \verb|concat| & concatenate         \\
+  \verb|sext|   & sign-extension      \\
+  \verb|zext|   & zero-extension      \\
+\end{optbl}
+
+\end{minipage}
+
+  \caption{\textbf{\TT{Bits} Operators --} Obviously there are many other
+    operations that can be used with \TT{Bits} objects, but these are
+    guaranteed to be translatable.} \label{tbl-tut-pymtl-ops}
+
+\end{table}
+

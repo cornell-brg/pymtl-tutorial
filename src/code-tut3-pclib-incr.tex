@@ -1,0 +1,31 @@
+%=========================================================================
+% code-tut3-pclib-incr
+%=========================================================================
+
+%\begin{figure}
+
+  \begin{lstlisting}[xleftmargin={0.9in}]
+class Incrementer( Model ):
+
+  def __init__( s, nbits = 1, increment_amount = 1 ):
+
+    s.in_ = InPort  ( nbits )
+    s.out = OutPort ( nbits )
+
+    s.increment_amount = increment_amount
+
+    @s.combinational
+    def comb_logic():
+      s.out.value = s.in_ + s.increment_amount
+
+  def line_trace( s ):
+    return "{} () {}".format( s.in_, s.out )
+\end{lstlisting}
+
+  \caption{\textbf{Parameterized Incrementer from \TT{pclib} --} A
+    combinational incrementer from \TT{pclib} that is parameterized by
+    both the port bitwidth and the incrementer amount.}
+  \label{code-tut3-pclib-incr}
+
+%\end{figure}
+

@@ -1,0 +1,26 @@
+%=========================================================================
+% fig-tut3-sort-rtl-linetrace
+%=========================================================================
+
+\begin{figure}
+
+  \footnotesize
+  \begin{Verbatim}[xleftmargin=0.77in,commandchars=\\\{\}]
+ cycle input ports     stage S1      stage S2      stage S3    output ports
+ ---------------------------------------------------------------------------
+    2:              |             |             |             |
+    3: \{04,02,03,01\}|             |             |             |
+    4:              |\{04,02,03,01\}|             |             |
+    5:              |             |\{02,04,01,03\}|             |
+    6:              |             |             |\{01,03,02,04\}|\{01,02,03,04\}
+    7:              |             |             |             |
+  \end{Verbatim}
+
+  \caption{\textbf{Line Trace Output for Sort Unit RTL Model --} This
+    line trace is for the \TT{test\_basic} test case and is annotated to
+    show what each column corresponds to in the model. If the valid bit
+    is not set, then the corresponding list of values is not shown.}
+  \label{fig-tut3-sort-rtl-linetrace}
+
+\end{figure}
+

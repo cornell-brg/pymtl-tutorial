@@ -1,0 +1,53 @@
+%=========================================================================
+% fig-tut3-gcd-rtl-linetrace
+%=========================================================================
+
+\begin{figure}
+
+  \begin{minipage}[t]{0.55\tw}
+  \footnotesize
+  \begin{Verbatim}
+cycle src        A    B    Areg Breg ST out    sink
+---------------------------------------------------
+   2:          >          (0005 000f I )     >
+   3: 000f0005 > 0005:000f(0005 000f I )     >
+   4: #        > #        (0005 000f Cs)     >
+   5: #        > #        (000f 0005 C-)     >
+   6: #        > #        (000a 0005 C-)     >
+   7: #        > #        (0005 0005 C-)     >
+   8: #        > #        (0000 0005 Cs)     >
+   9: #        > #        (0005 0000 C )     >
+  10: #        > #        (0005 0000 D )0005 > 0005
+  11: 00030009 > 0009:0003(0005 0000 I ).    > .
+  12: #        > #        (0009 0003 C-)     >
+  13: #        > #        (0006 0003 C-)     >
+  14: #        > #        (0003 0003 C-)     >
+  15: #        > #        (0000 0003 Cs)     >
+  16: #        > #        (0003 0000 C )     >
+  17: #        > #        (0003 0000 D )0003 > 0003
+  18: 00000000 > 0000:0000(0003 0000 I ).    > .
+  19: #        > #        (0000 0000 C ).    > .
+  20: #        > #        (0000 0000 D )#    > #
+  21: #        > #        (0000 0000 D )#    > #
+  22: #        > #        (0000 0000 D )#    > #
+  23: #        > #        (0000 0000 D )0000 > 0000
+  24: 001b000f > 000f:001b(0000 0000 I ).    > .
+  \end{Verbatim}
+  \end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.42\tw}
+  \caption{\textbf{Line Trace for RTL Implementation of GCD --} State of
+    A and B registers at the beginning of the cycle is shown, along with
+    the current state of the FSM. \TT{I}~= idle, \TT{Cs}~= calc with
+    swap, \TT{C-}~= calc with subtract, \TT{D}~= done. Recall that
+    various characters indicate the status of the val/rdy interface:
+    \TT{.}~= val/rdy interface is not valid and not ready; \TT{\#}~=
+    val/rdy interface is valid but not ready; space~= val/rdy interface
+    is not valid and ready; message is shown when it is actually
+    transferred across interface.}
+  \label{fig-tut3-gcd-rtl-linetrace}
+  \end{minipage}
+  \hspace*{0.1in}\mbox{}
+
+\end{figure}
+
