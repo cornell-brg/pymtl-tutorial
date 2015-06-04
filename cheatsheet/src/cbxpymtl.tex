@@ -5,6 +5,14 @@
 \definecolor{dmlgreen}    {RGB}{51,  160,  44}
 \definecolor{dmlblue}     {RGB}{31,  120, 180}
 \definecolor{dmlred}      {RGB}{202,   0,  32}
+
+\lstdefinestyle{simple}{%
+  language=Python,
+  numbers={none},
+  basicstyle={\ttfamily},
+  moredelim={[is][\underbar]{__}{__}}
+}
+
 \lstset
 {%
   language=Python,%
@@ -19,6 +27,7 @@
     s.connect,
     s.connect_auto,
     s.connect_dict,
+    s.connect_pairs,
     Bits,
     Wire,
     InPort,
