@@ -30,14 +30,14 @@
 
 \section{PyMTL Model Template}
 
-\begin{verbatim}
+\begin{lstlisting}
   class MyModel( Model ):
     def __init__( s, dtype ):
 
       # port declarations
 
       s.in_ = InPort( dtype )
-      s.out = [ OutPort( dtype ) for _ in range( 4 ) ]
+      s.out = [OutPort( dtype ) for _ in range( 4 )]
 
       # submodule declaration and connections
 
@@ -64,6 +64,8 @@
       s.this_out = Wire( dtype )
       s.last_out = Wire( dtype )
 
+      # more concurrent logic specifications
+
       @s.combinational
       def comb_logic2():
         s.this_out.value = s.in_
@@ -72,7 +74,7 @@
       def seq_logic2():
         if s.reset: s.last_out.next = 0
         else:       s.last_out.next = s.this_out
-\end{verbatim}
+\end{lstlisting}
 
 \clearpage
 
@@ -116,8 +118,8 @@
 % Using the PyMTL SimulationTool
 %-------------------------------------------------------------------------
 \section{Using the PyMTL SimulationTool}
-\begin{verbatim}
-  model = MyModel( dtype = 8 ) 
+\begin{lstlisting}[style=simple]
+  model = MyModel( dtype = 8 )
   model.elaborate()
   sim = SimulationTool()
 
@@ -125,24 +127,24 @@
     model.in_.value = i
     sim.cycle()
     sim.print_line_trace()
-\end{verbatim}
+\end{lstlisting}
 
 %-------------------------------------------------------------------------
 % Using the PyMTL TranslationTool
 %-------------------------------------------------------------------------
 \section{Using the PyMTL TranslationTool}
-\begin{verbatim}
-  model = MyModel( dtype = 8 ) 
+\begin{lstlisting}[style=simple]
+  model = MyModel( dtype = 8 )
   model.elaborate()
   model = TranslationTool( model )
-\end{verbatim}
+\end{lstlisting}
 
 %-------------------------------------------------------------------------
 % Writing Powerful Unit Tests in py.test
 %-------------------------------------------------------------------------
 \section{Writing Powerful Unit Tests in py.test}
-\begin{verbatim}
-  @pytest.mark.parameterize(`dtype', 8, 32 )
+\begin{lstlisting}[style=simple]
+  @pytest.mark.parameterize('dtype', 8, 32 )
   def test_my_model( test_verilog, dump_vcd, dtype ):
      model = MyModel( dtype )
      model.elaborate()
@@ -158,7 +160,7 @@
        sim.cycle()
        sim.print_line_trace()
        assert model.out[2].value = data
-\end{verbatim}
+\end{lstlisting}
 
 %-------------------------------------------------------------------------
 % PyMTL Python Test
@@ -166,11 +168,11 @@
 
 \section{Running PyMTL Python Tests with py.test}
 
-\begin{verbatim}
+\begin{lstlisting}[style=simple]
  % py.test ../my_model_dir --verbose --tb=line
  % py.test ../my_model_dir -k <grep_str>
  % py.test ../my_model_dir -k <grep_str> -s
-\end{verbatim}
+\end{lstlisting}
 
 %-------------------------------------------------------------------------
 % PyMTL Verilog Test
@@ -178,10 +180,10 @@
 
 \section{Running PyMTL Verilog Tests with py.test}
 
-\begin{verbatim}
+\begin{lstlisting}[style=simple]
  % py.test ../my_model_dir --verbose --test-verilog
  % py.test ../my_model_dir --verbose --test-verilog --dump-vcd
-\end{verbatim}
+\end{lstlisting}
 
 %-------------------------------------------------------------------------
 % PyMTL Bits Operators
