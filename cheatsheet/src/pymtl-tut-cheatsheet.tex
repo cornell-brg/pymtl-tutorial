@@ -77,6 +77,31 @@
 \clearpage
 
 %-------------------------------------------------------------------------
+% PyMTL Model Requirements
+%-------------------------------------------------------------------------
+\section{PyMTL Modeling Requirements}
+\begin{itemize} %\itemindent 20pt
+  \item Instantiated \TT{InPort}, \TT{OutPort}, and \TT{Wire} objects must
+         stored as members of the Model class \\
+         (e.g., \TT{\underline{s.}signal\_name = InPort(8)}).
+  \item Instantiated submodels must stored as members of the Model class \\
+         (e.g., \TT{\underline{s.}model\_name = Adder(8)}).
+  \item Data should only be passed between components using \TT{InPorts}
+         and \TT{OutPorts}.
+  \item \BF{Sequential} concurrent logic blocks must always be annotated
+         with \TT{\underline{@s.tick\_(fl|cl|rtl)}}.
+  \item \TT{InPorts}/\TT{OutPorts}/\TT{Wires} updated in \BF{sequential}
+         blocks must write the \underline{\TT{.next}} attribute \\
+         (e.g., \TT{s.out\underline{.next} = s.a \& s.b}).
+  \item \BF{Combinational} concurrent logic blocks must always be
+         annotated with \TT{\underline{@s.combinational}}.
+  \item \TT{InPorts}/\TT{OutPorts}/\TT{Wires} updated in \BF{combinational}
+         blocks must write the \underline{\TT{.value}} attribute \\
+         (e.g., \TT{s.out\underline{.value} = s.a \& s.b}).
+\end{itemize}
+
+
+%-------------------------------------------------------------------------
 % Using the PyMTL SimulationTool
 %-------------------------------------------------------------------------
 \section{Using the PyMTL SimulationTool}
@@ -106,7 +131,7 @@
 %-------------------------------------------------------------------------
 \section{Writing Powerful Unit Tests in py.test}
 \begin{verbatim}
-  @pytest.mark.parameterize('dtype', 8, 32 )
+  @pytest.mark.parameterize(`dtype', 8, 32 )
   def test_my_model( test_verilog, dump_vcd, dtype ):
      model = MyModel( dtype )
      model.elaborate()
