@@ -25,7 +25,8 @@
 # toplevel tex files to the default_doc_texs or the
 # extra_doc_texs make variables.
 
-default_doc_texs = ece5745-tut-pymtl.tex
+default_doc_texs = ece5745-tut-pymtl.tex \
+                   pymtl-tut-handout.tex
 extra_doc_texs   =
 
 doc_texs         = $(default_doc_texs) $(extra_doc_texs)
