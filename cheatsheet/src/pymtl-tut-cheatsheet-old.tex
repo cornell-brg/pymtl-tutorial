@@ -1,0 +1,277 @@
+%=========================================================================
+% ECE 4750 Tutorial 3 : Verilog
+%=========================================================================
+
+\documentclass{cbxdoc}
+
+% Automatix LaTeX build system modules
+
+\usepackage{svg}
+
+%-------------------------------------------------------------------------
+% Document Parameters
+%-------------------------------------------------------------------------
+
+\title{PyMTL Cheat Sheet}
+
+%-------------------------------------------------------------------------
+% Document
+%-------------------------------------------------------------------------
+
+\begin{document}
+\input{cbxpymtl}
+
+\maketitle
+\bigskip
+
+%-------------------------------------------------------------------------
+% PyMTL Model Template
+%-------------------------------------------------------------------------
+
+\section{PyMTL Model Template}
+
+\begin{lstlisting}
+  class MyModel( Model ):
+    def __init__( s, dtype ):
+
+      # port declarations
+
+      s.in_ = InPort( dtype )
+      s.out = [OutPort( dtype ) for _ in range( 4 )]
+
+      # submodule declaration and connections
+
+      s.mod = SubMod( dtype, other, params )
+
+      s.connect( s.in_, s.mod.in_ )
+      s.connect_pairs(
+        s.mod.out[0], s.out[0],
+        s.mod.out[1], s.out[1],
+      )
+
+      # concurrent logic specifications
+
+      @s.combinational
+      def comb_logic():
+        s.out[2].value = s.in_
+
+      @s.tick_rtl
+      def seq_logic():
+        s.out[3].next = s.in_
+
+      # wire declarations
+
+      s.this_out = Wire( dtype )
+      s.last_out = Wire( dtype )
+
+      # more concurrent logic specifications
+
+      @s.combinational
+      def comb_logic2():
+        s.this_out.value = s.in_
+
+      @s.tick_rtl
+      def seq_logic2():
+        if s.reset: s.last_out.next = 0
+        else:       s.last_out.next = s.this_out
+\end{lstlisting}
+
+\clearpage
+
+%-------------------------------------------------------------------------
+% PyMTL Model Guidelines
+%-------------------------------------------------------------------------
+\section{PyMTL Modeling Guidelines}
+\begin{itemize} %\itemindent 20pt
+  \item Data is communicated between PyMTL models using \TT{InPorts} \&
+         \TT{OutPorts}, not method calls!\\
+         Models are composed \BF{structurally} by connecting their ports
+         using \TT{s.connect} statements.
+  \item Instantiated \TT{InPort}, \TT{OutPort}, and \TT{Wire} objects must
+         stored as members of the model class:
+           \begin{lstlisting}[style=simple,gobble=10]
+             __s.__signal_name = InPort(8) \end{lstlisting}%
+  \item Instantiated submodels must also be stored as members of the model
+         class:
+           \begin{lstlisting}[style=simple,gobble=10]
+             __s.__model_name = Incrementer( dtype=8, incr_amt=1 )\end{lstlisting}%
+  \item \BF{Sequential} concurrent logic blocks must always be annotated
+         with \TT{\underline{@s.tick\_(fl|cl|rtl)}}. \\
+        \TT{InPorts}/\TT{OutPorts}/\TT{Wires} updated in \BF{sequential}
+         blocks must write the \underline{\TT{.next}} attribute.
+           \begin{lstlisting}[style=simple,gobble=10]
+             @s.tick_rtl
+             def sequential_block():
+               s.out.__next__ = s.a & s.b \end{lstlisting}%
+  \item \BF{Combinational} concurrent logic blocks must always be
+         annotated with \TT{\underline{@s.combinational}}.
+        \TT{InPorts}/\TT{OutPorts}/\TT{Wires} updated in \BF{combinational}
+         blocks must write the \underline{\TT{.value}} attribute.
+           \begin{lstlisting}[style=simple,gobble=10]
+             @s.combinational
+             def sequential_block():
+               s.out.__value__ = s.a & s.b \end{lstlisting}%
+\end{itemize}
+
+
+%-------------------------------------------------------------------------
+% Using the PyMTL SimulationTool
+%-------------------------------------------------------------------------
+\section{Using the PyMTL SimulationTool}
+\begin{lstlisting}[style=simple]
+  model = MyModel( dtype = 8 )
+  model.elaborate()
+  sim = SimulationTool()
+
+  for i in range( 10 ):
+    model.in_.value = i
+    sim.cycle()
+    sim.print_line_trace()
+\end{lstlisting}
+
+%-------------------------------------------------------------------------
+% Using the PyMTL TranslationTool
+%-------------------------------------------------------------------------
+\section{Using the PyMTL TranslationTool}
+\begin{lstlisting}[style=simple]
+  model = MyModel( dtype = 8 )
+  model.elaborate()
+  model = TranslationTool( model )
+\end{lstlisting}
+
+%-------------------------------------------------------------------------
+% Writing Powerful Unit Tests in py.test
+%-------------------------------------------------------------------------
+\section{Writing Powerful Unit Tests in py.test}
+\begin{lstlisting}[style=simple]
+  @pytest.mark.parameterize('dtype', 8, 32 )
+  def test_my_model( test_verilog, dump_vcd, dtype ):
+     model = MyModel( dtype )
+     model.elaborate()
+     model.vcd_file = dump_vcd
+     if test_verilog:
+       model = TranslationTool( model )
+     sim = SimulationTool( model )
+
+     print()
+     for i in range( 10 ):
+       data = random.randrange( 2**dtype )
+       model.in_.value = data
+       sim.cycle()
+       sim.print_line_trace()
+       assert model.out[2].value = data
+\end{lstlisting}
+
+%-------------------------------------------------------------------------
+% PyMTL Python Test
+%-------------------------------------------------------------------------
+
+\section{Running PyMTL Python Tests with py.test}
+
+\begin{lstlisting}[style=simple]
+ % py.test ../my_model_dir --verbose --tb=line
+ % py.test ../my_model_dir -k <grep_str>
+ % py.test ../my_model_dir -k <grep_str> -s
+\end{lstlisting}
+
+%-------------------------------------------------------------------------
+% PyMTL Verilog Test
+%-------------------------------------------------------------------------
+
+\section{Running PyMTL Verilog Tests with py.test}
+
+\begin{lstlisting}[style=simple]
+ % py.test ../my_model_dir --verbose --test-verilog
+ % py.test ../my_model_dir --verbose --test-verilog --dump-vcd
+\end{lstlisting}
+
+%-------------------------------------------------------------------------
+% PyMTL Bits Operators
+%-------------------------------------------------------------------------
+
+\clearpage
+
+\section{PyMTL Bits Operators}
+
+\newenvironment{optbl}[3][0.32in]
+{
+  \vspace{0pt}\centering
+  \BF{#2}\vphantom{g}
+  \smallskip
+
+  \begin{tabular}{>{\ttfamily\centering\arraybackslash}p{#1}p{#3}}
+\toprule
+}{
+\bottomrule
+  \end{tabular}
+}
+
+\begin{minipage}[t]{0.25\tw}
+
+\begin{optbl}{Logical Operators}{0.6\tw}
+  \verb|&|   & bitwise AND   \\
+  |          & bitwise OR    \\
+  \verb|^|   & bitwise XOR   \\
+  \verb|^~|  & bitwise XNOR  \\
+  \verb|~|   & bitwise NOT   \\
+\end{optbl}
+
+\smallskip
+
+\begin{optbl}{Arithmetic Operators}{0.6\tw}
+  \verb|+|   & addition         \\
+  \verb|-|   & subtraction      \\
+\end{optbl}
+
+\end{minipage}
+%
+\hfill
+%
+\begin{minipage}[t]{0.32\tw}
+
+\begin{optbl}[0.65in]{Reduction Operators}{0.52\tw}
+  \verb|reduce_and| & reduce via AND \\
+  \verb|reduce_or|  & reduce via OR  \\
+  \verb|reduce_xor| & reduce via XOR \\
+\end{optbl}
+
+\smallskip
+
+\begin{optbl}{Shift Operators}{0.693\tw}
+  \verb|>>|  & shift right            \\
+  \verb|<<|  & shift left             \\
+\end{optbl}
+
+\begin{optbl}{Slice Operators}{0.693\tw}
+  \verb|[x]|   & get/set bit x            \\
+  \verb|[x:y]| & get/set bits x upto y    \\
+\end{optbl}
+
+\end{minipage}
+%
+\hfill
+%
+\begin{minipage}[t]{0.335\tw}
+
+\begin{optbl}{Relational Operators}{0.7\tw}
+  \verb|==|  & equal                  \\
+  \verb|!=|  & not equal              \\
+  \verb|>|   & greater than           \\
+  \verb|>=|  & greater than or equals \\
+  \verb|<|   & less than              \\
+  \verb|<=|  & less than or equals    \\
+\end{optbl}
+
+\smallskip
+
+\begin{optbl}{Other Functions}{0.7\tw}
+  \verb|concat| & concatenate         \\
+  \verb|sext|   & sign-extension      \\
+  \verb|zext|   & zero-extension      \\
+\end{optbl}
+
+\end{minipage}
+
+
+\end{document}
+

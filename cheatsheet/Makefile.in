@@ -25,10 +25,8 @@
 # toplevel tex files to the default_doc_texs or the
 # extra_doc_texs make variables.
 
-default_doc_texs = ece5745-tut-pymtl.tex \
-                   pymtl-tut-cheatsheet.tex
-extra_doc_texs   =
-
+default_doc_texs = ece5745-tut-pymtl.tex
+extra_doc_texs   = pymtl-tut-cheatsheet.tex
 doc_texs         = $(default_doc_texs) $(extra_doc_texs)
 
 default_doc_pdfs = $(patsubst %.tex, %.pdf, $(default_doc_texs))
