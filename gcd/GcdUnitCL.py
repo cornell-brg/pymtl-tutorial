@@ -17,9 +17,12 @@ from GcdUnitMsg import GcdUnitReqMsg
 
 def gcd( a, b ):
 
-  ncycles = 0
+  # Task 4. Increment ncycles each time through the while loop to roughly
+  # estimate the number of cycles a hardware implementation might take to
+  # caculate the GCD.
+
+  ncycles = 1
   while True:
-    ncycles += 1
     if a < b:
       a,b = b,a
     elif b != 0:

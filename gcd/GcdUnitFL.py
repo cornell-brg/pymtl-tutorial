@@ -30,9 +30,8 @@ class GcdUnitFL( Model ):
 
     @s.tick_fl
     def block():
-      req_msg = s.req_q.popleft()
-      result = gcd( req_msg.a, req_msg.b )
-      s.resp_q.append( result )
+
+      # Task 2. Fill in FL code for GCD unit here ...
 
   # Line tracing
 

@@ -9,18 +9,5 @@ from pymtl import *
 #-------------------------------------------------------------------------
 # BitStruct designed to hold two operands for a GCD operation.
 
-class GcdUnitReqMsg( BitStructDefinition ):
-
-  def __init__( s ):
-    s.a = BitField(16)
-    s.b = BitField(16)
-
-  def mk_msg( s, a, b ):
-    msg   = s()
-    msg.a = a
-    msg.b = b
-    return msg
-
-  def __str__( s ):
-    return "{}:{}".format( s.a, s.b )
+# Task 1. Implement BitStruct here ...
 
