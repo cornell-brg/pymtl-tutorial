@@ -22,6 +22,12 @@ def test_simple( dtype ):
   # instantiate the model and elaborate it
 
   model = RegIncr( dtype )
+
+  #---------------------------------------------------------------------
+  # TASK 4: Add verilog translation to the test harness here
+  #         **and** in test_simple() signature
+  #---------------------------------------------------------------------
+
   model.elaborate()
 
   # create the simulator
@@ -31,11 +37,16 @@ def test_simple( dtype ):
   # verify the model
 
   print
+
   for input_vector, expected_out in simple_test_vectors:
+
     model.in_.value = input_vector
+
     sim.print_line_trace()
     sim.cycle()
+
     assert model.out == expected_out
+
   sim.print_line_trace()
 
 #-----------------------------------------------------------------------

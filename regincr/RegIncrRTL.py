@@ -9,6 +9,11 @@ class RegIncrRTL( Model ):
 
   def __init__( s, nbits ):
 
+    #-------------------------------------------------------------------
+    # TASK 2: Comment out the Exception below.
+    #         Implement RegIncr code shown on the overhead slides.
+    #-------------------------------------------------------------------
+
     raise NotImplementedError(
       'RegIncrRTL has not been implemented yet!\n '
       'Put your implementation code here!'
