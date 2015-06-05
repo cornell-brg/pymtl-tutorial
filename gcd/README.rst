@@ -144,15 +144,13 @@ logic.
 
   % py.test ../gcd/GcdUnitRTL_test.py
 
-* Task 6. Translate GCD unit RTL model into Verilog.
+* Task 6. Experiment with GCD unit.
 
 Show them how to use --test-verilog. Instruct them to look at the
 generated Verilog.
 
   % py.test ../gcd/GcdUnitRTL_test.py --test-verilog
   % vi GcdUnitRTL_0x791afe0d4d8c.v
-
-* Task 7. Experiment with GCD unit simulator
 
   % ../gcd/gcd-sim --stats --impl cl  --input random
   % ../gcd/gcd-sim --stats --impl rtl --input random
