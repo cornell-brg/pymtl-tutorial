@@ -180,7 +180,8 @@
 \setbeamercolor*{titlelike}{bg=white,fg=black}
 \setbeamercolor*{separation line}{}
 \setbeamercolor*{fine separation line}{}
-\setbeamercolor{section in head/foot}{palette quaternary}
+%\setbeamercolor{section in head/foot}{palette quaternary}
+\setbeamercolor{section in head/foot}{fg=black,bg=structure.fg!35!white}
 \setbeamercolor{frametitle}{bg=white,fg=black}
 \setbeamercolor{itemize item}{fg=cbxblueD}
 \setbeamercolor{itemize subitem}{fg=cbxblueD}
