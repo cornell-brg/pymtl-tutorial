@@ -342,9 +342,9 @@
 % Format for current and non-current section names in the header
 \usesectionheadtemplate
   % Current section
-  {\hfill{\color{cbxschemeD}\textbf{$\Big($~\parbox{0.5in}{\centering\insertsectionhead\rule{0pt}{1em}}}~$\Big)$}}
+  {\hfill{\color{cbxschemeD}\textbf{$\Big($~\parbox{0.5in}{\centering\insertsectionhead\vphantom{g}\rule{0pt}{1em}}}~$\Big)$}}
   % Non-current section
-  {\hfill{\color{cbxschemeD!40!bg}\parbox{0.5in}{\centering\insertsectionhead\rule{0pt}{1em}}}}
+  {\hfill{\color{cbxschemeD!40!bg}\parbox{0.5in}{\centering\insertsectionhead\vphantom{g}\rule{0pt}{1em}}}}
 
 \setbeamertemplate{headline}
 {%
