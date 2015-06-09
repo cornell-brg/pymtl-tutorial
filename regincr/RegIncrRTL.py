@@ -7,7 +7,7 @@ from pymtl import *
 
 class RegIncrRTL( Model ):
 
-  def __init__( s, nbits ):
+  def __init__( s, dtype ):
 
     #-------------------------------------------------------------------
     # TASK 2: Comment out the Exception below.
@@ -21,4 +21,4 @@ class RegIncrRTL( Model ):
 
 
   def line_trace( s ):
-    return '{} ({}) {}'.format( s.in_, s.reg_out, s.out )
+    return '{} ({}) {}'.format( s.in_, s.tmp, s.out )
