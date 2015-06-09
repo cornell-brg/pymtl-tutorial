@@ -1,0 +1,199 @@
+%=========================================================================
+% LaTeX Document
+%=========================================================================
+
+\documentclass{cbxslides}
+
+% albs modules
+
+\usepackage{svg}
+\usepackage{py}
+
+%-------------------------------------------------------------------------
+% Front matter
+%-------------------------------------------------------------------------
+
+\title
+{%
+  PyMTL: A Unified Framework for \\
+  Vertically Integrated \\
+  Computer Architecture Research
+}
+
+\author
+{%
+  \RD{Derek Lockhart}, Gary Zibrat, Christopher Batten
+}
+
+\name      {Derek Lockhart}
+\abbrvinst {Cornell University}
+
+\affiliation
+{%
+  Computer Systems Laboratory\\
+  School of Electrical and Computer Engineering\\
+  Cornell University\\[\baselineskip]
+  47th Int't Symp. on Microarchitecture, Dec 2014
+}
+
+\headerwidth {0.7\paperwidth}
+\finalslide  {11}
+
+%-------------------------------------------------------------------------
+% Outline Slide
+%-------------------------------------------------------------------------
+
+\newcommand{\outlineslide}[1]
+{%
+  \begin{frame}
+    \vspace{0.04in}
+    \hspace{0.1in}
+    \begin{minipage}[t]{0.25\tw}
+      \vspace{0pt}
+
+      \fbox{\parbox[c][2.5in]{1in}{\centering Place Holder}}
+    \end{minipage}
+    \hspace{0.05in}
+    \begin{minipage}[t][2in][c]{0.65\tw}
+      \vspace{0pt}
+
+      \vspace{0.1in}
+      \Large \BF{Talk Outline}
+
+      \rule[0.17in]{\tw}{0.5pt}
+
+      \raggedright\small\vspace{-0.1in}
+      \tableofcontents[#1]
+    \end{minipage}
+  \end{frame}
+}
+
+%-------------------------------------------------------------------------
+% Document
+%-------------------------------------------------------------------------
+
+\begin{document}
+
+\frame[t,plain]{\titlepage}
+
+\section{Motivation}
+
+\begin{frame}{Motivation: Using columns, svg-split, builds}
+\begin{cbxcols}
+  \begin{column}{0.5\tw}
+    \cbxfigc<1>{example_0-split.svg.pdf}
+    \cbxfigc<2>{example_0_1-split.svg.pdf}
+    \cbxfigc<3>{example_0_1_2-split.svg.pdf}
+  \end{column}
+  \begin{column}{0.3\tw}\small\centering
+
+    \begin{onlyenv}<1->
+      \smallskip
+      Blue circle
+    \end{onlyenv}
+
+    \begin{onlyenv}<2->
+      \smallskip\smallskip
+      Yellow circle
+    \end{onlyenv}
+
+    \begin{onlyenv}<3->
+      \smallskip\smallskip
+      Intersection of blue \\ and yellow circles
+    \end{onlyenv}
+
+  \end{column}
+\end{cbxcols}
+\end{frame}
+
+\begin{frame}{Motivation: Using pause}
+\begin{cbxlist}
+
+  \1 Item 1
+     \2 Subitem 1.a
+     \2 Subitem 1.b
+
+  \pause
+  \1 Item 2
+     \2 Subitem 2.a
+     \2 Subitem 2.b
+
+  \pause
+  \1 Item 3
+     \2 Subitem 3.a
+     \2 Subitem 3.b
+
+\end{cbxlist}
+\end{frame}
+
+\begin{frame}{Motivation: Using python plot builds}
+
+\cbxfigc<1>{plot-example_0-split.py.pdf}
+\cbxfigc<2>{plot-example_1-split.py.pdf}
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+% Section 2
+%-------------------------------------------------------------------------
+
+\outlineslide{sectionstyle=shaded/show}
+\section{Section 2}
+
+\begin{frame}{Section 2: Slide 1}
+\end{frame}
+
+\begin{frame}{Section 2: Slide 2}
+\end{frame}
+
+%-------------------------------------------------------------------------
+% Section 3
+%-------------------------------------------------------------------------
+
+\section{Section 3}
+\outlineslide{currentsection}
+
+\begin{frame}{Section 3: Slide 1}
+\end{frame}
+
+\begin{frame}{Section 3: Slide 2}
+\end{frame}
+
+%-------------------------------------------------------------------------
+% Take Away Points
+%-------------------------------------------------------------------------
+
+\section[]{}
+
+\begin{frame}
+  \vspace{0.04in}
+  \hspace{0.1in}
+  \begin{minipage}[t]{0.25\tw}
+    \vspace{0pt}
+
+    \fbox{\parbox[c][2.5in]{1in}{\centering Place Holder}}
+  \end{minipage}
+  \hspace{0.05in}
+  \begin{minipage}[t]{0.65\tw}
+    \vspace{0pt}
+
+    \vspace{0.1in}
+    \Large \BF{Take-Away Points}
+
+    \rule[0.17in]{\tw}{0.5pt}
+
+\begin{cbxlist}
+
+  \1 Take-away point 1
+
+  \1 Take-away point 2
+
+  \1 Take-away point 3
+
+\end{cbxlist}
+
+  \end{minipage}
+\end{frame}
+
+\end{document}
+

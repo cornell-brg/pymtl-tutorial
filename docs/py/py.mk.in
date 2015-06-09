@@ -1,0 +1,62 @@
+#=========================================================================
+# Python Module Makefile Fragment
+#=========================================================================
+# This makefile fragment will automatically generate python plot PDF
+# files by first running the corresponding python script. To use this
+# module you need matlab installed as well as pdfcrop for cropping and
+# ps2pdfwr for font embedding. A user should simply add
+# \includegraphics{plot-foo.py.pdf} and the build system will know that
+# it should run the plot-foo.py script in the mat directory to create the
+# corresponding PDF. Please read the documenation in 'albs-uguide.txt'
+# for more details on how the Automatic LaTeX Build System works.
+
+PYTHON   = @python@
+PDFCROP  = @pdfcrop@
+PS2PDFWR = @ps2pdfwr@
+
+py_enabled     = @py_enabled@
+py_figs        = $(filter %.py.pdf, $(figs))
+py_prebuild    = $(py_figs)
+py_dir         = $(top_dir)/py
+
+py_basic_figs = $(filter-out %-split.py.pdf, $(py_figs))
+
+ifeq ($(py_enabled),yes)
+$(py_basic_figs) : %.py.pdf : %.py
+	$(PYTHON) $<
+	$(PDFCROP) $*.py.pdf $*-crop.py.pdf
+	$(PS2PDFWR) -dPDFSETTINGS=/prepress $*-crop.py.pdf $*-crop-embed.py.pdf
+	mv $*-crop-embed.py.pdf $*.py.pdf
+endif
+
+junk += \
+  $(py_figs) \
+  $(patsubst %.py.pdf, %-crop.py.pdf, $(py_figs)) \
+  $(patsubst %.py.pdf, %-crop-embed.py.pdf, $(py_figs))
+
+#-------------------------------------------------------------------------
+# PY Splitting
+#-------------------------------------------------------------------------
+
+py_split_figs = $(filter %-split.py.pdf, $(py_figs))
+py_split_py  = $(patsubst %.py.pdf, %.py, $(py_split_figs))
+
+define py_split_template
+ifeq ($(py_enabled),yes)
+$(1)-split.py.pdf : $(2).py
+	$(PYTHON) $$< $(3)
+	$(PDFCROP) $(1)-split.py.pdf $(1)-crop.py.pdf
+	$(PS2PDFWR) -dPDFSETTINGS=/prepress $(1)-crop.py.pdf $(1)-crop-embed.py.pdf
+	mv $(1)-crop-embed.py.pdf $(1)-split.py.pdf
+endif
+endef
+
+$(foreach file,$(patsubst %-split.py, %, $(py_split_py)), \
+  $(eval $(call py_split_template,$(file), \
+    $(firstword $(subst _, ,$(file))), \
+    $(filter-out $(firstword $(subst _, ,$(file))), $(subst _, ,$(file))))))
+
+junk += $(py_split_py) $(py_split_figs) \
+  $(patsubst %.pdf, %.eps, $(py_split_figs))
+
+

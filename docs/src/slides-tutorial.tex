@@ -1,0 +1,100 @@
+%=========================================================================
+% LaTeX Document
+%=========================================================================
+
+\documentclass{cbxslides}
+
+% albs modules
+
+\usepackage{svg}
+\usepackage{py}
+
+%-------------------------------------------------------------------------
+% Front matter
+%-------------------------------------------------------------------------
+
+\title
+{%
+  PyMTL and Pydgin Tutorial \\
+  Python Frameworks for Highly Productive \\
+  Computer Architecture Research
+}
+
+\author
+{%
+  Derek Lockhart, Berkin Ilbeyi, Christopher Batten
+}
+
+\name      {PyMTL/Pydgin Tutorial: Python Frameworks for Highly Productive Computer Architecture Research}
+\abbrvinst {ISCA 2015}
+
+\affiliation
+{%
+  Computer Systems Laboratory\\
+  School of Electrical and Computer Engineering\\
+  Cornell University\\[\baselineskip]
+  42nd Int'l Symp. on Computer Architecture, June 2015
+}
+
+\headerwidth {0.95\paperwidth}
+\finalslide  {XX}
+
+%-------------------------------------------------------------------------
+% Schedule Slide
+%-------------------------------------------------------------------------
+% Argument is used to highlight specific row, with the row index starting
+% from one.
+
+\newcommand{\rownum}[2]
+{%
+  \ifthenelse{\equal{#1}{#2}}{\rowcolor{cbxredA}}{}%
+}
+
+\newcommand{\scheduleslide}[1]
+{%
+
+  \ifthenelse{\equal{#1}{2}}{\def\rowcolorA{cbxredA}}{\def\rowcolorA{white}}%
+  \ifthenelse{\equal{#1}{3}}{\def\rowcolorB{cbxredA}}{\def\rowcolorB{white}}%
+  \ifthenelse{\equal{#1}{4}}{\def\rowcolorC{cbxredA}}{\def\rowcolorC{white}}%
+  \ifthenelse{\equal{#1}{5}}{\def\rowcolorD{cbxredA}}{\def\rowcolorD{white}}%
+  \ifthenelse{\equal{#1}{6}}{\def\rowcolorE{cbxredA}}{\def\rowcolorE{white}}%
+  \ifthenelse{\equal{#1}{7}}{\def\rowcolorF{cbxredA}}{\def\rowcolorF{white}}%
+  \ifthenelse{\equal{#1}{8}}{\def\rowcolorG{cbxredA}}{\def\rowcolorG{white}}%
+  \ifthenelse{\equal{#1}{9}}{\def\rowcolorH{cbxredA}}{\def\rowcolorH{white}}%
+
+  \begin{frame}{PyMTL/Pydgin Tutorial Schedule}
+  \renewcommand{\arraystretch}{1.25}
+  \setlength{\tabcolsep}{2pt}
+
+  \hspace*{-0.08in}
+  \begin{tabular}{rcr<{\kern4\tabcolsep}@{}l}
+   8:30am &--&  8:50am & VM Installation and Setup                            \\         \rowcolor{\rowcolorA}
+   8:50am &--&  9:00am & \IT{Presentation:} PyMTL/Pydgin Tutorial Overview    \\\midrule \rowcolor{\rowcolorB}
+   9:00am &--&  9:10am & \IT{Presentation:} Introduction to Pydgin            \\         \rowcolor{\rowcolorC}
+   9:10am &--& 10:00am & \IT{Hands-On:} Adding a GCD Instruction using Pydgin \\         \rowcolor{\rowcolorD}
+  10:00am &--& 10:10am & \IT{Presentation:} Introduction to PyMTL             \\         \rowcolor{\rowcolorE}
+  10:10am &--& 11:00am & \IT{Hands-On:} PyMTL Basics with a RegIncr           \\\midrule \rowcolor{\rowcolorF}
+  11:00am &--& 11:30am & Coffee Break                                         \\\midrule \rowcolor{\rowcolorG}
+  11:30am &--& 11:40am & \IT{Presentation:} Multi-Level Modeling with PyMTL   \\         \rowcolor{\rowcolorH}
+  11:40am &--& 12:30pm & \IT{Hands-On:} FL, CL, RTL Modeling of a GCD Unit    \\
+  \end{tabular}
+  \end{frame}
+}
+
+%-------------------------------------------------------------------------
+% Document
+%-------------------------------------------------------------------------
+
+\begin{document}
+
+\frame[t,plain]{\titlepage}
+
+\input{sec-overview}
+\input{sec-pydgin-intro}
+\input{sec-pydgin-handson}
+\input{sec-pymtl-intro}
+\input{sec-pymtl-handson}
+\input{sec-mlmodel-intro}
+\input{sec-mlmodel-handson}
+
+\end{document}
