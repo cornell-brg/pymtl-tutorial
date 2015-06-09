@@ -140,11 +140,16 @@
 \definecolor{cbxredC}      {RGB}{176,  24,  24}
 \definecolor{cbxredD}      {RGB}{ 98,   9,   9}
 \definecolor{cbxblueitem}  {RGB}{ 40, 100, 150}
+\definecolor{dmlgrayBG}    {RGB}{240, 240, 240}
+\definecolor{dmlgrayTXT}   {RGB}{ 54,  54,  54}
+%\definecolor{dmlgrayTXT}   {RGB}{ 64,  64,  64}
+%\definecolor{dmlgrayFOOT}  {RGB}{150, 150, 150}
 
 \colorlet{cbxschemeA}{cbxblueA}
 \colorlet{cbxschemeB}{cbxblueB}
 \colorlet{cbxschemeC}{cbxblueC}
-\colorlet{cbxschemeD}{cbxblueD}
+%\colorlet{cbxschemeD}{cbxblueD}
+\colorlet{cbxschemeD}{dmlgrayTXT}
 
 \setbeamercolor{palette primary}
 {%
@@ -175,13 +180,13 @@
 }
 
 \setbeamercolor{structure}{fg=black}
-\setbeamercolor{cbxheadline}{fg=cbxschemeD,bg=cbxschemeA}
-\setbeamercolor{cbxfootline}{fg=cbxschemeD,bg=cbxschemeA}
+\setbeamercolor{cbxheadline}{fg=cbxschemeD,bg=white}
+\setbeamercolor{cbxfootline}{fg=cbxschemeD!40!white,bg=white}
 \setbeamercolor*{titlelike}{bg=white,fg=black}
 \setbeamercolor*{separation line}{}
 \setbeamercolor*{fine separation line}{}
 %\setbeamercolor{section in head/foot}{palette quaternary}
-\setbeamercolor{section in head/foot}{fg=black,bg=structure.fg!35!white}
+\setbeamercolor{section in head/foot}{fg=black,bg=white}
 \setbeamercolor{frametitle}{bg=white,fg=black}
 \setbeamercolor{itemize item}{fg=cbxblueD}
 \setbeamercolor{itemize subitem}{fg=cbxblueD}
@@ -355,7 +360,7 @@
     [wd=\paperwidth,ht=4ex,dp=2.4ex]{cbxheadline}%
     \centerline{\insertsectionnavigationhorizontal{\cbx@headerwidth}{}{}}%
   \end{beamercolorbox}%
-  {\color{cbxschemeD}\rule{\paperwidth}{0.25pt}}
+  %{\color{cbxschemeD}\rule{\paperwidth}{0.25pt}}
 }
 
 \mode
@@ -375,7 +380,7 @@
     [wd=\paperwidth,ht=2.5ex,dp=1.2ex]{cbxheadline}
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=\paperwidth,ht=0pt,dp=0pt]{}
-    {\color{cbxschemeD}\rule[0.045in]{\paperwidth}{0.25pt}}
+    %{\color{cbxschemeD}\rule[0.045in]{\paperwidth}{0.25pt}}
   \end{beamercolorbox}%
   \vskip0pt plus 1filll
   \normalsize
@@ -394,7 +399,7 @@
   \vskip0pt plus 1filll
   \tiny
   \begin{beamercolorbox}[wd=\paperwidth,ht=0pt,dp=0pt]{}
-    {\color{cbxschemeD}\rule[-0.013in]{\paperwidth}{0.25pt}}
+    %{\color{cbxschemeD}\rule[-0.013in]{\paperwidth}{0.25pt}}
   \end{beamercolorbox}%
   \begin{beamercolorbox}
     [wd=\paperwidth,ht=2.5ex,dp=1.2ex]{cbxfootline}
@@ -472,7 +477,7 @@
 
 \setbeamertemplate{footline}
 {%
-  {\color{cbxschemeD}\rule{\paperwidth}{0.25pt}}
+  %{\color{cbxschemeD}\rule{\paperwidth}{0.25pt}}
   \begin{beamercolorbox}
     [wd=\paperwidth,ht=2.3ex,dp=1.4ex,
      leftskip=.15cm,rightskip=.15cm]{cbxfootline}
