@@ -924,3 +924,21 @@
 \newcommand{\rarrow}{$\rightarrow$}
 \newcommand{\larrow}{$\leftarrow$}
 
+%-------------------------------------------------------------------------
+% Insert Slides
+%-------------------------------------------------------------------------
+
+\newcommand<>{\insertslide}[2]
+{%
+  \includegraphics#3[page=#2,width=\tw]{#1}
+}
+
+\newcommand{\insertslides}[3]
+{%
+  \pgfmathtruncatemacro{\numslides}{ #3 - #2 + 1 }
+  \foreach \x in {1,...,\numslides} {
+    \pgfmathtruncatemacro{\slidenum}{ \x + #2 - 1 }
+    \insertslide<\x>{#1}{\slidenum}
+  }
+}
+
