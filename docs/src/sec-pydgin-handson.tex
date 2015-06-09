@@ -6,17 +6,453 @@
 \section[{\it Hands-On} GCD Instr]{}
 \scheduleslide{4}
 
-\begin{frame}{GCD Instr}
+%-------------------------------------------------------------------------
+% PARC overview
+%-------------------------------------------------------------------------
+
+\begin{frame}[fragile]{PARC Overview}
+
+\begin{itemize}
+  \item MIPS-like 32-bit RISC ISA
+  \item 32 general-purpose registers
+  \item "Simple" instruction encodings
+  \item Example instruction: add unsigned
+\end{itemize}
+
+\begin{verbatim}
+  addu rd, rs, rt             R[rd] = R[rs] + R[rt]
+
+  31    26 25   21 20   16 15   11 10    6 5      0
+ +--------+-------+-------+-------+-------+--------+
+ |   op   |  rs   |  rt   |  rd   |       |  cmd   |
+ | 000000 | src0  | src1  | dst   | 00000 | 100001 |
+ +--------+-------+-------+-------+-------+--------+
+
+\end{verbatim}
+
 \end{frame}
 
+%-------------------------------------------------------------------------
+% Pydgin framework overview
+%-------------------------------------------------------------------------
+
+\begin{frame}{Pydgin Framework Overview}
+
+\begin{itemize}
+  \item \texttt{pydgin/}
+  \begin{itemize}
+    \item Common, ISA-independent components
+    \item Fetch-decode-execute loop, bitwise operations, register file,
+    memory, syscall implementations, JIT annotations
+    \item A user shouldn't need to modify these
+  \end{itemize}
+  \item \texttt{parc/}, \texttt{arm/}, \texttt{<your favorite isa>/}
+  \begin{itemize}
+    \item Architecture implementation
+    \item \texttt{machine.py}: architectural state
+    \item \texttt{instruction.py}: static instruction fields
+    \item \texttt{isa.py}: instruction encodings and semantics
+    \item \texttt{parc-sim.py}: executable
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+% parc/machine.py
+%-------------------------------------------------------------------------
+
+\begin{frame}[fragile]{\texttt{parc/machine.py}}
+
+\lstset{language=Python}
+\begin{lstlisting}
+# the architectural state (simplified)
+class State():
+  def __init__( self, ... ):
+    self.pc  = ...
+    self.rf  = ...
+    self.mem = ...
+
+    # statistics
+    self.num_insts      = ...
+    self.stat_num_insts = ...
+\end{lstlisting}
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+% parc/instruction.py
+%-------------------------------------------------------------------------
+
+\begin{frame}[fragile]{\texttt{parc/instruction.py}}
+
+\begin{verbatim}
+  addu rd, rs, rt             R[rd] = R[rs] + R[rt]
+
+  31    26 25   21 20   16 15   11 10    6 5      0
+ +--------+-------+-------+-------+-------+--------+
+ |   op   |  rs   |  rt   |  rd   |       |  cmd   |
+ | 000000 | src0  | src1  | dst   | 00000 | 100001 |
+ +--------+-------+-------+-------+-------+--------+
+
+\end{verbatim}
+
+\lstset{language=Python}
+\begin{lstlisting}
+@property
+def rd( self ):
+  return (self.bits >> 11) & 0x1F
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------------------------------------------
+% parc/isa.py
+%-------------------------------------------------------------------------
+
+\begin{frame}[fragile]{\texttt{parc/isa.py}}
+
+\begin{verbatim}
+  addu rd, rs, rt             R[rd] = R[rs] + R[rt]
+
+  31    26 25   21 20   16 15   11 10    6 5      0
+ +--------+-------+-------+-------+-------+--------+
+ |   op   |  rs   |  rt   |  rd   |       |  cmd   |
+ | 000000 | src0  | src1  | dst   | 00000 | 100001 |
+ +--------+-------+-------+-------+-------+--------+
+
+\end{verbatim}
+
+\vspace{-30pt}
+
+\lstset{language=Python}
+\begin{lstlisting}
+# instruction encodings
+encodings = [
+  # ...
+  ['addu', '000000_xxxxx_xxxxx_xxxxx_00000_100001'],
+  # ...
+]
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------------------------------------------
+% parc/isa.py (continued)
+%-------------------------------------------------------------------------
+
+\begin{frame}[fragile]{\texttt{parc/isa.py} (continued)}
+
+\begin{verbatim}
+  addu rd, rs, rt             R[rd] = R[rs] + R[rt]
+
+  31    26 25   21 20   16 15   11 10    6 5      0
+ +--------+-------+-------+-------+-------+--------+
+ |   op   |  rs   |  rt   |  rd   |       |  cmd   |
+ | 000000 | src0  | src1  | dst   | 00000 | 100001 |
+ +--------+-------+-------+-------+-------+--------+
+
+\end{verbatim}
+
+\vspace{-40pt}
+
+\lstset{language=Python}
+\begin{lstlisting}
+# addu semantics
+# s    = state
+# inst = instruction bits
+def execute_addu( s, inst ):
+  s.rf[ inst.rd ] = trim_32( s.rf[ inst.rs ] +
+                             s.rf[ inst.rt ] )
+  s.pc += 4
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------------------------------------------
+% GCD
+%-------------------------------------------------------------------------
+
 \begin{task}
-\begin{frame}{Another task}
+\begin{frame}[fragile]{Write Euclid's greatest common divisor (GCD)
+algorithm in Python interpreter}
+
+\vspace{-30pt}
+
+%TODO: this is a bit too long, maybe make the fonts smaller?
+\lstset{language=Python}
+\begin{lstlisting}
+% python
+>>> def gcd( a, b ):
+...   while True:
+...     if a < b:
+...       a,b = b,a
+...     elif b != a:
+...       a = a - b
+...     else:
+...       return a
+...
+>>> gcd( 1, 5 )
+1
+>>> gcd( 9, 3 )
+3
+>>> gcd( 9, 6 )
+3
+\end{lstlisting}
 
 \end{frame}
 \end{task}
 
+%-------------------------------------------------------------------------
+% Goal: add a gcd inst
+%-------------------------------------------------------------------------
+
+\begin{frame}{Goal: Add a GCD instruction in Pydgin}
+
+\begin{itemize}
+  \item Extend the cross-compiler
+  \item Add assembly test
+  \item Implement encoding
+  \item Implement semantics
+  \item Add instrumentation
+  \item Translate Pydgin
+  \item Write application
+  \item Evaluate application
+\end{itemize}
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+% Build and run asm tests
+%-------------------------------------------------------------------------
+
 \begin{task}
-\begin{frame}{Another task}
+\begin{frame}[fragile]{Build and run assembly tests using cross-compiler}
+
+\lstset{language=bash}
+\begin{lstlisting}
+% cd ~/pydgin/parc/asm_tests_build
+% make
+\end{lstlisting}
+
+The following should pass except for gcd:
+\lstset{language=bash}
+\begin{lstlisting}
+% make check
+\end{lstlisting}
+
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+% Investigate test failures
+%-------------------------------------------------------------------------
+
+\begin{task}
+\begin{frame}[fragile]{Investigate test failures}
+
+\begin{verbatim}
+parc-gcd.out:Exception in execution (pc: 0x00808008), aborting!
+parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
+\end{verbatim}
+
+\lstset{language=bash}
+\begin{lstlisting}
+% cd ~/pydgin/parc/asm_tests/build
+% maven-objdump -dC parc-gcd > gcd.dump
+% gedit gcd.dump
+
+% gedit ~/pydgin/parc/asm_tests/parc/parc-gcd.S
+\end{lstlisting}
+
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+% Add gcd encoding
+%-------------------------------------------------------------------------
+
+\begin{task}
+\begin{frame}[fragile]{Add encoding for \texttt{gcd} instruction}
+
+\begin{verbatim}
+  gcd rd, rs, rt        R[rd] = gcd( R[rs], R[rt] )
+
+  31    26 25   21 20   16 15   11 10    6 5      0
+ +--------+-------+-------+-------+-------+--------+
+ |   op   |  rs   |  rt   |  rd   |       |  cmd   |
+ | 100111 | src0  | src1  | dst   | xxxxx | 010001 |
+ +--------+-------+-------+-------+-------+--------+
+\end{verbatim}
+
+\vspace{-10pt}
+
+\lstset{language=bash}
+\begin{lstlisting}
+% cd ~/pydgin/parc
+% gedit isa.py
+\end{lstlisting}
+
+\vspace{-10pt}
+
+\lstset{language=Python}
+\begin{lstlisting}
+# TASK: uncomment and pick the correct encoding
+['gcd', '111111_11111_11111_11111_11111_111111'],
+\end{lstlisting}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+% Implement semantics
+%-------------------------------------------------------------------------
+
+\begin{task}
+\begin{frame}[fragile]{Implement semantics}
+
+\vspace{-20pt}
+
+\lstset{language=bash}
+\begin{lstlisting}
+% cd ~/pydgin/parc
+% gedit isa.py
+\end{lstlisting}
+
+\vspace{-20pt}
+
+% TODO: the following is too long, use a smaller font
+\lstset{language=Python}
+\begin{lstlisting}
+def execute_addu( s, inst ):
+  s.rf[ inst.rd ] = trim_32( s.rf[ inst.rs ] +
+                             s.rf[ inst.rt ] )
+  s.pc += 4
+
+# Euclid's gcd algorithm in python
+def gcd( a, b ):
+  while True:
+    if a < b:
+      a,b = b,a
+    elif b != 0:
+      a = a - b
+    else:
+      return a
+\end{lstlisting}
+
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+% Re-run asm tests
+%-------------------------------------------------------------------------
+
+\begin{task}
+\begin{frame}[fragile]{Re-run assembly tests}
+
+\begin{lstlisting}
+% cd ~/pydgin/parc/asm_tests/build
+
+% parc-sim.py --test parc-gcd
+\end{lstlisting}
+
+Try different debug flags:
+
+\begin{lstlisting}
+% parc-sim.py --test --debug insts         \
+                             parc-gcd | less
+% parc-sim.py --test --debug insts,rf,mem  \
+                             parc-gcd | less
+% parc-sim.py --test --debug insts,regdump \
+                             parc-gcd | less
+\end{lstlisting}
+
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+% Count GCD cycles
+%-------------------------------------------------------------------------
+
+\begin{task}
+\begin{frame}[fragile]{Count the GCD cycles}
+
+How many times do we loop when executing the \texttt{gcd} instruction?
+
+\begin{itemize}
+  \item gcd semantics (\texttt{parc/isa.py})
+  \item architectural state (\texttt{parc/machine.py})
+  \item uncomment to print the counter (\texttt{parc/parc-sim.py})
+\end{itemize}
+
+\begin{lstlisting}
+% cd ~/pydgin/parc/asm_tests/build
+% parc-sim.py --test parc-gcd
+\end{lstlisting}
+
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+% Add inline asm to app
+%-------------------------------------------------------------------------
+
+\begin{task}
+\begin{frame}[fragile]{Add inline assembly to application}
+
+\vspace{-20pt}
+
+% TODO: this slide is too long as well
+\begin{lstlisting}
+% cd ~/pydgin/bmarks/ubmark
+% gedit ubmark-gcd.cc
+\end{lstlisting}
+
+\vspace{-20pt}
+
+\lstset{language=c}
+\begin{lstlisting}
+int gcd_hw( int a, int b ) {
+  int result;
+  __asm__( "gcd %0, %1, %2" : "=r" (result)
+                            : "r" (a), "r" (b) );
+  return result;
+}
+
+void gcd_scalar_accel( ... ) {
+  for ( int i = 0; i < size; i++ )
+    dest[i] = gcd_hw( src0[i], src1[i] );
+}
+\end{lstlisting}
+
+\vspace{-20pt}
+
+\begin{lstlisting}
+% cd ~/pydgin/bmarks/build
+% make ubmark-gcd
+% parc-sim.py ubmark-gcd --impl all --verify
+\end{lstlisting}
+
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+% Translate and evaluate
+%-------------------------------------------------------------------------
+
+\begin{task}
+\begin{frame}[fragile]{Translate and evaluate}
+
+\begin{lstlisting}
+% cd ~/pydgin/scripts
+% ./build.py pydgin-parc-nojit-debug
+\end{lstlisting}
+
+Evaluate using interpretive and translated Pydgin
+
+\begin{lstlisting}
+% cd ~/pydgin/bmarks/build
+% parc-sim.py             ubmark-gcd --impl scalar
+% parc-sim.py             ubmark-gcd --impl scalar-accel
+% pydgin-parc-nojit-debug ubmark-gcd --impl scalar
+% pydgin-parc-nojit-debug ubmark-gcd --impl scalar-accel
+\end{lstlisting}
 
 \end{frame}
 \end{task}
