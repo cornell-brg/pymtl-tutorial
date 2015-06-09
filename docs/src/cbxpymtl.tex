@@ -1,0 +1,53 @@
+%=========================================================================
+% pymtl-listings
+%=========================================================================
+
+\definecolor{dmlgreen}    {RGB}{51,  160,  44}
+\definecolor{dmlblue}     {RGB}{31,  120, 180}
+\definecolor{dmlred}      {RGB}{202,   0,  32}
+
+\lstdefinestyle{simple}{%
+  language=Python,
+  numbers={none},
+  basicstyle={\ttfamily},
+  moredelim={[is][\underbar]{__}{__}}
+}
+
+\lstset
+{%
+  language=Python,%
+  alsoletter={.},
+  morekeywords=[2]{
+    @pytest.mark.parametrize,
+    @s.tick,
+    @s.tick_fl,
+    @s.tick_cl,
+    @s.tick_rtl,
+    @s.combinational,
+    s.connect,
+    s.connect_auto,
+    s.connect_dict,
+    s.connect_pairs,
+    Bits,
+    Wire,
+    InPort,
+    OutPort,
+    SimulationTool,
+    TranslationTool,
+    Model
+  },
+  basicstyle={\ttfamily\footnotesize},%
+  keywordstyle={\color{cbxgreenC}},%
+  keywordstyle={[2]\color{cbxblueC}},%
+  commentstyle={\color{cbxredC}},
+  lineskip={-0.005in},%
+  numbers={left},%
+  numberstyle={\tiny},%
+  xleftmargin={0.2in},%
+  showstringspaces={false},%
+  keepspaces={true},%
+  upquote={true},%
+  columns={fullflexible},%
+  stringstyle={\color{brown}},%
+}%
+

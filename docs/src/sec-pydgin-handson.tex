@@ -64,7 +64,6 @@
 
 \begin{frame}[fragile]{\texttt{parc/machine.py}}
 
-\lstset{language=Python}
 \begin{lstlisting}
 # the architectural state (simplified)
 class State():
@@ -97,7 +96,6 @@ class State():
 
 \end{verbatim}
 
-\lstset{language=Python}
 \begin{lstlisting}
 @property
 def rd( self ):
@@ -124,7 +122,6 @@ def rd( self ):
 
 \vspace{-30pt}
 
-\lstset{language=Python}
 \begin{lstlisting}
 # instruction encodings
 encodings = [
@@ -154,7 +151,6 @@ encodings = [
 
 \vspace{-40pt}
 
-\lstset{language=Python}
 \begin{lstlisting}
 # addu semantics
 # s    = state
@@ -177,7 +173,6 @@ algorithm in Python interpreter}
 \vspace{-30pt}
 
 %TODO: this is a bit too long, maybe make the fonts smaller?
-\lstset{language=Python}
 \begin{lstlisting}
 % python
 >>> def gcd( a, b ):
@@ -226,17 +221,16 @@ algorithm in Python interpreter}
 \begin{task}
 \begin{frame}[fragile]{Build and run assembly tests using cross-compiler}
 
-\lstset{language=bash}
-\begin{lstlisting}
+\begin{verbatim}
 % cd ~/pydgin/parc/asm_tests_build
 % make
-\end{lstlisting}
+\end{verbatim}
 
 The following should pass except for gcd:
-\lstset{language=bash}
-\begin{lstlisting}
+
+\begin{verbatim}
 % make check
-\end{lstlisting}
+\end{verbatim}
 
 \end{frame}
 \end{task}
@@ -253,14 +247,13 @@ parc-gcd.out:Exception in execution (pc: 0x00808008), aborting!
 parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 \end{verbatim}
 
-\lstset{language=bash}
-\begin{lstlisting}
+\begin{verbatim}
 % cd ~/pydgin/parc/asm_tests/build
 % maven-objdump -dC parc-gcd > gcd.dump
 % gedit gcd.dump
 
 % gedit ~/pydgin/parc/asm_tests/parc/parc-gcd.S
-\end{lstlisting}
+\end{verbatim}
 
 \end{frame}
 \end{task}
@@ -284,15 +277,13 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 
 \vspace{-10pt}
 
-\lstset{language=bash}
-\begin{lstlisting}
+\begin{verbatim}
 % cd ~/pydgin/parc
 % gedit isa.py
-\end{lstlisting}
+\end{verbatim}
 
 \vspace{-10pt}
 
-\lstset{language=Python}
 \begin{lstlisting}
 # TASK: uncomment and pick the correct encoding
 ['gcd', '111111_11111_11111_11111_11111_111111'],
@@ -309,16 +300,14 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 
 \vspace{-20pt}
 
-\lstset{language=bash}
-\begin{lstlisting}
+\begin{verbatim}
 % cd ~/pydgin/parc
 % gedit isa.py
-\end{lstlisting}
+\end{verbatim}
 
 \vspace{-20pt}
 
 % TODO: the following is too long, use a smaller font
-\lstset{language=Python}
 \begin{lstlisting}
 def execute_addu( s, inst ):
   s.rf[ inst.rd ] = trim_32( s.rf[ inst.rs ] +
@@ -346,22 +335,22 @@ def gcd( a, b ):
 \begin{task}
 \begin{frame}[fragile]{Re-run assembly tests}
 
-\begin{lstlisting}
+\begin{verbatim}
 % cd ~/pydgin/parc/asm_tests/build
 
 % parc-sim.py --test parc-gcd
-\end{lstlisting}
+\end{verbatim}
 
 Try different debug flags:
 
-\begin{lstlisting}
+\begin{verbatim}
 % parc-sim.py --test --debug insts         \
                              parc-gcd | less
 % parc-sim.py --test --debug insts,rf,mem  \
                              parc-gcd | less
 % parc-sim.py --test --debug insts,regdump \
                              parc-gcd | less
-\end{lstlisting}
+\end{verbatim}
 
 \end{frame}
 \end{task}
@@ -373,7 +362,7 @@ Try different debug flags:
 \begin{task}
 \begin{frame}[fragile]{Count the GCD cycles}
 
-How many times do we loop when executing the \texttt{gcd} instruction?
+{}How many times do we loop when executing the \texttt{gcd} instruction?
 
 \begin{itemize}
   \item gcd semantics (\texttt{parc/isa.py})
@@ -381,10 +370,10 @@ How many times do we loop when executing the \texttt{gcd} instruction?
   \item uncomment to print the counter (\texttt{parc/parc-sim.py})
 \end{itemize}
 
-\begin{lstlisting}
+\begin{verbatim}
 % cd ~/pydgin/parc/asm_tests/build
 % parc-sim.py --test parc-gcd
-\end{lstlisting}
+\end{verbatim}
 
 \end{frame}
 \end{task}
@@ -399,15 +388,14 @@ How many times do we loop when executing the \texttt{gcd} instruction?
 \vspace{-20pt}
 
 % TODO: this slide is too long as well
-\begin{lstlisting}
+\begin{verbatim}
 % cd ~/pydgin/bmarks/ubmark
 % gedit ubmark-gcd.cc
-\end{lstlisting}
+\end{verbatim}
 
 \vspace{-20pt}
 
-\lstset{language=c}
-\begin{lstlisting}
+\begin{lstlisting}[language=c]
 int gcd_hw( int a, int b ) {
   int result;
   __asm__( "gcd %0, %1, %2" : "=r" (result)
@@ -423,11 +411,11 @@ void gcd_scalar_accel( ... ) {
 
 \vspace{-20pt}
 
-\begin{lstlisting}
+\begin{verbatim}
 % cd ~/pydgin/bmarks/build
 % make ubmark-gcd
 % parc-sim.py ubmark-gcd --impl all --verify
-\end{lstlisting}
+\end{verbatim}
 
 \end{frame}
 \end{task}
@@ -439,20 +427,20 @@ void gcd_scalar_accel( ... ) {
 \begin{task}
 \begin{frame}[fragile]{Translate and evaluate}
 
-\begin{lstlisting}
+\begin{verbatim}
 % cd ~/pydgin/scripts
 % ./build.py pydgin-parc-nojit-debug
-\end{lstlisting}
+\end{verbatim}
 
 Evaluate using interpretive and translated Pydgin
 
-\begin{lstlisting}
+\begin{verbatim}
 % cd ~/pydgin/bmarks/build
 % parc-sim.py             ubmark-gcd --impl scalar
 % parc-sim.py             ubmark-gcd --impl scalar-accel
 % pydgin-parc-nojit-debug ubmark-gcd --impl scalar
 % pydgin-parc-nojit-debug ubmark-gcd --impl scalar-accel
-\end{lstlisting}
+\end{verbatim}
 
 \end{frame}
 \end{task}
