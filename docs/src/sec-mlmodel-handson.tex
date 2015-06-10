@@ -6,18 +6,180 @@
 \section[{\it Hands-On} GCD Unit]{}
 \scheduleslide{9}
 
-\begin{frame}{GCD Functional Unit}
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: The GCD Unit}
+%-------------------------------------------------------------------------
+\begin{itemize}
+  \item Computes the greatest-common divisor of two numbers.
+  \smallskip
+  \item Uses a latency insensitive input protocol to accept messages only
+        when sender has data available and GCD unit is ready.
+  \smallskip
+  \item Uses a latency insensitive output protocol to send results only
+        when result is done and receiver is ready.
+\end{itemize}
+
+  \cbxfigc{tut3-gcd-fl.svg.pdf}
 \end{frame}
 
-\begin{task}
-\begin{frame}{Another task}
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: Bundled Interfaces}
+%-------------------------------------------------------------------------
 
+\BF{PortBundles} to simplify handling of multi-signal interfaces such as
+ValRdy:
+
+% TODO
+%\vspace{-0.3in}
+%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
+%{../../regincr_soln/RegIncrRTL_test.py}
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: Complex Datatypes}
+%-------------------------------------------------------------------------
+
+\BF{BitStructs} are used to simplify communicating and interacting with
+complex packages of data:
+
+% TODO
+%\vspace{-0.3in}
+%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
+%{../../regincr_soln/RegIncrRTL_test.py}
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: Complex Datatypes}
+%-------------------------------------------------------------------------
+
+The GCD request message can be implemented as a BitStruct that has two
+fields, one for each operand:
+
+% TODO
+%\cbxfigc{tut3-gcd-fl.svg.pdf}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Create a BitStruct for the GCD request}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  % cd    ~/pymtl-tutorial/build
+  % gedit ../gcd/GcdUnitMsg.py
+\end{verbatim}
+
+% TODO
+%\vspace{-0.3in}
+%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
+%{../../regincr_soln/RegIncrRTL_test.py}
+
+\vspace{-0.3in}
+\begin{verbatim}
+  % py.test ../regincr/RegIncrRTL_test.py -v --test-verilog
+\end{verbatim}
 \end{frame}
 \end{task}
 
-\begin{task}
-\begin{frame}{Another task}
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: Latency Insensitive FL Models}
+%-------------------------------------------------------------------------
+\begin{itemize}
+  \item Implementing latency insensitive communication protocols can be
+        complex to implement and a challenge to debug.
+  \smallskip
+  \item PyMTL provides \BF{Interface Adapters} which abstract away the
+        complexities of ValRdy, and expose simplified method interfaces.
+\end{itemize}
 
+  % TODO
+  \begin{onlyenv}<1>
+    \cbxfigc<1>{tut3-gcd-fl.svg.pdf}
+  \end{onlyenv}
+
+  \begin{onlyenv}<2>
+  TODO CODE
+  % TODO
+  %\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
+  %{../../regincr_soln/RegIncrRTL_test.py}
+  \end{onlyenv}
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Build an FL model for the GCD unit}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  % cd    ~/pymtl-tutorial/build
+  % gedit ../gcd/GcdUnitFL.py
+\end{verbatim}
+
+% TODO
+%\vspace{-0.3in}
+%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
+%{../../regincr_soln/RegIncrRTL_test.py}
+
+\vspace{-0.3in}
+\begin{verbatim}
+  % py.test ../gcd/GcdUnitFL_test.py -v
+\end{verbatim}
 \end{frame}
 \end{task}
 
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: Testing Latency Insensitive Models}
+%-------------------------------------------------------------------------
+
+\begin{itemize}
+  \item To simplify testing of latency insensitive designs, PyMTL provides
+        TestSources and TestSinks with ValRdy interfaces.
+  \smallskip
+  \item TestSources/TestSinks only transmit/accept data when the ``design
+        under test'' is ready/valid.
+  \smallskip
+  \item Can be configured to insert random delays into valid/ready signals
+        to verify latency insensitivity under various conditions.
+\end{itemize}
+
+  \cbxfigc{tut3-gcd-srcsink.svg.pdf}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Create a latency insensitive test}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  % cd    ~/pymtl-tutorial/build
+  % gedit ../gcd/GcdUnitFL_simple_test.py
+\end{verbatim}
+
+% TODO
+%\vspace{-0.3in}
+%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
+%{../../regincr_soln/RegIncrRTL_test.py}
+
+\vspace{-0.3in}
+\begin{verbatim}
+  % py.test ../gcd/GcdUnitFL_simple_test.py -sv
+\end{verbatim}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: Latency Insensitive CL Models}
+%-------------------------------------------------------------------------
+
+\begin{itemize}
+  \item Cycle-level models add timing information to a functional model
+        and can provide a cycle-approximate estimation of performance.
+  \smallskip
+  \item Useful for rapid, initial exploration of an
+        architectural design space.
+  \smallskip
+  \item We'll use a simple GCD algorithm to provide timing info.
+\end{itemize}
+
+  \cbxfigc{tut3-gcd-cl.svg.pdf}
+\end{frame}
