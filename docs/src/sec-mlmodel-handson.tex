@@ -98,7 +98,7 @@ fields, one for each operand:
 
   \begin{onlyenv}<2>
   \vspace{-0.15in}
-  \lstinputlisting[xleftmargin={0.38in},firstline=19,lastline=27,numbers=none]%
+  \lstinputlisting[xleftmargin={0.38in},firstline=19,lastline=27,firstnumber=19]%
   {../../gcd/GCDUnitFL.py}
   \end{onlyenv}
 
@@ -113,12 +113,9 @@ fields, one for each operand:
   % gedit ../gcd/GcdUnitFL.py
 \end{verbatim}
 
-% TODO
-%\vspace{-0.3in}
-%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
-%{../../regincr_soln/RegIncrRTL_test.py}
+\lstinputlisting[xleftmargin={0.38in},firstline=31,lastline=41,firstnumber=31]%
+{../../gcd_soln/GcdUnitFL.py}
 
-\vspace{-0.3in}
 \begin{verbatim}
   % py.test ../gcd/GcdUnitFL_test.py -v
 \end{verbatim}
@@ -152,14 +149,11 @@ fields, one for each operand:
   % gedit ../gcd/GcdUnitFL_simple_test.py
 \end{verbatim}
 
-% TODO
-%\vspace{-0.3in}
-%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
-%{../../regincr_soln/RegIncrRTL_test.py}
+\lstinputlisting[xleftmargin={0.38in},firstline=22,lastline=31,firstnumber=22]%
+{../../gcd_soln/GcdUnitFL_simple_test.py}
 
-\vspace{-0.3in}
 \begin{verbatim}
-  % py.test ../gcd/GcdUnitFL_simple_test.py -sv
+  % py.test ../gcd/GcdUnitFL_simple_test.py -v -s
 \end{verbatim}
 \end{frame}
 \end{task}
@@ -167,9 +161,9 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{frame}{PyMTL 102: Latency Insensitive CL Models}
 %-------------------------------------------------------------------------
-
-% TODO
-TODO: Line Trace
+\vspace{-0.25in}
+\lstinputlisting[xleftmargin={0.38in},firstline=1,lastline=16,numbers=none]%
+{../../gcd_soln/fl_trace.out}
 
 \end{frame}
 
@@ -198,15 +192,13 @@ TODO: Line Trace
   % cd    ~/pymtl-tutorial/build
   % py.test ../gcd/GcdUnitCL_test.py
   % py.test ../gcd/GcdUnitCL_test.py -k basic_0x0 -sv
-  % gedit ../gcd/GcdUnitFL.py
+  % gedit ../gcd/GcdUnitCL.py
 \end{verbatim}
 
-% TODO
-%\vspace{-0.3in}
-%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
-%{../../regincr_soln/RegIncrRTL_test.py}
+\vspace{-0.1in}
+\lstinputlisting[xleftmargin={0.38in},firstline=17,lastline=25,firstnumber=17]%
+{../../gcd_soln/GcdUnitCL.py}
 
-\vspace{-0.3in}
 \begin{verbatim}
   % py.test ../gcd/GcdUnitCL_test.py -k basic_0x0 -sv
 \end{verbatim}
