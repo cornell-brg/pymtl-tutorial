@@ -64,7 +64,7 @@
 
 \begin{frame}[fragile]{\texttt{parc/machine.py}}
 
-\begin{lstlisting}
+\begin{lstlisting}[numbers=none]
 # the architectural state (simplified)
 class State():
   def __init__( self, ... ):
@@ -93,13 +93,16 @@ class State():
  |   op   |  rs   |  rt   |  rd   |       |  cmd   |
  | 000000 | src0  | src1  | dst   | 00000 | 100001 |
  +--------+-------+-------+-------+-------+--------+
-
 \end{verbatim}
 
-\begin{lstlisting}
-@property
-def rd( self ):
-  return (self.bits >> 11) & 0x1F
+\vspace{-20pt}
+
+\begin{lstlisting}[numbers=none]
+class Instruction():
+  # ...
+  @property
+  def rd( self ):
+    return (self.bits >> 11) & 0x1F
 \end{lstlisting}
 \end{frame}
 
@@ -117,12 +120,11 @@ def rd( self ):
  |   op   |  rs   |  rt   |  rd   |       |  cmd   |
  | 000000 | src0  | src1  | dst   | 00000 | 100001 |
  +--------+-------+-------+-------+-------+--------+
-
 \end{verbatim}
 
-\vspace{-30pt}
+\vspace{-20pt}
 
-\begin{lstlisting}
+\begin{lstlisting}[numbers=none]
 # instruction encodings
 encodings = [
   # ...
@@ -151,7 +153,7 @@ encodings = [
 
 \vspace{-40pt}
 
-\begin{lstlisting}
+\begin{lstlisting}[numbers=none]
 # addu semantics
 # s    = state
 # inst = instruction bits
@@ -172,8 +174,7 @@ algorithm in Python interpreter}
 
 \vspace{-30pt}
 
-%TODO: this is a bit too long, maybe make the fonts smaller?
-\begin{lstlisting}
+\begin{lstlisting}[numbers=none,basicstyle=\ttfamily\small]
 % python
 >>> def gcd( a, b ):
 ...   while True:
@@ -242,10 +243,11 @@ The following should pass except for gcd:
 \begin{task}
 \begin{frame}[fragile]{Investigate test failures}
 
+{\small
 \begin{verbatim}
 parc-gcd.out:Exception in execution (pc: 0x00808008), aborting!
 parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
-\end{verbatim}
+\end{verbatim}}
 
 \begin{verbatim}
 % cd ~/pydgin/parc/asm_tests/build
@@ -284,8 +286,8 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 
 \vspace{-10pt}
 
-\begin{lstlisting}
-# TASK: uncomment and pick the correct encoding
+\begin{lstlisting}[firstnumber=243]
+# TASK: pick the correct encoding
 ['gcd', '111111_11111_11111_11111_11111_111111'],
 \end{lstlisting}
 \end{frame}
@@ -308,12 +310,14 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 \vspace{-20pt}
 
 % TODO: the following is too long, use a smaller font
-\begin{lstlisting}
+\begin{lstlisting}[firstnumber=319]
 def execute_addu( s, inst ):
   s.rf[ inst.rd ] = trim_32( s.rf[ inst.rs ] +
                              s.rf[ inst.rt ] )
   s.pc += 4
-
+\end{lstlisting}
+\vspace{-20pt}
+\begin{lstlisting}[numbers=none]
 # Euclid's gcd algorithm in python
 def gcd( a, b ):
   while True:
@@ -343,14 +347,12 @@ def gcd( a, b ):
 
 Try different debug flags:
 
+{\small
 \begin{verbatim}
-% parc-sim.py --test --debug insts         \
-                             parc-gcd | less
-% parc-sim.py --test --debug insts,rf,mem  \
-                             parc-gcd | less
-% parc-sim.py --test --debug insts,regdump \
-                             parc-gcd | less
-\end{verbatim}
+% parc-sim.py --test --debug insts         parc-gcd | less
+% parc-sim.py --test --debug insts,rf,mem  parc-gcd | less
+% parc-sim.py --test --debug insts,regdump parc-gcd | less
+\end{verbatim}}
 
 \end{frame}
 \end{task}
@@ -395,14 +397,16 @@ Try different debug flags:
 
 \vspace{-20pt}
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[language=c,firstnumber=66]
 int gcd_hw( int a, int b ) {
   int result;
   __asm__( "gcd %0, %1, %2" : "=r" (result)
                             : "r" (a), "r" (b) );
   return result;
 }
-
+\end{lstlisting}
+\vspace{-30pt}
+\begin{lstlisting}[language=c,firstnumber=76]
 void gcd_scalar_accel( ... ) {
   for ( int i = 0; i < size; i++ )
     dest[i] = gcd_hw( src0[i], src1[i] );
