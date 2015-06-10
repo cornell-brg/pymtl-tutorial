@@ -120,15 +120,15 @@ class State():
 
 \begin{frame}[fragile]{\texttt{parc/instruction.py}}
 
-\begin{verbatim}
-  addu rd, rs, rt             R[rd] = R[rs] + R[rt]
+\begin{Verbatim}[commandchars=\\\{\}]
+  addu \textcolor{red}{rd}, \textcolor{red}{rs}, \textcolor{red}{rt}             R[\textcolor{red}{rd}] = R[\textcolor{red}{rs}] + R[\textcolor{red}{rt}]
 
   31    26 25   21 20   16 15   11 10    6 5      0
  +--------+-------+-------+-------+-------+--------+
- |   op   |  rs   |  rt   |  rd   |       |  cmd   |
+ |   op   |  \textcolor{red}{rs}   |  \textcolor{red}{rt}   |  \textcolor{red}{rd}   |       |  cmd   |
  | 000000 | src0  | src1  | dst   | 00000 | 100001 |
  +--------+-------+-------+-------+-------+--------+
-\end{verbatim}
+\end{Verbatim}
 
 \vspace{-20pt}
 
@@ -147,15 +147,15 @@ class Instruction():
 
 \begin{frame}[fragile]{\texttt{parc/isa.py}}
 
-\begin{verbatim}
+\begin{Verbatim}[commandchars=\\\{\}]
   addu rd, rs, rt             R[rd] = R[rs] + R[rt]
 
   31    26 25   21 20   16 15   11 10    6 5      0
  +--------+-------+-------+-------+-------+--------+
  |   op   |  rs   |  rt   |  rd   |       |  cmd   |
- | 000000 | src0  | src1  | dst   | 00000 | 100001 |
+ | \textcolor{red}{000000} | src0  | src1  | dst   | \textcolor{red}{00000} | \textcolor{red}{100001} |
  +--------+-------+-------+-------+-------+--------+
-\end{verbatim}
+\end{Verbatim}
 
 \vspace{-20pt}
 
@@ -175,8 +175,8 @@ encodings = [
 
 \begin{frame}[fragile]{\texttt{parc/isa.py} (continued)}
 
-\begin{verbatim}
-  addu rd, rs, rt             R[rd] = R[rs] + R[rt]
+\begin{Verbatim}[commandchars=\\\{\}]
+  addu rd, rs, rt             \textcolor{red}{R[rd] = R[rs] + R[rt]}
 
   31    26 25   21 20   16 15   11 10    6 5      0
  +--------+-------+-------+-------+-------+--------+
@@ -184,7 +184,7 @@ encodings = [
  | 000000 | src0  | src1  | dst   | 00000 | 100001 |
  +--------+-------+-------+-------+-------+--------+
 
-\end{verbatim}
+\end{Verbatim}
 
 \vspace{-40pt}
 
@@ -270,15 +270,15 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 \begin{task}
 \begin{frame}[fragile]{Add encoding for \texttt{gcd} instruction}
 
-\begin{verbatim}
+\begin{Verbatim}[commandchars=\\\{\}]
   gcd rd, rs, rt        R[rd] = gcd( R[rs], R[rt] )
 
   31    26 25   21 20   16 15   11 10    6 5      0
  +--------+-------+-------+-------+-------+--------+
  |   op   |  rs   |  rt   |  rd   |       |  cmd   |
- | 100111 | src0  | src1  | dst   | xxxxx | 010001 |
+ | \textcolor{red}{100111} | src0  | src1  | dst   | \textcolor{red}{xxxxx} | \textcolor{red}{010001} |
  +--------+-------+-------+-------+-------+--------+
-\end{verbatim}
+\end{Verbatim}
 
 \vspace{-10pt}
 
