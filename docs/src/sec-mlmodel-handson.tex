@@ -208,9 +208,9 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{frame}{PyMTL 102: Latency Insensitive CL Models}
 %-------------------------------------------------------------------------
-
-% TODO
-TODO: Line Trace
+\vspace{-0.25in}
+\lstinputlisting[xleftmargin={0.38in},firstline=1,lastline=16,numbers=none]%
+{../../gcd_soln/cl_trace.out}
 
 \end{frame}
 
@@ -269,14 +269,13 @@ TODO: Line Trace
   % gedit ../gcd/GcdUnitRTL.py
 \end{verbatim}
 
-% TODO
-%\vspace{-0.3in}
-%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
-%{../../regincr_soln/RegIncrRTL_test.py}
+\vspace{-0.2in}
+\lstinputlisting[xleftmargin={0.38in},firstline=183,lastline=194,firstnumber=183]%
+{../../gcd/GcdUnitRTL.py}
 
 \vspace{-0.3in}
 \begin{verbatim}
-  % py.test ../gcd/GcdUnitCL_test.py -k basic_0x0 -sv
+  % py.test ../gcd/GcdUnitRTL_test.py -k basic_0x0 -sv
 \end{verbatim}
 \end{frame}
 \end{task}
@@ -284,21 +283,25 @@ TODO: Line Trace
 %-------------------------------------------------------------------------
 \begin{frame}{PyMTL 102: Latency Insensitive RTL Models}
 %-------------------------------------------------------------------------
-
-% TODO
-TODO: Line Trace
+\vspace{-0.25in}
+\lstinputlisting[xleftmargin={0.38in},firstline=1,lastline=16,numbers=none]%
+{../../gcd_soln/rtl_trace.out}
 
 \end{frame}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Verify PyMTL-generated GCD Verilog RTL}
+\begin{task}\begin{frame}[fragile]{Verify generated Verilog GCD RTL}
 %-------------------------------------------------------------------------
 \vspace{-0.25in}
 \begin{verbatim}
   % cd    ~/pymtl-tutorial/build
   % py.test ../gcd/GcdUnitRTL_test.py --test-verilog -sv
-  % gedit GcdUnitRTL_*.v
+  % gedit GcdUnitRTL_0x791afe0d4d8c.v
 \end{verbatim}
+
+\vspace{-0.3in}
+\lstinputlisting[xleftmargin={0.38in},firstline=6,lastline=19,firstnumber=4]%
+{../../gcd_soln/GcdUnitRTL_0x791afe0d4d8c.v}
 \end{frame}
 \end{task}
 
