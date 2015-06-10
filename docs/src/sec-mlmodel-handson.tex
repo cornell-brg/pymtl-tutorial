@@ -25,7 +25,7 @@
 %-------------------------------------------------------------------------
 \begin{frame}{PyMTL 102: Bundled Interfaces}
 %-------------------------------------------------------------------------
-
+\vspace{-0.18in}
 \begin{itemize}
   \item \BF{PortBundles} are used to simplify the handling of multi-signal
         interfaces, such as ValRdy:
@@ -40,14 +40,14 @@
 %-------------------------------------------------------------------------
 \begin{frame}{PyMTL 102: Complex Datatypes}
 %-------------------------------------------------------------------------
-
+\vspace{-0.18in}
 \begin{itemize}
   \item \BF{BitStructs} are used to simplify communicating and interacting
         with complex packages of data:
 \end{itemize}
 
 \vspace{-0.15in}
-\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=21,numbers=none]
+\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=22,numbers=none]
 {../../slide_examples/Structs_test.py}
 
 \end{frame}
@@ -72,14 +72,11 @@ fields, one for each operand:
   % gedit ../gcd/GcdUnitMsg.py
 \end{verbatim}
 
-% TODO
-%\vspace{-0.3in}
-%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
-%{../../regincr_soln/RegIncrRTL_test.py}
+\lstinputlisting[xleftmargin={0.38in},firstline=12,lastline=19,firstnumber=12]%
+{../../gcd_soln/GcdUnitMsg.py}
 
-\vspace{-0.3in}
 \begin{verbatim}
-  % py.test ../regincr/RegIncrRTL_test.py -v --test-verilog
+  % py.test ../gcd/GcdUnitMsg_test.py -v
 \end{verbatim}
 \end{frame}
 \end{task}
@@ -100,10 +97,9 @@ fields, one for each operand:
   \end{onlyenv}
 
   \begin{onlyenv}<2>
-  TODO CODE
-  % TODO
-  %\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
-  %{../../regincr_soln/RegIncrRTL_test.py}
+  \vspace{-0.15in}
+  \lstinputlisting[xleftmargin={0.38in},firstline=19,lastline=27,numbers=none]%
+  {../../gcd/GCDUnitFL.py}
   \end{onlyenv}
 
 \end{frame}

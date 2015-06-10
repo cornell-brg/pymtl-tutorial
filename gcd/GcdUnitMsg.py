@@ -9,5 +9,13 @@ from pymtl import *
 #-------------------------------------------------------------------------
 # BitStruct designed to hold two operands for a GCD operation.
 
-# Task 1. Implement BitStruct here ...
+#-------------------------------------------------------------------------
+# TASK 2: Comment out the Exception below.
+#         Implement GcdUnitMsg code shown on the overhead slides.
+#-------------------------------------------------------------------------
+
+raise NotImplementedError(
+  'GcdUnitMsg has not been implemented yet!\n '
+  'Put your implementation code here!'
+)
 
