@@ -171,6 +171,15 @@ fields, one for each operand:
 \begin{frame}{PyMTL 102: Latency Insensitive CL Models}
 %-------------------------------------------------------------------------
 
+% TODO
+TODO: Line Trace
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: Latency Insensitive CL Models}
+%-------------------------------------------------------------------------
+
 \begin{itemize}
   \item Cycle-level models add timing information to a functional model
         and can provide a cycle-approximate estimation of performance.
@@ -182,4 +191,203 @@ fields, one for each operand:
 \end{itemize}
 
   \cbxfigc{tut3-gcd-cl.svg.pdf}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Add timing to the GCD CL model}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  % cd    ~/pymtl-tutorial/build
+  % py.test ../gcd/GcdUnitCL_test.py
+  % py.test ../gcd/GcdUnitCL_test.py -k basic_0x0 -sv
+  % gedit ../gcd/GcdUnitFL.py
+\end{verbatim}
+
+% TODO
+%\vspace{-0.3in}
+%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
+%{../../regincr_soln/RegIncrRTL_test.py}
+
+\vspace{-0.3in}
+\begin{verbatim}
+  % py.test ../gcd/GcdUnitCL_test.py -k basic_0x0 -sv
+\end{verbatim}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: Latency Insensitive CL Models}
+%-------------------------------------------------------------------------
+
+% TODO
+TODO: Line Trace
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: Latency Insensitive RTL Models}
+%-------------------------------------------------------------------------
+
+\begin{itemize}
+  \item RTL models allow us to accurately estimate executed cycles,
+        cycle-time, area and energy when used with an EDA toolflow.
+  \smallskip
+  \item Constructing is time consuming! PyMTL tries to make it it more
+        productive by providing a better design and testing environment.
+\end{itemize}
+
+  \begin{cbxcols}
+  \begin{column}{0.5\tw}
+  \cbxfigc{tut3-gcd-ctrl.svg.pdf}
+  \end{column}
+  \begin{column}{0.5\tw}
+  \cbxfigc{tut3-gcd-dpath.svg.pdf}
+  \end{column}
+  \end{cbxcols}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: Latency Insensitive RTL Models}
+%-------------------------------------------------------------------------
+
+\begin{itemize}
+  \item Latency insensitive hardware generally separates logic into
+        control and datapath (shown below).
+  \smallskip
+  \item Today, we won’t be writing RTL for GCD, but we’ll be fixing a bug
+        in the RTL implementation of the state machine.
+\end{itemize}
+
+  \begin{cbxcols}
+  \begin{column}{0.5\tw}
+  \cbxfigc{tut3-gcd-ctrl.svg.pdf}
+  \end{column}
+  \begin{column}{0.5\tw}
+  \cbxfigc{tut3-gcd-dpath.svg.pdf}
+  \end{column}
+  \end{cbxcols}
+\end{frame}
+
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Fix the bug in the GCD RTL model}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  % cd    ~/pymtl-tutorial/build
+  % py.test ../gcd/GcdUnitRTL_test.py -k basic_0x0 -sv
+  % gedit ../gcd/GcdUnitRTL.py
+\end{verbatim}
+
+% TODO
+%\vspace{-0.3in}
+%\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
+%{../../regincr_soln/RegIncrRTL_test.py}
+
+\vspace{-0.3in}
+\begin{verbatim}
+  % py.test ../gcd/GcdUnitCL_test.py -k basic_0x0 -sv
+\end{verbatim}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 102: Latency Insensitive RTL Models}
+%-------------------------------------------------------------------------
+
+% TODO
+TODO: Line Trace
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Verify PyMTL-generated GCD Verilog RTL}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  % cd    ~/pymtl-tutorial/build
+  % py.test ../gcd/GcdUnitRTL_test.py --test-verilog -sv
+  % gedit GcdUnitRTL_*.v
+\end{verbatim}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Experiment with the GCD simulator}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  # Simulating both the CL and RTL models
+
+  % cd    ~/pymtl-tutorial/build
+  % ../gcd/gcd-sim --stats --impl --cl  --input random
+  % ../gcd/gcd-sim --stats --impl --rtl --input random
+
+  # Experimenting with various datasets
+
+  % ../gcd/gcd-sim --impl rtl --input random --trace
+  % ../gcd/gcd-sim --impl rtl --input small  --trace
+  % ../gcd/gcd-sim --impl rtl --input zeros  --trace
+
+\end{verbatim}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL Next Steps and More Resources}
+%-------------------------------------------------------------------------
+Next Steps:
+\begin{itemize}
+  \item See the detailed tutorial on the Cornel ECE5745 website:
+        \footnotesize{http://www.csl.cornell.edu/courses/ece5745/handouts/ece5745-tut-pymtl.pdf}
+\end{itemize}
+
+\smallskip
+Check out the \BF{/docs} directory in the PyMTL repo for guides on:
+\begin{itemize}
+  \item Writing Pythonic PyMTL Models and Tests
+  \item Writing Verilog Translatable PyMTL RTL
+  \item Importing Verilog Components into PyMTL
+\end{itemize}
+
+\smallskip
+Become a contributor!
+\begin{itemize}
+  \item https://github.com/cornell-brg/pymtl
+  \item https://github.com/cornell-brg/pydgin
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{Thank you for coming!}
+%-------------------------------------------------------------------------
+  \begin{cbxcols}
+  \begin{column}{0.5\tw}
+  \vspace{.2in}
+  \cbxfigc{pymtl-flat.svg.pdf}
+
+  \vspace{.3in}
+  \centering{PyMTL: A Unified Framework for Vertically Integrated Computer
+  Architecture Research}
+
+  \vspace{.363in}
+  \centering{[ MICRO 2014 ]}
+  \centering{\footnotesize{https://github.com/cornell-brg/pymtl}}
+  \end{column}
+
+  \begin{column}{0.5\tw}
+  \vspace{.2in}
+  \cbxfigc{pydgin-flat.svg.pdf}
+
+  \vspace{.3in}
+  \centering{Pydgin: Generating Fast Instruction Set Simulators from
+  Simple Architecture Descriptions with Meta-Tracing JIT Compilers}
+
+  \vspace{.2in}
+  \centering{[ ISPASS 2015 ]}
+  \centering{\footnotesize{https://github.com/cornell-brg/pydgin}}
+
+  \end{column}
+  \end{cbxcols}
 \end{frame}
