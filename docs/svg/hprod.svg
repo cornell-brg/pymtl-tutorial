@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="550"
+   height="430"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.48.4 r9939"
+   version="1.0"
+   sodipodi:docname="hprod.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10"
+     guidetolerance="10000"
+     objecttolerance="10000"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.6822222"
+     inkscape:cx="275"
+     inkscape:cy="225"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer6"
+     showgrid="true"
+     inkscape:object-paths="false"
+     inkscape:grid-bbox="false"
+     inkscape:grid-points="true"
+     inkscape:guide-bbox="true"
+     width="900px"
+     height="700px"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="2560"
+     inkscape:window-height="1392"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     showguides="true"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       enabled="true"
+       visible="true"
+       empspacing="5"
+       empopacity="0.4"
+       opacity="0.2"
+       empcolor="#0000ff"
+       color="#0000ff"
+       spacingy="10px"
+       spacingx="10px"
+       originy="0px"
+       originx="0px"
+       type="xygrid"
+       id="GridFromPre046Settings"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs4">
+    <marker
+       style="overflow:visible"
+       id="TriangleOutL"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL">
+      <path
+         transform="scale(0.8,0.8)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         id="path3657"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <inkscape:perspective
+       id="perspective7"
+       inkscape:persp3d-origin="450 : 233.33333 : 1"
+       inkscape:vp_z="900 : 350 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 350 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <marker
+       style="overflow:visible"
+       id="TriangleOutLw"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutLw">
+      <path
+         transform="scale(0.8,0.8)"
+         style="fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:1pt;marker-start:none"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         id="path4295"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-49,-369)"
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="0">
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#000000;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       x="229.49823"
+       y="387.57187"
+       id="text6442"
+       sodipodi:linespacing="110%"><tspan
+         sodipodi:role="line"
+         id="tspan6444"
+         x="229.49823"
+         y="387.57187">Change Simulator</tspan><tspan
+         sodipodi:role="line"
+         x="229.49823"
+         y="411.77188"
+         id="tspan6446">Configuration</tspan></text>
+    <rect
+       style="color:#000000;fill:#e8f6ff;fill-opacity:1;stroke:#004455;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect7000"
+       width="20"
+       height="40"
+       x="244"
+       y="374"
+       rx="0"
+       ry="0" />
+    <rect
+       ry="0"
+       rx="0"
+       y="374"
+       x="264"
+       height="40"
+       width="50"
+       id="rect7002"
+       style="color:#000000;fill:#ecffd7;fill-opacity:1;stroke:#2b5400;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#ecffd7;fill-opacity:1;stroke:#2b5400;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       x="326.99823"
+       y="118.11723"
+       id="text7004"
+       sodipodi:linespacing="110%"
+       transform="translate(49,99)"><tspan
+         sodipodi:role="line"
+         id="tspan7006"
+         x="326.99823"
+         y="118.11723" /></text>
+    <path
+       style="color:#000000;fill:#fffbd7;fill-opacity:1;stroke:#544300;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;marker-end:url(#TriangleOutL);visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 244,424 65,0"
+       id="path7036"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       x="303.49893"
+       y="450.76892"
+       id="text7222"
+       sodipodi:linespacing="110%"><tspan
+         sodipodi:role="line"
+         id="tspan7224"
+         x="303.49893"
+         y="450.76892">Time</tspan></text>
+    <text
+       sodipodi:linespacing="110%"
+       id="text7226"
+       y="401.87402"
+       x="308.02979"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       xml:space="preserve"><tspan
+         y="401.87402"
+         x="308.02979"
+         id="tspan7228"
+         sodipodi:role="line">Sim</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="1"
+     transform="translate(0,-20)">
+    <text
+       sodipodi:linespacing="110%"
+       id="text6968"
+       y="133.57187"
+       x="180.49823"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#000000;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       xml:space="preserve"><tspan
+         id="tspan6972"
+         y="133.57187"
+         x="180.49823"
+         sodipodi:role="line">Modify Simulator</tspan><tspan
+         y="157.77187"
+         x="180.49823"
+         sodipodi:role="line"
+         id="tspan6976">Slightly</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="120"
+       x="195"
+       height="40"
+       width="30"
+       id="rect7008"
+       style="color:#000000;fill:#e8f6ff;fill-opacity:1;stroke:#004455;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <rect
+       style="color:#000000;fill:#ecffd7;fill-opacity:1;stroke:#2b5400;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect7010"
+       width="50"
+       height="40"
+       x="225"
+       y="120"
+       rx="0"
+       ry="0" />
+    <text
+       sodipodi:linespacing="110%"
+       id="text3047"
+       y="147.87402"
+       x="269.02979"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       xml:space="preserve"><tspan
+         y="147.87402"
+         x="269.02979"
+         id="tspan3049"
+         sodipodi:role="line">Sim</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="2"
+     transform="translate(0,-20)">
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       x="180.49823"
+       y="228.5719"
+       id="text6978"
+       sodipodi:linespacing="110%"><tspan
+         sodipodi:role="line"
+         id="tspan6980"
+         x="180.49823"
+         y="228.5719">Modify Simulator</tspan><tspan
+         sodipodi:role="line"
+         x="180.49823"
+         y="252.7719"
+         id="tspan6982">Significantly</tspan></text>
+    <rect
+       style="color:#000000;fill:#e8f6ff;fill-opacity:1;stroke:#004455;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect7016"
+       width="100"
+       height="40"
+       x="195"
+       y="215"
+       rx="0"
+       ry="0" />
+    <rect
+       ry="0"
+       rx="0"
+       y="215"
+       x="295"
+       height="40"
+       width="50"
+       id="rect7024"
+       style="color:#000000;fill:#ecffd7;fill-opacity:1;stroke:#2b5400;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       x="339.02979"
+       y="242.87402"
+       id="text7263"
+       sodipodi:linespacing="110%"><tspan
+         sodipodi:role="line"
+         id="tspan7265"
+         x="339.02979"
+         y="242.87402">Sim</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="3"
+     transform="translate(0,-20)">
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       x="185"
+       y="303.4967"
+       id="text6984"
+       sodipodi:linespacing="110%"><tspan
+         sodipodi:role="line"
+         id="tspan6986"
+         x="185"
+         y="303.4967">+ Write</tspan><tspan
+         sodipodi:role="line"
+         x="185"
+         y="327.69672"
+         id="tspan7275">Emerging Apps</tspan><tspan
+         sodipodi:role="line"
+         x="185"
+         y="351.8967"
+         id="tspan6988">+ Implement</tspan><tspan
+         sodipodi:role="line"
+         x="185"
+         y="376.09671"
+         id="tspan7277">RTL Models</tspan></text>
+    <rect
+       style="color:#000000;fill:#ecffd7;fill-opacity:1;stroke:#2b5400;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect7026"
+       width="50"
+       height="40"
+       x="495"
+       y="310"
+       rx="0"
+       ry="0" />
+    <rect
+       ry="0"
+       rx="0"
+       y="310"
+       x="295"
+       height="40"
+       width="100"
+       id="rect7230"
+       style="color:#000000;fill:#e8f6ff;fill-opacity:1;stroke:#004455;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <rect
+       style="color:#000000;fill:#fed9d9;fill-opacity:1;stroke:#800000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect7232"
+       width="100"
+       height="40"
+       x="195"
+       y="310"
+       rx="0"
+       ry="0" />
+    <rect
+       ry="0"
+       rx="0"
+       y="310"
+       x="395"
+       height="40"
+       width="100"
+       id="rect7234"
+       style="color:#000000;fill:#fffbd7;fill-opacity:1;stroke:#544300;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <text
+       sodipodi:linespacing="110%"
+       id="text7267"
+       y="337.87402"
+       x="539.02979"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       xml:space="preserve"><tspan
+         y="337.87402"
+         x="539.02979"
+         id="tspan7269"
+         sodipodi:role="line">Sim</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer9"
+     inkscape:label="4"
+     transform="translate(0,-20)">
+    <text
+       sodipodi:linespacing="110%"
+       id="text6990"
+       y="418.38391"
+       x="181.05682"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       xml:space="preserve"><tspan
+         id="tspan6994"
+         y="418.38391"
+         x="181.05682"
+         sodipodi:role="line">Highly Productive</tspan><tspan
+         y="442.58392"
+         x="181.05682"
+         sodipodi:role="line"
+         id="tspan6998">Modeling Env</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="405"
+       x="195"
+       height="40"
+       width="30"
+       id="rect7030"
+       style="color:#000000;fill:#fed9d9;fill-opacity:1;stroke:#800000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <rect
+       ry="0"
+       rx="0"
+       y="405"
+       x="285"
+       height="40"
+       width="100"
+       id="rect7236"
+       style="color:#000000;fill:#ecffd7;fill-opacity:1;stroke:#2b5400;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <rect
+       style="color:#000000;fill:#e8f6ff;fill-opacity:1;stroke:#004455;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect7238"
+       width="30"
+       height="40"
+       x="225"
+       y="405"
+       rx="0"
+       ry="0" />
+    <rect
+       style="color:#000000;fill:#fffbd7;fill-opacity:1;stroke:#544300;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect7240"
+       width="30"
+       height="40"
+       x="255"
+       y="405"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:110.00000238%;writing-mode:lr-tb;text-anchor:end;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+       x="354.02979"
+       y="432.87402"
+       id="text7271"
+       sodipodi:linespacing="110%"><tspan
+         sodipodi:role="line"
+         id="tspan7273"
+         x="354.02979"
+         y="432.87402">Sim</tspan></text>
+  </g>
+</svg>

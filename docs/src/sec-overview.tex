@@ -4,7 +4,362 @@
 
 \section[{\it Presentation} Overview]{}
 
-\begin{frame}{Overview}
+\begin{frame}[t]{Typical Research Methodologies: Application-Level}
+\begin{cbxcols}
+
+  \begin{column}{0.4\tw}
+    \cbxfigc{cs-stack_stack_app_labels-split.svg.pdf}
+  \end{column}
+
+  \begin{column}{0.6\tw}
+    \vspace{-0.05in}
+    \begin{cbxlist}
+
+      \1 General Approach
+         \2 Use real machines
+         \2 Use real machines with dynamic instrumentation (e.g., Pin)
+         \2 Use fast instruction set simulators or emulators (e.g.,
+            SimIt-ARM, QEMU)
+
+      \1 Benefits
+         \2 Fast execution enables experimenting \\ with large, realistic
+            applications
+
+      \1 Challenges
+         \2 Difficult to explore applications for emerging architectures
+            which do not \\ exist yet
+
+    \end{cbxlist}
+  \end{column}
+
+\end{cbxcols}
+\end{frame}
+
+\begin{frame}[t]{Typical Research Methodologies: Architecture-Level}
+\begin{cbxcols}
+
+  \begin{column}{0.4\tw}
+    \cbxfigc{cs-stack_stack_arch_labels-split.svg.pdf}
+  \end{column}
+
+  \begin{column}{0.6\tw}
+    \vspace{-0.05in}
+    \begin{cbxlist}
+
+      \1 General Approach
+         \2 Use standard benchmark suite (e.g., Splash2, PARSEC, Rodina)
+         \2 Modify standard cycle-level C/C++ simulator (e.g., SESC,
+            Simics, gem5)
+         \2 Use standard high-level physical modeling tool (e.g., CACTI,
+            Wattch, Orion, McPAT)
+
+      \1 Benefits
+         \2 More accurate than ISA simulation
+         \2 Faster and more flexible design-space exploration than lower-level models
+
+      \1 Challenges
+         \2 Experimenting with large, realistic apps
+         \2 Physical modeling of radically new arch
+
+    \end{cbxlist}
+  \end{column}
+
+\end{cbxcols}
+\end{frame}
+
+\begin{frame}[t]{Typical Research Methodologies: VLSI-Level}
+\begin{cbxcols}
+
+  \begin{column}{0.4\tw}
+    \cbxfigc{cs-stack_stack_vlsi_labels-split.svg.pdf}
+  \end{column}
+
+  \begin{column}{0.6\tw}
+    \vspace{-0.05in}
+    \begin{cbxlist}
+
+      \1 General Approach
+         \2 Possibly start with open-source IP (e.g., FabScalar,
+            OpenRISC/SPARC, NetMaker)
+         \2 Write small microbenchmarks or embedded applications
+         \2 Implement SystemVerilog/Verilog/VHDL RTL (or Bluespec
+            GAA) model of design
+         \2 Use standard commercial ASIC CAD tools to estimate cycle
+            time, area, energy
+
+      \1 Benefits
+         \2 More accurate physical characterization
+         \2 Increases credibility of design
+
+      \1 Challenges
+         \2 Only small apps possible due to slow sims
+         \2 Cumbersome design-space exploration
+
+    \end{cbxlist}
+  \end{column}
+
+\end{cbxcols}
+\end{frame}
+
+\begin{frame}[t]{Vertically-Integrated Modeling Environment}
+\begin{cbxcols}
+
+  \begin{column}{0.51\tw}
+    \cbxfigc{cs-stack-vint.svg.pdf}
+  \end{column}
+
+  \begin{column}{0.49\tw}
+    \begin{cbxlist}
+
+      \1 Unified package with integrated applications, test programs,
+         cross compilers, proxy kernels, full OS kernels, ISA emulators,
+         microarchitectural models, RTL models, ASIC/FPGA CAD scripts,
+         and unit tests
+
+      \1 Support for rapid/iterative design-space exploration across
+         abstraction layers especially for emerging applications and
+         radically new architectures
+
+    \end{cbxlist}
+  \end{column}
+
+\end{cbxcols}
+\end{frame}
+
+\begin{frame}[t]{Highly Productive Modeling Environment}
+  \cbxfig<1\h0>[0.75\tw]{hprod_0-split.svg.pdf}
+  \cbxfig<2\h0>[0.75\tw]{hprod_0_1-split.svg.pdf}
+  \cbxfig<3\h0>[0.75\tw]{hprod_0_1_2-split.svg.pdf}
+  \cbxfig<4\h0>[0.75\tw]{hprod_0_1_2_3-split.svg.pdf}
+  \cbxfig<5\h1>[0.75\tw]{hprod_0_1_2_3_4-split.svg.pdf}
+
+  \begin{onlyenv}<5\h1>
+  \vspace{-2.7in}\hspace*{2.3in}
+  \begin{minipage}{0.5\tw}
+  \begin{cbxlist}
+
+    \1 Choose language at the application, architecture, and VLSI level
+       to emphasize productivity over performance
+
+    \1 Possibly use a single language \\ at all abstraction levels
+
+  \end{cbxlist}
+  \end{minipage}
+  \end{onlyenv}
+
+\end{frame}
+
+\begin{frame}{Previous Vertically Integrated Methodology}
+  \cbxfigc<1\h0>{toolflow_0-split.svg.pdf}
+  \cbxfigc<2\h0>{toolflow_0_1-split.svg.pdf}
+  \cbxfigc<3\h0>{toolflow_0_1_2-split.svg.pdf}
+  \cbxfigc<4\h0>{toolflow_0_1_2_3-split.svg.pdf}
+  \cbxfigc<5-\h1>{toolflow_0_1_2_3_4-split.svg.pdf}
+\end{frame}
+
+\begin{frame}{Python-Based Vertically Integrated Methodology}
+  \cbxfigc<1\h0>{toolflow_0_1_2_3_4-split.svg.pdf}
+  \cbxfigc<2\h0>{toolflow_0_1_2_3_4_5-split.svg.pdf}
+  \cbxfigc<3\h0>{toolflow_0_1_2_3_4_5_6-split.svg.pdf}
+\end{frame}
+
+\begin{frame}{Why Python?}
+
+  \cbxfloatright{\cbxfigc[0.21\tw]{python-logo.svg.pdf}}
+
+  \begin{cbxlist}
+
+    \1 Python is well regarded as a highly productive \\ language with
+       lightweight, pseudocode-like syntax
+
+    \1 Python supports modern language features to \\ enable rapid, agile
+       development (dynamic typing, \\ reflection, metaprogramming)
+
+    \1 Python has a large and active developer and support community
+
+    \1 Python includes extensive standard and third-party libraries
+
+    \1 Python enables embedded domain-specific languages
+
+    \1 Python facilitates engaging application-level researchers
+
+    \1 Python includes built-in support for integrating with C/C++
+
+    \1 Python performance is improving with advanced JIT compilation
+
+  \end{cbxlist}
+
+\end{frame}
+
+\begin{frame}{What is PyMTL?}
+  \insertslides{pymtl-intro}{9}{13}
+\end{frame}
+
+\begin{frame}{What is PyMTL for and not (currently) for?}
+\begin{cbxlist}
+
+  \1 \BF{PyMTL is for ...}
+
+     \2 Taking an accelerator design from concept to implementation
+     \2 Construction of highly-parameterizable RTL chip generators
+     \2 Rapid design, testing, and exploration of hardware mechanisms
+     \2 Quickly prototyping models and interfacing them with GEM5
+     \2 Interfacing models with imported Verilog
+
+  \1 \BF{PyMTL is not (currently) for ...}
+
+     \2 Many-core simulations with hundreds of cores
+     \2 Full-system simulation with real OS support
+     \2 Users needing a complex OOO processor model ``out of the box''
+     \2 Users needing an ARM/x86 processor model ``out of the box''
+     \2 Users needing a mature modeling framework that will not change
+
+\end{cbxlist}
+\end{frame}
+
+\begin{frame}{What is Pydgin?}
+
+  \begin{center}
+    Pydgin is a Python-based framework for productively \\ generating
+    very fast instruction-set simulators
+  \end{center}
+
+  \cbxfigc{what-is-pydgin.pdf}
+
+  \medskip\centering
+  \begin{cbxlist}[t]
+
+    \1 Flexible, productive, pseudocode-like ADL syntax
+    \1 ADL embedded in a popular, general-purpose language
+    \1 Tracing-JIT generator applies across many different ISAs
+    \1 Leverages advancements from dynamic-language JIT research
+    \1 Capable of simulating RISC instruction sets at 100's of MIPS
+
+  \end{cbxlist}
+
+\end{frame}
+
+\begin{frame}{What is Pydgin for and not (currently) for?}
+\begin{cbxlist}
+
+  \1 \BF{Pydgin is for ...}
+
+     \2 Building your own very fast instruction set simulators
+     \2 Experimenting with emerging research instruction sets
+     \2 Easily instrumenting an instruction set simulator for early analysis
+
+  \1 \BF{Pydgin is not (currently) for ...}
+
+     \2 Multi-core simulations (planned for the near future)
+     \2 Full-system simulation
+     \2 Users needing  an ARMv8/x86 simulator ``out of the box''
+     \2 Users needing a mature modeling framework that will not change
+
+\end{cbxlist}
+\end{frame}
+
+\begin{frame}
+
+\vspace{0.5in}
+\begin{cbxcols}
+
+  \begin{column}{0.48\tw}
+    \centering
+
+    \cbxfigc{pymtl-flat.svg.pdf}
+    \vspace{0.215in}
+
+    PyMTL: A Unified Framework for Vertically Integrated Computer
+    Architecture Research
+
+    \vspace{0.39in}
+    [ MICRO 2014 ]
+
+    \vspace{0.05in}
+    \small{https://github.com/cornell-brg/pymtl}
+  \end{column}
+
+  \begin{column}{0.48\tw}
+    \centering
+
+    \cbxfigc{pydgin-flat.svg.pdf}
+
+    \vspace{0.25in}
+
+    Pydgin: Generating Fast Instruction Set Simulators from Simple
+    Architecture Descriptions with Meta-Tracing JIT Compilers
+
+    \vspace{0.2in}
+    [ ISPASS 2015 ]
+
+    \vspace{0.05in}
+    \small{https://github.com/cornell-brg/pydgin}
+
+  \end{column}
+\end{cbxcols}
+\end{frame}
+
+\begin{frame}{Tutorial Organizers}
+\begin{cbxcols}
+
+  \begin{column}{0.25\tw}
+
+    \cbxfigbc{derek-lockhart.jpg}
+
+    \medskip
+    \cbxfigbc{berkin-ilbeyi.jpg}
+
+  \end{column}
+
+  \begin{column}{0.7\tw}
+  \cbxlistfontsize{\footnotesize}{\footnotesize}
+
+  \BF{Derek Lockhart}
+
+  \vspace{0.1in}\hspace*{0.5em}%
+  \begin{cbxlist}[t]
+
+    \1 N\textsuperscript{th}-Year Ph.D.~Candidate, ECE, Cornell University
+
+    \vspace{0.02in}
+    \1 Graduating this summer and heading to Google Platforms
+
+    \vspace{0.02in}
+    \1 Research Interests: Hardware design methodologies, computer
+       architecture, VLSI design
+
+    \vspace{0.02in}
+    \1 Lead researcher/developer for PyMTL framework
+
+    \vspace{0.02in}
+    \1 Co-Lead researcher/developer for Pydgin framework
+
+  \end{cbxlist}
+
+  \medskip
+  \BF{Berkin Ilbeyi}
+
+  \vspace{0.1in}\hspace*{0.5em}%
+  \begin{cbxlist}[t]
+
+    \1 3\textsuperscript{nd}-Year Ph.D.~Candidate, ECE, Cornell University
+
+    \vspace{0.02in}
+    \1 Research Interests: Computer architecture, just-in-time
+          compilation, novel hardware/software interfaces
+
+    \vspace{0.02in}
+    \1 First ``real'' user of PyMTL framework for XLOOPS project
+
+    \vspace{0.02in}
+    \1 Co-Lead researcher/developer for Pydgin framework
+
+  \end{cbxlist}
+
+  \cbxlistfontsizereset{}
+  \end{column}
+
+\end{cbxcols}
 \end{frame}
 
 \scheduleslide{0}
