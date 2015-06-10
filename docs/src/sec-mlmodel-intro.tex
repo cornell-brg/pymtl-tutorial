@@ -2,12 +2,60 @@
 % Presentation: ML Modeling
 %=========================================================================
 
-\section[]{}
+\section[{\it Presentation} Multi-Level Modeling]{}
 \scheduleslide{7}
 
-\section[{\it Presentation} ML Modeling]{}
-\scheduleslide{8}
-
+%-------------------------------------------------------------------------
 \begin{frame}{Multi-Level Modeling}
+%-------------------------------------------------------------------------
+  \insertslide<1>{pymtl-intro}{5}
+  \insertslide<2>{pymtl-intro}{4}
 \end{frame}
 
+%-------------------------------------------------------------------------
+\begin{frame}{Multi-Level Modeling in PyMTL}
+%-------------------------------------------------------------------------
+\begin{itemize}
+  \item FL modeling allows for the rapid creation of a working model.
+        Designers can quickly experiment with interfaces and protocols.
+  \item This design is \IT{manually refined} into a PyMTL CL model that
+        includes timing, which is useful for rapid design space exploration.
+  \item Promising architectures can again be \IT{manually refined} into a
+        PyMTL RTL implementation to accurately model resources.
+\vspace{0.1in}
+\end{itemize}
+  \cbxfigc{../images/pymtl-tut-refine.pdf}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{Multi-Level Modeling in PyMTL}
+%-------------------------------------------------------------------------
+\begin{itemize}
+  \item Verilog generated from PyMTL RTL can be passed to an
+        EDA toolflow for accurate area, energy, and timing estimates.
+  \item Throughout this process, the same PyMTL test harnesses can used to
+        verify each model!
+  \item Requires good design, the use of latency-insensitive interfaces
+        helps considerably.
+\vspace{0.1in}
+\end{itemize}
+  \cbxfigc{../images/pymtl-tut-refine.pdf}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{FL Model in PyMTL}
+%-------------------------------------------------------------------------
+  \insertslide{ml-intro}{1}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{CL Model in PyMTL}
+%-------------------------------------------------------------------------
+  \insertslide{ml-intro}{2}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{RTL Model in PyMTL}
+%-------------------------------------------------------------------------
+  \insertslide{ml-intro}{3}
+\end{frame}
