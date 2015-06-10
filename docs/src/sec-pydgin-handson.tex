@@ -2,6 +2,9 @@
 % Hands-On: GCD Instr
 %=========================================================================
 
+% HACK: normal tilde looks really bad. use this to lower tilde
+\newcommand{\midtilde}{\raisebox{-0.5ex}{\textasciitilde}}
+
 \stepcounter{taskseccount}
 \section[{\it Hands-On} GCD Instr]{}
 \scheduleslide{4}
@@ -222,10 +225,10 @@ def execute_addu( s, inst ):
 \begin{task}
 \begin{frame}[fragile]{Build and run assembly tests using cross-compiler}
 
-\begin{verbatim}
-% cd ~/pydgin/parc/asm_tests_build
+\begin{Verbatim}[commandchars=\\\{\}]
+% cd \midtilde/pydgin/parc/asm_tests_build
 % make
-\end{verbatim}
+\end{Verbatim}
 
 The following should pass except for gcd:
 
@@ -249,13 +252,13 @@ parc-gcd.out:Exception in execution (pc: 0x00808008), aborting!
 parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 \end{verbatim}}
 
-\begin{verbatim}
-% cd ~/pydgin/parc/asm_tests/build
+\begin{Verbatim}[commandchars=\\\{\}]
+% cd \midtilde/pydgin/parc/asm_tests/build
 % maven-objdump -dC parc-gcd > gcd.dump
 % gedit gcd.dump
 
-% gedit ~/pydgin/parc/asm_tests/parc/parc-gcd.S
-\end{verbatim}
+% gedit \midtilde/pydgin/parc/asm_tests/parc/parc-gcd.S
+\end{Verbatim}
 
 \end{frame}
 \end{task}
@@ -279,10 +282,10 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 
 \vspace{-10pt}
 
-\begin{verbatim}
-% cd ~/pydgin/parc
+\begin{Verbatim}[commandchars=\\\{\}]
+% cd \midtilde/pydgin/parc
 % gedit isa.py
-\end{verbatim}
+\end{Verbatim}
 
 \vspace{-10pt}
 
@@ -300,12 +303,12 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 \begin{task}
 \begin{frame}[fragile]{Implement semantics}
 
-\vspace{-20pt}
+\vspace{-15pt}
 
-\begin{verbatim}
-% cd ~/pydgin/parc
+\begin{Verbatim}[commandchars=\\\{\}]
+% cd \midtilde/pydgin/parc
 % gedit isa.py
-\end{verbatim}
+\end{Verbatim}
 
 \vspace{-20pt}
 
@@ -339,11 +342,11 @@ def gcd( a, b ):
 \begin{task}
 \begin{frame}[fragile]{Re-run assembly tests}
 
-\begin{verbatim}
-% cd ~/pydgin/parc/asm_tests/build
+\begin{Verbatim}[commandchars=\\\{\}]
+% cd \midtilde/pydgin/parc/asm_tests/build
 
 % parc-sim.py --test parc-gcd
-\end{verbatim}
+\end{Verbatim}
 
 Try different debug flags:
 
@@ -372,10 +375,10 @@ Try different debug flags:
   \item uncomment to print the counter (\texttt{parc/parc-sim.py})
 \end{itemize}
 
-\begin{verbatim}
-% cd ~/pydgin/parc/asm_tests/build
+\begin{Verbatim}[commandchars=\\\{\}]
+% cd \midtilde/pydgin/parc/asm_tests/build
 % parc-sim.py --test parc-gcd
-\end{verbatim}
+\end{Verbatim}
 
 \end{frame}
 \end{task}
@@ -390,10 +393,10 @@ Try different debug flags:
 \vspace{-20pt}
 
 % TODO: this slide is too long as well
-\begin{verbatim}
-% cd ~/pydgin/bmarks/ubmark
+\begin{Verbatim}[commandchars=\\\{\}]
+% cd \midtilde/pydgin/bmarks/ubmark
 % gedit ubmark-gcd.cc
-\end{verbatim}
+\end{Verbatim}
 
 \vspace{-20pt}
 
@@ -415,11 +418,11 @@ void gcd_scalar_accel( ... ) {
 
 \vspace{-20pt}
 
-\begin{verbatim}
-% cd ~/pydgin/bmarks/build
+\begin{Verbatim}[commandchars=\\\{\}]
+% cd \midtilde/pydgin/bmarks/build
 % make ubmark-gcd
 % parc-sim.py ubmark-gcd --impl all --verify
-\end{verbatim}
+\end{Verbatim}
 
 \end{frame}
 \end{task}
@@ -431,20 +434,20 @@ void gcd_scalar_accel( ... ) {
 \begin{task}
 \begin{frame}[fragile]{Translate and evaluate}
 
-\begin{verbatim}
-% cd ~/pydgin/scripts
+\begin{Verbatim}[commandchars=\\\{\}]
+% cd \midtilde/pydgin/scripts
 % ./build.py pydgin-parc-nojit-debug
-\end{verbatim}
+\end{Verbatim}
 
 Evaluate using interpretive and translated Pydgin
 
-\begin{verbatim}
-% cd ~/pydgin/bmarks/build
+\begin{Verbatim}[commandchars=\\\{\}]
+% cd \midtilde/pydgin/bmarks/build
 % parc-sim.py             ubmark-gcd --impl scalar
 % parc-sim.py             ubmark-gcd --impl scalar-accel
 % pydgin-parc-nojit-debug ubmark-gcd --impl scalar
 % pydgin-parc-nojit-debug ubmark-gcd --impl scalar-accel
-\end{verbatim}
+\end{Verbatim}
 
 \end{frame}
 \end{task}
