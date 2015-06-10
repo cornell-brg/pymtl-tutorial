@@ -7,6 +7,38 @@
 \scheduleslide{4}
 
 %-------------------------------------------------------------------------
+% GCD
+%-------------------------------------------------------------------------
+
+\begin{task}
+\begin{frame}[fragile]{Write Euclid's greatest common divisor (GCD)
+algorithm in Python interpreter}
+
+\vspace{-30pt}
+
+\begin{lstlisting}[numbers=none,basicstyle=\ttfamily\small]
+% python
+>>> def gcd( a, b ):
+...   while True:
+...     if a < b:
+...       a,b = b,a
+...     elif b != a:
+...       a = a - b
+...     else:
+...       return a
+...
+>>> gcd( 1, 5 )
+1
+>>> gcd( 9, 3 )
+3
+>>> gcd( 9, 6 )
+3
+\end{lstlisting}
+
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
 % PARC overview
 %-------------------------------------------------------------------------
 
@@ -163,38 +195,6 @@ def execute_addu( s, inst ):
   s.pc += 4
 \end{lstlisting}
 \end{frame}
-
-%-------------------------------------------------------------------------
-% GCD
-%-------------------------------------------------------------------------
-
-\begin{task}
-\begin{frame}[fragile]{Write Euclid's greatest common divisor (GCD)
-algorithm in Python interpreter}
-
-\vspace{-30pt}
-
-\begin{lstlisting}[numbers=none,basicstyle=\ttfamily\small]
-% python
->>> def gcd( a, b ):
-...   while True:
-...     if a < b:
-...       a,b = b,a
-...     elif b != a:
-...       a = a - b
-...     else:
-...       return a
-...
->>> gcd( 1, 5 )
-1
->>> gcd( 9, 3 )
-3
->>> gcd( 9, 6 )
-3
-\end{lstlisting}
-
-\end{frame}
-\end{task}
 
 %-------------------------------------------------------------------------
 % Goal: add a gcd inst
