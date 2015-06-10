@@ -25,6 +25,9 @@
 \medskip
 \begin{verbatim}
   % cd      ~/pymtl-tutorial/build
+\end{verbatim}
+
+\begin{verbatim}
   % py.test ../regincr/RegIncrFL_test.py --verbose
   % py.test ../regincr/RegIncrRTL_test.py --verbose
 \end{verbatim}
@@ -38,6 +41,26 @@ We haven't implemented it yet!
 
 \end{centering}
 
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Build a RegIncrRTL model in PyMTL}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  % cd    ~/pymtl-tutorial/build
+  % gedit ../regincr/RegIncrRTL.py
+\end{verbatim}
+
+\vspace{-0.3in}
+\lstinputlisting[xleftmargin={0.38in},firstline=8,lastline=22]%
+{../../regincr_soln/RegIncrRTL.py}%
+
+\vspace{-0.3in}
+\begin{verbatim}
+  % py.test ../regincr/RegIncrRTL_test.py --verbose
+\end{verbatim}
 \end{frame}
 \end{task}
 
@@ -64,22 +87,51 @@ Simulators: \TT{model-name-sim.py}
 \end{frame}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Build a RegIncrRTL model in PyMTL}
+\begin{task}\begin{frame}[fragile]{Run the RegIncr simulator}
 %-------------------------------------------------------------------------
 \vspace{-0.25in}
 \begin{verbatim}
   % cd    ~/pymtl-tutorial/build
-  % gedit ../regincr/RegIncrRTL.py
 \end{verbatim}
 
-\vspace{-0.3in}
-\lstinputlisting[xleftmargin={0.38in},firstline=8,lastline=22]%
-{../../regincr_soln/RegIncrRTL.py}%
-
-\vspace{-0.3in}
 \begin{verbatim}
-  % py.test ../regincr/RegIncrRTL_test.py --verbose
+  % python ../regincr/reg-incr-sim.py 10
+  % python ../regincr/reg-incr-sim.py 10 --impl fl  --trace
+  % python ../regincr/reg-incr-sim.py 10 --impl rtl --trace
+  % python ../regincr/reg-incr-sim.py 20 --impl rtl --trace
 \end{verbatim}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 101: Line Traces vs. VCD}
+%-------------------------------------------------------------------------
+
+\begin{itemize}
+\item Line tracing (\TT{--trace} in simulator or \TT{-s} in \TT{py.test})
+      are a great way to quickly debug functionality and performance bugs
+      at the commandline.
+\item Works best for components in isolation or small compositions.
+\item For larger designs, particularly RTL models, it's useful to to look
+      at a VCD file using a dedicated waveform viewer (e.g. GTKWave).
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Generate and view a VCD file}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  % cd    ~/pymtl-tutorial/build
+  % python ../regincr/reg-incr-sim.py 10 --impl fl  --dump-vcd
+  % python ../regincr/reg-incr-sim.py 10 --impl rtl --dump-vcd
+\end{verbatim}
+
+\begin{verbatim}
+  % gtkwave ./reg-incr-fl-10.vcd
+  % gtkwave ./reg-incr-rtl-10.vcd
+\end{verbatim}
+  \cbxfigc{gtkwave-regincr.png}
 \end{frame}
 \end{task}
 
@@ -89,7 +141,7 @@ Simulators: \TT{model-name-sim.py}
 
 \begin{itemize}
   \item PyMTL models written at the RTL level of abstraction can be
-        translated into VErilog source using the Translation Tool.
+        translated into Verilog source using the Translation Tool.
   \smallskip
   \item Generated Verilog can be used to get energy/area/timing estimates
         from EDA toolflows.
@@ -253,7 +305,22 @@ The \BF{TranslationTool} has limitations on what it can translate:
 \end{task}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Update test to verify multiple Ns}
+\begin{frame}{PyMTL 101: Parameterizing Tests in PyMTL}
+%-------------------------------------------------------------------------
+\begin{itemize}
+  \item We leverage the opensource \TT{py.test} package to drive test
+        collection and execution in PyMTL.
+  \item Significantly simplifies process of writing unit tests, and
+        enables functionality such as parallel/distributed test execution
+        and coverage reporting via plugins.
+  \item More importantly, \TT{py.test} has powerful facilities for writing
+        extensive and highly parameterizable unit tests.
+  \item One example: the \TT{@pytest.mark.parametrize} decorator.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Parameterize test to verify multiple Ns}
 %-------------------------------------------------------------------------
 \vspace{-0.25in}
 \begin{verbatim}
