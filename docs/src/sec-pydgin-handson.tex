@@ -193,8 +193,7 @@ encodings = [
 # s    = state
 # inst = instruction bits
 def execute_addu( s, inst ):
-  s.rf[ inst.rd ] = trim_32( s.rf[ inst.rs ] +
-                             s.rf[ inst.rt ] )
+  s.rf[ inst.rd ] = trim_32( s.rf[ inst.rs ] + s.rf[ inst.rt ] )
   s.pc += 4
 \end{lstlisting}
 \end{frame}
@@ -255,9 +254,21 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 \begin{Verbatim}[commandchars=\\\{\}]
 % cd \midtilde/pydgin/parc/asm_tests/build
 % maven-objdump -dC parc-gcd > gcd.dump
-% gedit gcd.dump
+% less gcd.dump
+\end{Verbatim}
 
-% gedit \midtilde/pydgin/parc/asm_tests/parc/parc-gcd.S
+{\small
+\begin{verbatim}
+  808000:       24010018        li      at,24
+  808004:       24020064        li      v0,100
+  808008:       9c411811        gcd     v1,v0,at
+  80800c:       24040004        li      a0,4
+  808010:       241d000e        li      sp,14
+  808014:       14640032        bne     v1,a0,8080e0 <_fail>
+\end{verbatim}}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+% less \midtilde/pydgin/parc/asm_tests/parc/parc-gcd.S
 \end{Verbatim}
 
 \end{frame}
@@ -312,11 +323,15 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 
 \vspace{-20pt}
 
-% TODO: the following is too long, use a smaller font
 \begin{lstlisting}[firstnumber=319]
 def execute_addu( s, inst ):
-  s.rf[ inst.rd ] = trim_32( s.rf[ inst.rs ] +
-                             s.rf[ inst.rt ] )
+  s.rf[ inst.rd ] = trim_32( s.rf[ inst.rs ] + s.rf[ inst.rt ] )
+  s.pc += 4
+\end{lstlisting}
+\vspace{-20pt}
+\begin{lstlisting}[firstnumber=976]
+def execute_gcd( s, inst ):
+  # TASK: implement gcd here
   s.pc += 4
 \end{lstlisting}
 \vspace{-20pt}
@@ -378,6 +393,12 @@ Try different debug flags:
 \begin{Verbatim}[commandchars=\\\{\}]
 % cd \midtilde/pydgin/parc/asm_tests/build
 % parc-sim.py --test parc-gcd
+  [ passed ] parc-gcd
+DONE! Status = 0
+Instructions Executed = 15
+Instructions Executed in Stat Region = 0
+Number of cycles in GCD = 18
+Total number of cycles (assuming non-GCD CPI=1) = 33
 \end{Verbatim}
 
 \end{frame}
@@ -448,6 +469,9 @@ Evaluate using interpretive and translated Pydgin
 % pydgin-parc-nojit-debug ubmark-gcd --impl scalar
 % pydgin-parc-nojit-debug ubmark-gcd --impl scalar-accel
 \end{Verbatim}
+
+If you've implemented everything correctly, you should get 163,513 and
+108,414 cycles for \texttt{scalar} and \texttt{scalar-accel} respectively.
 
 \end{frame}
 \end{task}
