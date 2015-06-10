@@ -17,7 +17,7 @@ from RegIncrFL_test import (
 # test_simple
 #-----------------------------------------------------------------------
 @pytest.mark.parametrize( 'dtype', [8] )
-def test_simple( dtype ):
+def test_simple( dtype, test_verilog ):
 
   # instantiate the model and elaborate it
 
@@ -25,7 +25,6 @@ def test_simple( dtype ):
 
   #---------------------------------------------------------------------
   # TASK 4: Add verilog translation to the test harness here
-  #         **and** in test_simple() signature
   #---------------------------------------------------------------------
 
   model.elaborate()
