@@ -178,8 +178,7 @@ class GcdUnitCtrlRTL (Model):
       # Transitions out of IDLE state
 
       if ( curr_state == s.STATE_IDLE ):
-        if ( s.req_val and s.req_rdy ):
-          next_state = s.STATE_CALC
+        pass
 
       # Transitions out of CALC state
 

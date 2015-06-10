@@ -23,9 +23,12 @@ class TestHarness (Model):
 
   def __init__( s, src_msgs, sink_msgs ):
 
-    # Task 3. Instantiate a test source to inject request messages into
-    # the DUT, the DUT (i.e., the GcdUnitFL model), and a test sink to
-    # verify response messages from the DUT; then connect them together.
+    s.src  = TestSource (GcdUnitReqMsg(), src_msgs)
+    s.gcd  = GcdUnitFL  ()
+    s.sink = TestSink   (Bits(16), sink_msgs)
+
+    s.connect( s.src.out,  s.gcd.req  )
+    s.connect( s.gcd.resp, s.sink.in_ )
 
   def done( s ):
     return s.src.done and s.sink.done

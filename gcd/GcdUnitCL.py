@@ -11,24 +11,23 @@ from GcdUnitMsg import GcdUnitReqMsg
 #-------------------------------------------------------------------------
 # gcd
 #-------------------------------------------------------------------------
-# Helper function that uses Euclid's algorithm to calculate the greatest
-# common denomiator, but also to estimate the number of cycles a simple
-# FSM-based GCD unit might take.
-
+# Helper function that uses the Python's algorithmic implementation of
+# the greatest common denomiator calculation, but also to estimate the
+# number of cycles an FSM-based GCD unit might take.
 def gcd( a, b ):
 
-  # Task 4. Increment ncycles each time through the while loop to roughly
-  # estimate the number of cycles a hardware implementation might take to
-  # caculate the GCD.
+  #-----------------------------------------------------------------------
+  # TASK 4: Increment ncycles each time through the while loop to roughly
+  #         estimate the number of cycles a hardware implementation might
+  #         take to calculate the GCD.
+  #-----------------------------------------------------------------------
 
   ncycles = 1
-  while True:
-    if a < b:
-      a,b = b,a
-    elif b != 0:
-      a = a - b
-    else:
-      return (a,ncycles)
+
+  while b:
+    a, b = b, a%b
+
+  return (a, ncycles)
 
 #-------------------------------------------------------------------------
 # GcdUnitCL
@@ -82,4 +81,23 @@ class GcdUnitCL( Model ):
 
   def line_trace( s ):
     return "{}(){}".format( s.req, s.resp )
+
+
+#-------------------------------------------------------------------------
+# gcd_euclid
+#-------------------------------------------------------------------------
+# Helper function that uses Euclid's algorithm to calculate the greatest
+# common denomiator, but also to estimate the number of cycles a simple
+# FSM-based GCD unit might take.
+def gcd_euclid( a, b ):
+
+  ncycles = 1
+  while True:
+    ncycles += 1
+    if a < b:
+      a,b = b,a
+    elif b != 0:
+      a = a - b
+    else:
+      return (a,ncycles)
 

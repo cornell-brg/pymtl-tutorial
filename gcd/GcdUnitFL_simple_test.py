@@ -23,9 +23,17 @@ class TestHarness (Model):
 
   def __init__( s, src_msgs, sink_msgs ):
 
-    # Task 3. Instantiate a test source to inject request messages into
-    # the DUT, the DUT (i.e., the GcdUnitFL model), and a test sink to
-    # verify response messages from the DUT; then connect them together.
+    #---------------------------------------------------------------------
+    # TASK 3: Comment out the Exception below.
+    #         Instantiate a test source to inject request messages into
+    #         the DUT, the DUT (i.e., the GcdUnitFL model), a test sink to
+    #         verify response messages from the DUT; then connect them.
+    #---------------------------------------------------------------------
+
+    raise NotImplementedError(
+      'GcdUnitMsg has not been implemented yet!\n '
+      'Put your implementation code here!'
+    )
 
   def done( s ):
     return s.src.done and s.sink.done

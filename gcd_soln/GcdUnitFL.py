@@ -31,7 +31,14 @@ class GcdUnitFL( Model ):
     @s.tick_fl
     def block():
 
-      # Task 2. Fill in FL code for GCD unit here ...
+      # Use adapter to pop value from request queue
+      req_msg = s.req_q.popleft()
+
+      # Use gcd function from Python's standard library
+      result = gcd( req_msg.a, req_msg.b )
+
+      # Use adapter to append result to response queue
+      s.resp_q.append( result )
 
   # Line tracing
 

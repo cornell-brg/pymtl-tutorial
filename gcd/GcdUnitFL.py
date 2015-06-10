@@ -31,7 +31,15 @@ class GcdUnitFL( Model ):
     @s.tick_fl
     def block():
 
-      # Task 2. Fill in FL code for GCD unit here ...
+      #-------------------------------------------------------------------
+      # TASK 2: Comment out the Exception below.
+      #         Implement GcdUnitFL code shown on the overhead slides.
+      #-------------------------------------------------------------------
+
+      raise NotImplementedError(
+        'GcdUnitMsg has not been implemented yet!\n '
+        'Put your implementation code here!'
+      )
 
   # Line tracing
 
