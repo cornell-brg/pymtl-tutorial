@@ -8,7 +8,7 @@ import random
 
 from pymtl import *
 
-from RegIncrPipeline import RegIncrPipeline
+from RegIncrParamPipeline import RegIncrParamPipeline
 
 #-----------------------------------------------------------------------
 # gen_simple_test_vectors
@@ -23,18 +23,32 @@ def gen_simple_test_vectors( nstages ):
     ( 8,  8 + nstages ),
     ( 0,  0 + nstages ),
     (10, 10 + nstages ),
+    (14, 14 + nstages ),
+    (16, 16 + nstages ),
+    (12, 12 + nstages ),
+    (15, 15 + nstages ),
+    (18, 18 + nstages ),
+    (10, 10 + nstages ),
+    (20, 20 + nstages ),
   ]
+
+  assert nstages < len( simple_test_vectors )
 
   return simple_test_vectors
 
 #-----------------------------------------------------------------------
 # test_simple
 #-----------------------------------------------------------------------
-def test_simple( test_verilog, nstages=2 ):
+
+#-----------------------------------------------------------------------
+# TASK 9: Change parametrize to verify more pipeline depths!
+#-----------------------------------------------------------------------
+@pytest.mark.parametrize( 'nstages', [1,2,5,10] )
+def test_simple( test_verilog, nstages ):
 
   # instantiate the model and elaborate it
 
-  model = RegIncrPipeline( dtype = 8 )
+  model = RegIncrParamPipeline( dtype = 8, nstages = nstages )
   if test_verilog:
     model = TranslationTool( model )
   model.elaborate()

@@ -7,9 +7,9 @@
 \scheduleslide{6}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Create a build directory.}
+\begin{task}\begin{frame}[fragile]{Create a build directory}
 %-------------------------------------------------------------------------
-
+\medskip
 \begin{verbatim}
   % mkdir ~/pymtl-tutorial/build
   % cd    ~/pymtl-tutorial/build
@@ -20,9 +20,9 @@
 \end{task}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Run RegIncrFL and RegIncrRTL tests.}
+\begin{task}\begin{frame}[fragile]{Run RegIncrFL and RegIncrRTL tests}
 %-------------------------------------------------------------------------
-
+\medskip
 \begin{verbatim}
   % cd      ~/pymtl-tutorial/build
   % py.test ../regincr/RegIncrFL_test.py --verbose
@@ -64,18 +64,22 @@ Simulators: \TT{model-name-sim.py}
 \end{frame}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Build a RegIncrRTL model in PyMTL.}
+\begin{task}\begin{frame}[fragile]{Build a RegIncrRTL model in PyMTL}
 %-------------------------------------------------------------------------
-
+\vspace{-0.25in}
 \begin{verbatim}
   % cd    ~/pymtl-tutorial/build
   % gedit ../regincr/RegIncrRTL.py
 \end{verbatim}
-\lstinputlisting[firstline=8,lastline=22]{../../regincr_soln/RegIncrRTL.py}
+
+\vspace{-0.3in}
+\lstinputlisting[xleftmargin={0.38in},firstline=8,lastline=22]%
+{../../regincr_soln/RegIncrRTL.py}%
+
+\vspace{-0.3in}
 \begin{verbatim}
   % py.test ../regincr/RegIncrRTL_test.py --verbose
 \end{verbatim}
-
 \end{frame}
 \end{task}
 
@@ -139,32 +143,132 @@ The \BF{TranslationTool} has limitations on what it can translate:
 \end{frame}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Add Verilog translation to test harness.}
+\begin{task}\begin{frame}[fragile]{Add Verilog translation to unit test}
 %-------------------------------------------------------------------------
-
+\vspace{-0.25in}
 \begin{verbatim}
   % cd    ~/pymtl-tutorial/build
   % gedit ../regincr/RegIncrRTL_test.py
 \end{verbatim}
 
-\lstinputlisting[firstline=20,lastline=29]{../../regincr_soln/RegIncrRTL_test.py}
+\vspace{-0.3in}
+\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29]%
+{../../regincr_soln/RegIncrRTL_test.py}
 
+\vspace{-0.3in}
 \begin{verbatim}
-  % py.test ../regincr/RegIncrRTL_test.py --verbose --test-verilog
+  % py.test ../regincr/RegIncrRTL_test.py -v --test-verilog
 \end{verbatim}
 
 \end{frame}
 \end{task}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{View generated Verilog.}
+\begin{task}\begin{frame}[fragile]{View generated Verilog}
 %-------------------------------------------------------------------------
+\vspace{-0.25in}
 \begin{verbatim}
   % cd    ~/pymtl-tutorial/build
   % gedit ./RegIncrRTL_0x7a355c5a216e72a4.v
 \end{verbatim}
 
-\lstinputlisting[firstline=1,lastline=29]%
+\vspace{-0.3in}
+\lstinputlisting[xleftmargin={0.38in},firstline=4,lastline=16]%
 {../../regincr_soln/RegIncrRTL_0x7a355c5a216e72a4.v}
+
 \end{frame}
 \end{task}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 101: Structural Composition in PyMTL}
+%-------------------------------------------------------------------------
+\begin{itemize}
+  \item In PyMTL, more complex designs can be created by hierarchically
+        composing models using structural composition.
+  \smallskip
+  \item Models are structurally composed by connecting their ports using
+        \TT{s.connect()} or \TT{s.connect\_pairs()} statements.
+  \smallskip
+  \item Data is communicated between PyMTL models using \TT{InPorts} and
+        \TT{OutPorts}, not via method calls!
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Compose a pipeline with two RegIncrs}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  % cd    ~/pymtl-tutorial/build
+  % gedit ../regincr/RegIncrPipeline.py
+\end{verbatim}
+
+\vspace{-0.3in}
+\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=17]%
+{../../regincr_soln/RegIncrPipeline.py}
+
+\vspace{-0.3in}
+\begin{verbatim}
+  % py.test ../regincr/RegIncrPipeline_test.py
+\end{verbatim}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL 101: Parameterizing Models in PyMTL}
+%-------------------------------------------------------------------------
+\begin{itemize}
+  \item Static elaboration code (everything inside \TT{\_\_init\_\_} that
+        is not in a decorated function) can use the full expressiveness of
+        Python.
+  \smallskip
+  \item Static elaboration code constructs a connectivity graph of
+        components, is always Verilog translatable
+
+        (as long as leaf modules are translatable).
+  \smallskip
+  \item Enables the creation of powerful and highly-parameterizable
+        hardware generators.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Compose a pipeline with N RegIncrs}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  % cd    ~/pymtl-tutorial/build
+  % gedit ../regincr/RegIncrParamPipeline.py
+\end{verbatim}
+
+\vspace{-0.3in}
+\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=20]%
+{../../regincr_soln/RegIncrParamPipeline.py}
+
+\vspace{-0.3in}
+\begin{verbatim}
+  % py.test ../regincr/RegIncrParamPipeline_test.py -v
+\end{verbatim}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Update test to verify multiple Ns}
+%-------------------------------------------------------------------------
+\vspace{-0.25in}
+\begin{verbatim}
+  % cd    ~/pymtl-tutorial/build
+  % gedit ../regincr/RegIncrParamPipeline_test.py
+\end{verbatim}
+
+\vspace{-0.3in}
+\lstinputlisting[xleftmargin={0.38in},firstline=46,lastline=51]%
+{../../regincr_soln/RegIncrParamPipeline_test.py}
+
+\vspace{-0.3in}
+\begin{verbatim}
+  % py.test ../regincr/RegIncrParamPipeline_test.py -v -s
+\end{verbatim}
+\end{frame}
+\end{task}
+

@@ -9,6 +9,9 @@ class RegIncrRTL( Model ):
 
   def __init__( s, dtype ):
 
+    s.in_ = InPort ( dtype )
+    s.out = OutPort( dtype )
+
     #-------------------------------------------------------------------
     # TASK 2: Comment out the Exception below.
     #         Implement RegIncr code shown on the overhead slides.

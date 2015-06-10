@@ -1,24 +1,26 @@
 #=======================================================================
-# RegIncrPipeline.py
+# RegIncrParamPipeline.py
 #=======================================================================
 # Pipelined, multi-stage incrementer using structural composition.
 
 from pymtl      import *
 from RegIncrRTL import RegIncrRTL as RegIncr
 
-class RegIncrPipeline( Model ):
+class RegIncrParamPipeline( Model ):
 
-  def __init__( s, dtype ):
+  def __init__( s, dtype, nstages ):
     s.in_ = InPort ( dtype )
     s.out = OutPort( dtype )
 
-    s.incrs = [RegIncr( dtype ) for _ in range( 2 )]
+    s.incrs = [RegIncr( dtype ) for _ in range( nstages )]
+
+    assert len( s.incrs ) > 0
 
     s.connect( s.in_, s.incrs[0].in_ )
 
     #-------------------------------------------------------------------
-    # TASK 6: Comment out the Exception and implement the
-    #         structural composition below.
+    # TASK 7: Comment out the Exception and implement the
+    #         structural composition above.
     #-------------------------------------------------------------------
     #
     # - create connections between RegIncrs

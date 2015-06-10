@@ -15,23 +15,9 @@ class RegIncrPipeline( Model ):
     s.incrs = [RegIncr( dtype ) for _ in range( 2 )]
 
     s.connect( s.in_, s.incrs[0].in_ )
+    s.connect( s.incrs[0].out, s.incrs[1].in_ )
+    s.connect( s.out, s.incrs[-1].out )
 
-    #-------------------------------------------------------------------
-    # TASK 6: Comment out the Exception and implement the
-    #         structural composition below.
-    #-------------------------------------------------------------------
-    #
-    # - create connections between RegIncrs
-    # - connect s.out to the last RegIncr in list
-    #
-    # Hint: here's a tip for easily indexing the last item in the list:
-    #
-    #   s.connect( s.out, s.incrs[-1].out)
-
-    raise NotImplementedError(
-      'RegIncrPipeline has not been implemented yet!\n '
-      'Put your implementation code here!'
-    )
 
   def line_trace( s ):
     outs = ' '.join( ['{}'.format( x.out ) for x in s.incrs ] )
