@@ -175,6 +175,11 @@ class GcdUnitCtrlRTL (Model):
       curr_state = s.state.out
       next_state = s.state.out
 
+      #-----------------------------------------------------------------
+      # TASK 5: There is a bug in this state transition logic. Fix the
+      #         bug and verify correct functionality.
+      #-----------------------------------------------------------------
+
       # Transitions out of IDLE state
 
       if ( curr_state == s.STATE_IDLE ):
@@ -183,11 +188,7 @@ class GcdUnitCtrlRTL (Model):
       # Transitions out of CALC state
 
       if ( curr_state == s.STATE_CALC ):
-
-        # Task 5. There is a bug in this state transition logic. Fix the
-        # bug as shown in the slides, and verify correct functionality.
-
-        if ( s.is_a_lt_b ):
+        if ( not s.is_a_lt_b and s.is_b_zero ):
           next_state = s.STATE_DONE
 
       # Transitions out of DONE state
