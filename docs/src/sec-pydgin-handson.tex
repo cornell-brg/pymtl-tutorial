@@ -192,22 +192,52 @@ def execute_addu( s, inst ):
 \end{frame}
 
 %-------------------------------------------------------------------------
-% Goal: add a gcd inst
+% Tasklist
 %-------------------------------------------------------------------------
 
-\begin{frame}{Goal: Add a GCD instruction in Pydgin}
+\begin{frame}{\IT{Hands-On:} Add and evaluate GCD inst in Pydgin}
+\begin{cbxlist}
+  \1 Given: Extend the cross-compiler
+  \1 Given: Add assembly test
+  \1 Task 1.1: Build and run assembly tests using cross-compiler
+  \1 Task 1.2: Investigate test failures
+  \1 Task 1.3: Add encoding for \texttt{gcd} instruction
+  \1 Task 1.4: Implement semantics
+  \1 Task 1.5: Re-run assembly tests
+  \1 Task 1.6: Count the GCD cycles
+  \1 Task 1.7: Add inline assembly to application
+  \1 Task 1.8: Translate and evaluate
+\end{cbxlist}
+\end{frame}
 
-\begin{itemize}
-  \item Extend the cross-compiler
-  \item Add assembly test
-  \item Implement encoding
-  \item Implement semantics
-  \item Add instrumentation
-  \item Translate Pydgin
-  \item Write application
-  \item Evaluate application
-\end{itemize}
+\begin{frame}{\IT{Hands-On:} Add and evaluate GCD inst in Pydgin}
+\begin{cbxlist}
+  \1 \BF{Given: Extend the cross-compiler}
+  \1 \BF{Given: Add assembly test}
+  \1 Task 1.1: Build and run assembly tests using cross-compiler
+  \1 Task 1.2: Investigate test failures
+  \1 Task 1.3: Add encoding for \texttt{gcd} instruction
+  \1 Task 1.4: Implement semantics
+  \1 Task 1.5: Re-run assembly tests
+  \1 Task 1.6: Count the GCD cycles
+  \1 Task 1.7: Add inline assembly to application
+  \1 Task 1.8: Translate and evaluate
+\end{cbxlist}
+\end{frame}
 
+\begin{frame}{\IT{Hands-On:} Add and evaluate GCD inst in Pydgin}
+\begin{cbxlist}
+  \1 Given: Extend the cross-compiler
+  \1 Given: Add assembly test
+  \1 \BF{Task 1.1: Build and run assembly tests using cross-compiler}
+  \1 \BF{Task 1.2: Investigate test failures}
+  \1 Task 1.3: Add encoding for \texttt{gcd} instruction
+  \1 Task 1.4: Implement semantics
+  \1 Task 1.5: Re-run assembly tests
+  \1 Task 1.6: Count the GCD cycles
+  \1 Task 1.7: Add inline assembly to application
+  \1 Task 1.8: Translate and evaluate
+\end{cbxlist}
 \end{frame}
 
 %-------------------------------------------------------------------------
@@ -272,6 +302,25 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 
 \end{frame}
 \end{task}
+
+%-------------------------------------------------------------------------
+% Tasklist
+%-------------------------------------------------------------------------
+
+\begin{frame}{\IT{Hands-On:} Add and evaluate GCD inst in Pydgin}
+\begin{cbxlist}
+  \1 Given: Extend the cross-compiler
+  \1 Given: Add assembly test
+  \1 Task 1.1: Build and run assembly tests using cross-compiler
+  \1 Task 1.2: Investigate test failures
+  \1 \BF{Task 1.3: Add encoding for \texttt{gcd} instruction}
+  \1 \BF{Task 1.4: Implement semantics}
+  \1 \BF{Task 1.5: Re-run assembly tests}
+  \1 Task 1.6: Count the GCD cycles
+  \1 Task 1.7: Add inline assembly to application
+  \1 Task 1.8: Translate and evaluate
+\end{cbxlist}
+\end{frame}
 
 %-------------------------------------------------------------------------
 % Add gcd encoding
@@ -374,6 +423,25 @@ Try different debug flags:
 \end{verbatim}}
 \end{frame}
 \end{task}
+
+%-------------------------------------------------------------------------
+% Tasklist
+%-------------------------------------------------------------------------
+
+\begin{frame}{\IT{Hands-On:} Add and evaluate GCD inst in Pydgin}
+\begin{cbxlist}
+  \1 Given: Extend the cross-compiler
+  \1 Given: Add assembly test
+  \1 Task 1.1: Build and run assembly tests using cross-compiler
+  \1 Task 1.2: Investigate test failures
+  \1 Task 1.3: Add encoding for \texttt{gcd} instruction
+  \1 Task 1.4: Implement semantics
+  \1 Task 1.5: Re-run assembly tests
+  \1 \BF{Task 1.6: Count the GCD cycles}
+  \1 \BF{Task 1.7: Add inline assembly to application}
+  \1 \BF{Task 1.8: Translate and evaluate}
+\end{cbxlist}
+\end{frame}
 
 %-------------------------------------------------------------------------
 % Count GCD cycles
