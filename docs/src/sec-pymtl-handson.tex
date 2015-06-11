@@ -204,9 +204,9 @@
  >>> model.elaborate()
  >>> sim = SimulationTool(model)
  >>> sim.reset()
- >>> model.in_[0] = 2
- >>> model.in_[1] = 5
- >>> model.in_[2] = 3
+ >>> model.in_[0].value = 2
+ >>> model.in_[1].value = 5
+ >>> model.in_[2].value = 3
  >>> sim.cycle()
  >>> model.out
  Bits( 8, 0x05 )
@@ -262,8 +262,8 @@
 
 \vspace{-0.15in}
 \begin{Verbatim}[commandchars=\\\{\}]
- % cd    \midtilde/regincr
- % gedit RegIncrRTL.py
+ % cd    \midtilde/pymtl-tut/build
+ % gedit ../regincr/RegIncrRTL.py
 \end{Verbatim}
 \vspace{-0.17in}
 
@@ -283,7 +283,6 @@
 
 \vspace{-0.15in}
 \begin{Verbatim}[commandchars=\\\{\}]
- % mkdir \midtilde/pymtl-tut/build
  % cd    \midtilde/pymtl-tut/build
 
  % py.test ../regincr/RegIncrRTL_test.py --verbose
