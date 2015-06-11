@@ -36,7 +36,114 @@
 \end{cbxlist}
 \end{frame}
 
+%-------------------------------------------------------------------------
 \begin{frame}[fragile]{\TT{Bits} Class for Fixed-Bitwidth Values}
+%-------------------------------------------------------------------------
+\colorbox{gray!30!white}{\parbox{\tw}{\rule[-0.4em]{0pt}{1.4em}\centering\textbf{%
+  PyMTL Bits Operators
+}}}
+
+{\scriptsize
+
+\newenvironment{optbl2}[1]
+{
+  %\vspace{0.5em}
+  \centering{\BF{\footnotesize{{#1}}}}
+  \smallskip
+
+  %\hspace{0.75em}
+  \begin{tabular}{>{\ttfamily\centering\arraybackslash}p{0.23\tw}p{.76\tw}}
+}{
+  \end{tabular}
+}
+
+\newenvironment{optbl}[1]
+{
+  %\vspace{0.5em}
+  \centering{\BF{\footnotesize{{#1}}}}
+  \smallskip
+
+  %\hspace{0.75em}
+  \begin{tabular}{>{\ttfamily\centering\arraybackslash}p{0.33\tw}p{.66\tw}}
+%\toprule
+}{
+  \end{tabular}
+}
+
+\begin{cbxcols}
+\begin{column}{0.30\tw}
+\vspace{.3in}
+
+\begin{optbl2}{Logical Operators}
+  \verb|&|   & bitwise AND   \\
+  |          & bitwise OR    \\
+  \verb|^|   & bitwise XOR   \\
+  \verb|^~|  & bitwise XNOR  \\
+  \verb|~|   & bitwise NOT   \\
+\end{optbl2}
+
+\vspace{.15in}
+\begin{optbl2}{Arith. Operators}
+  \verb|+|   & addition         \\
+  \verb|-|   & subtraction      \\
+  \verb|*|   & multiplication   \\
+  \verb|/|   & division         \\
+  \verb|%|   & modulo           \\
+\end{optbl2}
+
+
+\end{column}
+\begin{column}{0.30\tw}
+\vspace{.3in}
+
+\begin{optbl}{Shift Operators}
+  \verb|>>|  & shift right            \\
+  \verb|<<|  & shift left             \\
+\end{optbl}
+
+\vspace{.15in}
+
+\begin{optbl}{Slice Operators}
+  \verb|[x]|   & get/set bit x            \\
+  \verb|[x:y]| & get/set bits             \\
+               &  x upto y                \\
+
+\end{optbl}
+
+\vspace{.15in}
+
+\begin{optbl}{Reduction Operators}
+  \verb|reduce_and| & reduce via AND \\
+  \verb|reduce_or|  & reduce via OR  \\
+  \verb|reduce_xor| & reduce via XOR \\
+\end{optbl}
+
+\end{column}
+\begin{column}{0.40\tw}
+\vspace{.3in}
+
+\begin{optbl2}{Relational Operators}
+  \verb|==|  & equal                  \\
+  \verb|!=|  & not equal              \\
+  \verb|>|   & greater than           \\
+  \verb|>=|  & greater than or equals \\
+  \verb|<|   & less than              \\
+  \verb|<=|  & less than or equals    \\
+\end{optbl2}
+
+\vspace{.15in}
+
+\begin{optbl2}{Other Functions}
+  \verb|concat| & concatenate         \\
+  \verb|sext|   & sign-extension      \\
+  \verb|zext|   & zero-extension      \\
+\end{optbl2}
+
+\end{column}
+\end{cbxcols}
+
+}
+
 \end{frame}
 
 %-------------------------------------------------------------------------
