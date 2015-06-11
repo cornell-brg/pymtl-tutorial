@@ -11,13 +11,13 @@ class RegIncrRTL( Model ):
     s.in_  = InPort ( dtype )
     s.out  = OutPort( dtype )
     s.tmp  = Wire   ( dtype )  #
-                               # add these lines
-    @s.tick_rtl                # to implement the
-    def seq_logic():           # registered
-      s.tmp.next = s.in_       # incrementer
-                               # behavior
-    @s.combinational           #
-    def comb_logic():          #
+                               #
+    @s.tick_rtl                #
+    def seq_logic():           # add these lines
+      s.tmp.next = s.in_       # to implement the
+                               # registered
+    @s.combinational           # incrementer
+    def comb_logic():          # behavior
       s.out.value = s.tmp + 1  #
 
   def line_trace( s ):
