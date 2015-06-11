@@ -14,18 +14,14 @@
 \begin{frame}[fragile]{Write Euclid's greatest common divisor (GCD)
 algorithm in Python interpreter}
 
-\vspace{-30pt}
+\vspace{-20pt}
 
-\begin{lstlisting}[numbers=none,basicstyle=\ttfamily\small]
+\begin{lstlisting}[numbers=none,basicstyle=\ttfamily]
 % python
 >>> def gcd( a, b ):
-...   while True:
-...     if a < b:
-...       a,b = b,a
-...     elif b != a:
-...       a = a - b
-...     else:
-...       return a
+...   while b:
+...     a, b = b, a%b
+...   return a
 ...
 >>> gcd( 1, 5 )
 1
@@ -96,7 +92,7 @@ algorithm in Python interpreter}
 
 \begin{frame}[fragile]{\texttt{parc/machine.py}}
 
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}[numbers=none,basicstyle=\ttfamily]
 # the architectural state (simplified)
 class State():
   def __init__( self, ... ):
@@ -129,7 +125,7 @@ class State():
 
 \vspace{-20pt}
 
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}[numbers=none,basicstyle=\ttfamily]
 class Instruction():
   # ...
   @property
@@ -156,7 +152,7 @@ class Instruction():
 
 \vspace{-20pt}
 
-\begin{lstlisting}[numbers=none]
+\begin{lstlisting}[numbers=none,basicstyle=\ttfamily]
 # instruction encodings
 encodings = [
   # ...
@@ -183,7 +179,7 @@ encodings = [
 
 \end{Verbatim}
 
-\vspace{-40pt}
+\vspace{-20pt}
 
 \begin{lstlisting}[numbers=none]
 # addu semantics
@@ -297,7 +293,7 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 
 \vspace{-10pt}
 
-\begin{lstlisting}[firstnumber=243]
+\begin{lstlisting}[firstnumber=243,basicstyle=\ttfamily]
 # TASK: pick the correct encoding
 ['gcd', '111111_11111_11111_11111_11111_111111'],
 \end{lstlisting}
@@ -318,30 +314,23 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 % gedit isa.py
 \end{Verbatim}
 
-\vspace{-20pt}
-
 \begin{lstlisting}[firstnumber=319]
 def execute_addu( s, inst ):
   s.rf[ inst.rd ] = trim_32( s.rf[ inst.rs ] + s.rf[ inst.rt ] )
   s.pc += 4
 \end{lstlisting}
-\vspace{-20pt}
+\vspace{-10pt}
 \begin{lstlisting}[firstnumber=976]
 def execute_gcd( s, inst ):
   # TASK: implement gcd here
   s.pc += 4
 \end{lstlisting}
-\vspace{-20pt}
+\vspace{-10pt}
 \begin{lstlisting}[numbers=none]
-# Euclid's gcd algorithm in python
 def gcd( a, b ):
-  while True:
-    if a < b:
-      a,b = b,a
-    elif b != 0:
-      a = a - b
-    else:
-      return a
+  while b:
+    a, b = b, a%b
+  return a
 \end{lstlisting}
 
 \end{frame}
@@ -408,7 +397,7 @@ Total number of cycles (assuming non-GCD CPI=1) = 33
 \begin{task}
 \begin{frame}[fragile]{Add inline assembly to application}
 
-\vspace{-20pt}
+\vspace{-10pt}
 
 % TODO: this slide is too long as well
 \begin{Verbatim}[commandchars=\\\{\}]
