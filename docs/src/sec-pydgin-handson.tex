@@ -248,7 +248,7 @@ def execute_addu( s, inst ):
 \begin{frame}[fragile]{Build and run assembly tests using cross-compiler}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-% cd \midtilde/pydgin/parc/asm_tests_build
+% cd \midtilde/pydgin-tut/parc/asm_tests_build
 % make
 \end{Verbatim}
 
@@ -281,7 +281,7 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 \end{verbatim}}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-% cd \midtilde/pydgin/parc/asm_tests/build
+% cd \midtilde/pydgin-tut/parc/asm_tests/build
 % maven-objdump -dC parc-gcd > gcd.dump
 % less gcd.dump
 \end{Verbatim}
@@ -297,7 +297,7 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 \end{verbatim}}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-% less \midtilde/pydgin/parc/asm_tests/parc/parc-gcd.S
+% less \midtilde/pydgin-tut/parc/asm_tests/parc/parc-gcd.S
 \end{Verbatim}
 
 \end{frame}
@@ -342,7 +342,7 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 \vspace{-10pt}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-% cd \midtilde/pydgin/parc
+% cd \midtilde/pydgin-tut/parc
 % gedit isa.py
 \end{Verbatim}
 
@@ -365,7 +365,7 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 \vspace{-15pt}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-% cd \midtilde/pydgin/parc
+% cd \midtilde/pydgin-tut/parc
 % gedit isa.py
 \end{Verbatim}
 
@@ -399,7 +399,7 @@ def gcd( a, b ):
 \begin{frame}[fragile]{Re-run assembly tests}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-% cd \midtilde/pydgin/parc/asm_tests/build
+% cd \midtilde/pydgin-tut/parc/asm_tests/build
 
 % parc-sim.py --test parc-gcd
 \end{Verbatim}
@@ -459,7 +459,7 @@ Try different debug flags:
 \end{itemize}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-% cd \midtilde/pydgin/parc/asm_tests/build
+% cd \midtilde/pydgin-tut/parc/asm_tests/build
 % parc-sim.py --test parc-gcd
   [ passed ] parc-gcd
 DONE! Status = 0
@@ -483,7 +483,7 @@ Total number of cycles (assuming non-GCD CPI=1) = 33
 
 % TODO: this slide is too long as well
 \begin{Verbatim}[commandchars=\\\{\}]
-% cd \midtilde/pydgin/bmarks/ubmark
+% cd \midtilde/pydgin-tut/bmarks/ubmark
 % gedit ubmark-gcd.cc
 \end{Verbatim}
 
@@ -508,7 +508,7 @@ void gcd_scalar_accel( ... ) {
 \vspace{-20pt}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-% cd \midtilde/pydgin/bmarks/build
+% cd \midtilde/pydgin-tut/bmarks/build
 % make ubmark-gcd
 % parc-sim.py ubmark-gcd --impl all --verify
 \end{Verbatim}
@@ -524,14 +524,14 @@ void gcd_scalar_accel( ... ) {
 \begin{frame}[fragile]{Translate and evaluate}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-% cd \midtilde/pydgin/scripts
+% cd \midtilde/pydgin-tut/scripts
 % ./build.py pydgin-parc-nojit-debug
 \end{Verbatim}
 
 Evaluate using interpretive and translated Pydgin
 
 \begin{Verbatim}[commandchars=\\\{\}]
-% cd \midtilde/pydgin/bmarks/build
+% cd \midtilde/pydgin-tut/bmarks/build
 % parc-sim.py             ubmark-gcd --impl scalar
 % parc-sim.py             ubmark-gcd --impl scalar-accel
 % pydgin-parc-nojit-debug ubmark-gcd --impl scalar
