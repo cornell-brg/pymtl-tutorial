@@ -18,10 +18,10 @@ class RegIncrParamPipeline( Model ):
 
     s.connect( s.in_, s.incrs[0].in_ )
     for i in range( nstages - 1 ): pass
-    #-------------------------------------------------------------------
+    #-------------------------------------------------------
     # TASK 2.9: Comment out the Exception and implement the
     #           structural composition above.
-    #-------------------------------------------------------------------
+    #-------------------------------------------------------
     #
     # - create connections between RegIncrs
     # - connect s.out to the last RegIncr in list

@@ -15,10 +15,10 @@ class RegIncrPipeline( Model ):
     s.incrs = [RegIncr( dtype ) for _ in range( 2 )]
 
     s.connect( s.in_, s.incrs[0].in_ )
-    #-------------------------------------------------------------------
+    #-------------------------------------------------------
     # TASK 2.8: Comment out the Exception and implement the
     #           structural composition below.
-    #-------------------------------------------------------------------
+    #-------------------------------------------------------
     s.connect( s.incrs[0].out, s.incrs[1].in_ )
     s.connect( s.out, s.incrs[-1].out )
 
