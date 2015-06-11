@@ -942,3 +942,6 @@
   }
 }
 
+% HACK: normal tilde looks really bad. use this to lower tilde
+\newcommand{\midtilde}{\raisebox{-0.5ex}{\textasciitilde}}
+

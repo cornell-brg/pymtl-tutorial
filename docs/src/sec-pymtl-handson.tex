@@ -6,314 +6,603 @@
 \section[{\it Hands-On} Max/RegIncr]{}
 \scheduleslide{6}
 
+\begin{frame}{\IT{Hands-On:} PyMTL Basics with Max/RegIncr}
+\begin{cbxlist}
+  \1 Task 1.1: Experiment with \TT{Bits}
+  \1 Task 1.2: Interactively simulate a max unit
+  \1 Task 1.3: Write a registered incrementer (RegIncr) model
+  \1 Task 1.4: Test the RegIncr model
+  \1 Task 1.5: Translate the RegIncr model into Verilog
+  \1 Task 1.6: Simulate the RegIncr model with line tracing
+  \1 Task 1.7: Simulate the RegIncr model with VCD dumping
+  \1 Task 1.8: Compose a pipeline with two RegIncr models
+  \1 Task 1.9: Compose a pipeline with N RegIncr models
+  \1 Task 1.10: Parameterize test to verify multiple Ns
+\end{cbxlist}
+\end{frame}
+
+\begin{frame}{\IT{Hands-On:} PyMTL Basics with Max/RegIncr}
+\begin{cbxlist}
+  \1 \BF{Task 1.1: Experiment with \TT{Bits}}
+  \1 \BF{Task 1.2: Interactively simulate a max unit}
+  \1 Task 1.3: Write a registered incrementer (RegIncr) model
+  \1 Task 1.4: Test the RegIncr model
+  \1 Task 1.5: Translate the RegIncr model into Verilog
+  \1 Task 1.6: Simulate the RegIncr model with line tracing
+  \1 Task 1.7: Simulate the RegIncr model with VCD dumping
+  \1 Task 1.8: Compose a pipeline with two RegIncr models
+  \1 Task 1.9: Compose a pipeline with N RegIncr models
+  \1 Task 1.10: Parameterize test to verify multiple Ns
+\end{cbxlist}
+\end{frame}
+
+\begin{frame}[fragile]{\TT{Bits} Class for Fixed-Bitwidth Values}
+\end{frame}
+
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Run RegIncrFL and RegIncrRTL tests}
+\begin{task}\begin{frame}[fragile]{Experiment with \TT{Bits}}
 %-------------------------------------------------------------------------
-\begin{verbatim}
-  % mkdir ~/pymtl-tutorial/build
-  % cd      ~/pymtl-tutorial/build
-\end{verbatim}
 
-\begin{verbatim}
-  % py.test ../regincr/RegIncrFL_test.py --verbose
-  % py.test ../regincr/RegIncrRTL_test.py --verbose
-\end{verbatim}
+\vspace{-0.15in}
+\begin{cbxcols}
 
-\begin{centering}
-\TT{RegIncrFL\_test.py} should pass. \\*
-\TT{RegIncrRTL\_test.py} should \BF{fail}!
+\begin{column}{0.4\tw}
+\begin{lstlisting}[xleftmargin={0in},numbers={none},basicstyle={\ttfamily\small}]
+ % cd
+ % ipython
+ >>> from pymtl import *
+ >>> a = Bits( 8, 5 )
+ >>> b = Bits( 8, 3 )
+ >>> a + b
+ Bits( 8, 0x08 )
+ >>> a - b
+ Bits( 8, 0x02 )
+ >>> a | b
+ Bits( 8, 0x07 )
+ >>> a & b
+ Bits( 8, 0x01 )
+\end{lstlisting}
+\end{column}
 
-\vspace{0.4in}
-We haven't implemented it yet!
+\begin{column}{0.4\tw}
+\begin{lstlisting}[xleftmargin={0in},numbers={none},basicstyle={\ttfamily\small}]
 
-\end{centering}
+
+ >>> c = concat( a, b )
+ >>> c
+ Bits( 16, 0x0503 )
+ >>> c[0:8]
+ Bits( 8, 0x03 )
+ >>> c[8:16]
+ Bits( 8, 0x05 )
+ >>> exit()
+\end{lstlisting}
+\end{column}
+
+\end{cbxcols}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Interactively simulate a max unit}
+%-------------------------------------------------------------------------
+
+\vspace{-0.15in}
+\begin{lstlisting}[xleftmargin={0in},numbers={none},basicstyle={\ttfamily\small}]
+ % cd ~/pymtl-tut/maxunit
+ % ipython
+ >>> from pymtl import *
+ >>> from MaxUnitFL import MaxUnitFL
+ >>> model = MaxUnitFL(8,3)
+ >>> model.elaborate()
+ >>> sim = SimulationTool(model)
+ >>> sim.reset()
+ >>> model.in_[0] = 2
+ >>> model.in_[1] = 5
+ >>> model.in_[2] = 3
+ >>> sim.cycle()
+ >>> model.out
+ Bits( 8, 0x05 )
+ >>> exit()
+\end{lstlisting}
 
 \end{frame}
 \end{task}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Build a RegIncrRTL model in PyMTL}
+%\begin{task}\begin{frame}[fragile]{Run RegIncrFL and RegIncrRTL tests}
 %-------------------------------------------------------------------------
+% \begin{verbatim}
+%   % mkdir ~/pymtl-tut/build
+%   % cd      ~/pymtl-tut/build
+% \end{verbatim}
+%
+% \begin{verbatim}
+%   % py.test ../regincr/RegIncrFL_test.py --verbose
+%   % py.test ../regincr/RegIncrRTL_test.py --verbose
+% \end{verbatim}
+%
+% \begin{centering}
+% \TT{RegIncrFL\_test.py} should pass. \\*
+% \TT{RegIncrRTL\_test.py} should \BF{fail}!
+%
+% \vspace{0.4in}
+% We haven't implemented it yet!
+%
+% \end{centering}
+%
+% \end{frame}
+% \end{task}
+
+\begin{frame}{\IT{Hands-On:} PyMTL Basics with Max/RegIncr}
+\begin{cbxlist}
+  \1 Task 1.1: Experiment with \TT{Bits}
+  \1 Task 1.2: Interactively simulate a max unit
+  \1 \BF{Task 1.3: Write a registered incrementer (RegIncr) model}
+  \1 \BF{Task 1.4: Test the RegIncr model}
+  \1 \BF{Task 1.5: Translate the RegIncr model into Verilog}
+  \1 Task 1.6: Simulate the RegIncr model with line tracing
+  \1 Task 1.7: Simulate the RegIncr model with VCD dumping
+  \1 Task 1.8: Compose a pipeline with two RegIncr models
+  \1 Task 1.9: Compose a pipeline with N RegIncr models
+  \1 Task 1.10: Parameterize test to verify multiple Ns
+\end{cbxlist}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Write a registered incrementer model}
+%-------------------------------------------------------------------------
+
+\vspace{-0.15in}
+\begin{Verbatim}[commandchars=\\\{\}]
+ % cd    \midtilde/regincr
+ % gedit RegIncrRTL.py
+\end{Verbatim}
+\vspace{-0.17in}
+
+\lstinputlisting[xleftmargin={0.38in},firstline=8,lastline=21,firstnumber=8]%
+{../../regincr_soln/RegIncrRTL.py}
+
+\vspace{-0.2in}
+\begin{Verbatim}
+ % py.test ../regincr/RegIncrRTL_test.py --verbose
+\end{Verbatim}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Test the RegIncr model}
+%-------------------------------------------------------------------------
+
+\vspace{-0.15in}
+\begin{Verbatim}[commandchars=\\\{\}]
+ % mkdir \midtilde/pymtl-tut/build
+ % cd    \midtilde/pymtl-tut/build
+
+ % py.test ../regincr/RegIncrRTL_test.py --verbose
+
+ =============== test session starts ================
+ platform darwin -- Python 2.7.5 -- pytest-2.6.4
+ plugins: xdist
+ collected 2 items
+
+ ../regincr/RegIncrRTL_test.py::test_simple[8] PASSED
+ ../regincr/RegIncrRTL_test.py::test_random[8] PASSED
+
+ ============= 2 passed in 0.36 seconds =============
+\end{Verbatim}
+
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{frame}{Translating PyMTL RTL into Verilog}
+%-------------------------------------------------------------------------
+
+\begin{cbxlist}
+
+  \1 PyMTL models written at the register-transfer level of abstraction
+     can be translated into Verilog source using the \TT{TranslationTool}
+
+  \1 Generated Verilog can be used with commercial EDA toolflows to
+    characterize area, energy, and timing
+
+\end{cbxlist}
+
+\vspace{0.3in}
+\cbxfigc{pymtl-tut-refine.pdf}
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{Translation as Part of PyMTL SimJIT-RTL}
+%-------------------------------------------------------------------------
+
+  \vspace{0.2in}
+  \cbxfigc<1>{pymtl-tut-simjit0.pdf}
+  \cbxfigc<2>{pymtl-tut-simjit1.pdf}
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL to Verilog Translation Limitations}
+%-------------------------------------------------------------------------
+
+{}The \BF{TranslationTool} has limitations on what it can translate:
+
+\medskip
+\begin{cbxlist}[ll]
+
+  \1 \BF{Static elaboration} can use arbitratry Python \\ (connections
+        $\Rightarrow$ connectivity graph $\Rightarrow$ structural
+        Verilog)
+
+  \1 \BF{Concurrent logic blocks} must abide by language restrictions
+
+  \pause
+
+    \2 Data must be communicated in/out/between blocks using \BF{signals} \\
+       (InPorts, OutPorts, and Wires)
+
+    \2 Signals may only contain \BF{bit-specific value types} \\
+       (Bits/BitStructs)
+
+    \2 Only pre-defined, \BF{translatable operators/functions} may be
+       used \\ (no user-defined operators or functions)
+
+    \2 Any variables that don't refer to signals must be \BF{integer
+       constants}
+
+\end{cbxlist}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Translate the RegIncr model into Verilog}
+%-------------------------------------------------------------------------
+
+\vspace{-0.15in}
+\begin{Verbatim}[commandchars=\\\{\}]
+ % cd    \midtilde/pymtl-tut/build
+ % gedit ../regincr/RegIncrRTL_test.py
+\end{Verbatim}
+\vspace{-0.17in}
+
+\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29,firstnumber=20]%
+{../../regincr_soln/RegIncrRTL_test.py}
+
+\vspace{-0.2in}
+\begin{Verbatim}[commandchars=\\\{\}]
+ % py.test ../regincr/RegIncrRTL_test.py -v --test-verilog
+ % gedit ./RegIncrRTL_0x7a355c5a216e72a4.v
+\end{Verbatim}
+
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+\begin{frame}[fragile]{Example Verilog Generated from Translation}
+%-------------------------------------------------------------------------
+
 \vspace{-0.25in}
-\begin{verbatim}
-  % cd    ~/pymtl-tutorial/build
-  % gedit ../regincr/RegIncrRTL.py
-\end{verbatim}
+\begin{cbxcols}
 
-\vspace{-0.3in}
-\lstinputlisting[xleftmargin={0.38in},firstline=8,lastline=22,firstnumber=8]%
-{../../regincr_soln/RegIncrRTL.py}%
+\begin{column}{0.5\tw}
+\lstinputlisting[xleftmargin={0.2in},firstline=4,lastline=25,firstnumber=4,basicstyle={\ttfamily\scriptsize}]%
+{../../regincr_soln/RegIncrRTL_0x7a355c5a216e72a4.v}
+\end{column}
 
-\vspace{-0.3in}
-\begin{verbatim}
-  % py.test ../regincr/RegIncrRTL_test.py --verbose
-\end{verbatim}
+\begin{column}{0.5\tw}
+\lstinputlisting[xleftmargin={0.2in},firstline=26,lastline=50,firstnumber=26,basicstyle={\ttfamily\scriptsize}]%
+{../../regincr_soln/RegIncrRTL_0x7a355c5a216e72a4.v}
+\end{column}
+
+\end{cbxcols}
 \end{frame}
-\end{task}
+
+\begin{frame}{\IT{Hands-On:} PyMTL Basics with Max/RegIncr}
+\begin{cbxlist}
+  \1 Task 1.1: Experiment with \TT{Bits}
+  \1 Task 1.2: Interactively simulate a max unit
+  \1 Task 1.3: Write a registered incrementer (RegIncr) model
+  \1 Task 1.4: Test the RegIncr model
+  \1 Task 1.5: Translate the RegIncr model into Verilog
+  \1 \BF{Task 1.6: Simulate the RegIncr model with line tracing}
+  \1 \BF{Task 1.7: Simulate the RegIncr model with VCD dumping}
+  \1 Task 1.8: Compose a pipeline with two RegIncr models
+  \1 Task 1.9: Compose a pipeline with N RegIncr models
+  \1 Task 1.10: Parameterize test to verify multiple Ns
+\end{cbxlist}
+\end{frame}
 
 %-------------------------------------------------------------------------
-\begin{frame}{PyMTL 101: Unit Tests vs. Simulators}
+\begin{frame}{Unit Tests vs. Simulators}
 %-------------------------------------------------------------------------
 
-Unit Tests: \TT{ModelName\_tests.py}
+\BF{Unit Tests:} \TT{ModelName\_tests.py}
 \begin{itemize}
-  \item Tests that verify the simulation behavior of a model isolation.
-  \item Test functions are executed by the \TT{py.test} testing framework.
+  \item Tests that verify the simulation behavior of a model isolation
+  \item Test functions are executed by the \TT{py.test} testing framework
   \item Unit tests should always be written before simulator scripts!
 \end{itemize}
 
 \vspace{0.2in}
 
-Simulators: \TT{model-name-sim.py}
+\BF{Simulators:} \TT{model-name-sim.py}
 \begin{itemize}
-  \item Simulators are meant for model evaluation and stats collection.
-  \item Simulation scripts take commandline arguments for configuration.
+  \item Simulators are meant for model evaluation and stats collection
+  \item Simulation scripts take commandline arguments for configuration
   \item Used for experimentation and (design space) exploration!
 \end{itemize}
 
 \end{frame}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Run the RegIncr simulator}
+\begin{task}\begin{frame}[fragile]{Simulate RegIncr with line tracing}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
-\begin{verbatim}
-  % cd    ~/pymtl-tutorial/build
-\end{verbatim}
 
-\begin{verbatim}
-  % python ../regincr/reg-incr-sim.py 10
-  % python ../regincr/reg-incr-sim.py 10 --impl fl  --trace
-  % python ../regincr/reg-incr-sim.py 10 --impl rtl --trace
-  % python ../regincr/reg-incr-sim.py 20 --impl rtl --trace
-\end{verbatim}
+\vspace{-0.15in}
+\begin{Verbatim}[commandchars=\\\{\}]
+ % cd \midtilde/pymtl-tut/build
+
+ % python ../regincr/reg-incr-sim.py 10
+ % python ../regincr/reg-incr-sim.py 10 --trace
+ % python ../regincr/reg-incr-sim.py 20 --trace
+   0: 04e5f14d (00000000) 00000000
+   1: 7839d4fc (04e5f14d) 04e5f14e
+   2: 996ab63d (7839d4fc) 7839d4fd
+   3: 6d146dfc (996ab63d) 996ab63e
+   4: 9cb87fec (6d146dfc) 6d146dfd
+   5: ba43a338 (9cb87fec) 9cb87fed
+   6: a0c394ff (ba43a338) ba43a339
+   7: f72041ee (a0c394ff) a0c39500
+   ...
+\end{Verbatim}
+
 \end{frame}
 \end{task}
 
 %-------------------------------------------------------------------------
-\begin{frame}{PyMTL 101: Line Traces vs. VCD}
+\begin{frame}{Line Tracing vs. VCD Dumping}
 %-------------------------------------------------------------------------
 
-\begin{itemize}
-\item Line tracing (\TT{--trace} in simulator or \TT{-s} in \TT{py.test})
-      are a great way to quickly debug functionality and performance bugs
-      at the commandline.
-\item Works best for components in isolation or small compositions.
-\item For larger designs, particularly RTL models, it's useful to to look
-      at a VCD file using a dedicated waveform viewer (e.g. GTKWave).
-\end{itemize}
+\begin{cbxlist}
+
+  \1 \BF{Line Tracing}
+
+    \2 Shows a single cycle per line and uses text characters to indicate
+       state and how data moves through a system
+
+    \vspace{0.08in}
+    \2 Provides a way to visualize the high-level behavior of a system
+       (e.g., pipeline diagrams, transaction diagrams)
+
+    \vspace{0.08in}
+    \2 Enables quickly debugging high-level functionality and performance
+       bugs at the commandline
+
+    \vspace{0.08in}
+    \2 Can be used for FL, CL, and RTL models
+
+  \1 \BF{VCD Dumping}
+
+    \2 Captures the bit-level activity of every signal on every cycle
+
+    \2 Requires a separate waveform viewer to visualize the signals
+
+    \2 Provides a much more detailed view of a design
+
+    \2 Mostly used for RTL models
+
+\end{cbxlist}
 \end{frame}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Generate and view a VCD file}
+\begin{task}\begin{frame}[fragile]{Simulate RegIncr with VCD dumping}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
-\begin{verbatim}
-  % cd    ~/pymtl-tutorial/build
-  % python ../regincr/reg-incr-sim.py 10 --impl fl  --dump-vcd
-  % python ../regincr/reg-incr-sim.py 10 --impl rtl --dump-vcd
-\end{verbatim}
 
-\begin{verbatim}
-  % gtkwave ./reg-incr-fl-10.vcd
-  % gtkwave ./reg-incr-rtl-10.vcd
-\end{verbatim}
+\vspace{-0.15in}
+\begin{Verbatim}[commandchars=\\\{\}]
+ % cd \midtilde/pymtl-tut/build
+ % python ../regincr/reg-incr-sim.py 10 --dump-vcd
+ % gtkwave ./reg-incr-rtl-10.vcd
+\end{Verbatim}
+
+  \smallskip
   \cbxfigc{gtkwave-regincr.png}
-\end{frame}
-\end{task}
-
-%-------------------------------------------------------------------------
-\begin{frame}{PyMTL 101: PyMTL to Verilog Translation}
-%-------------------------------------------------------------------------
-
-\begin{itemize}
-  \item PyMTL models written at the RTL level of abstraction can be
-        translated into Verilog source using the Translation Tool.
-  \smallskip
-  \item Generated Verilog can be used to get energy/area/timing estimates
-        from EDA toolflows.
-\end{itemize}
-
-\vspace{0.3in}
-
-\cbxfigc{pymtl-tut-refine.pdf}
-
-\end{frame}
-
-%-------------------------------------------------------------------------
-\begin{frame}{PyMTL 101: PyMTL to Verilog Translation}
-%-------------------------------------------------------------------------
-\vspace{0.3in}
-\cbxfigc<1>{pymtl-tut-simjit0.pdf}
-\cbxfigc<2>{pymtl-tut-simjit1.pdf}
-\end{frame}
-
-%-------------------------------------------------------------------------
-\begin{frame}{PyMTL 101: PyMTL to Verilog Translation}
-%-------------------------------------------------------------------------
-The \BF{TranslationTool} has limitations on what it can translate:
-
-\smallskip
-\begin{itemize}
-  \item \BF{Static elaboration} can use arbitratry Python.
-
-        (connections $\Rightarrow$ connectivity graph $\Rightarrow$
-         structural Verilog)
-
-  \smallskip
-  \item \BF{Concurrent logic blocks} must abide by language restrictions.
-
-  \pause
-  \smallskip
-  \begin{enumerate}
-    \item Data must be communicated in/out/between blocks
-          using \BF{signals} (InPorts, OutPorts, and Wires).
-    \smallskip
-    \item Signals may only contain \BF{bit-specific value types}
-          (Bits/BitStructs).
-    \smallskip
-    \item Only pre-defined, \BF{translatable operators/functions} may be
-          used (no user-defined operators or functions).
-    \smallskip
-    \item Any variables that don't refer to signals must be \BF{integer
-          constants}.
-  \end{enumerate}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Add Verilog translation to unit test}
-%-------------------------------------------------------------------------
-\vspace{-0.25in}
-\begin{verbatim}
-  % cd    ~/pymtl-tutorial/build
-  % gedit ../regincr/RegIncrRTL_test.py
-\end{verbatim}
-
-\lstinputlisting[xleftmargin={0.38in},firstline=20,lastline=29,firstnumber=20]%
-{../../regincr_soln/RegIncrRTL_test.py}
-
-\begin{verbatim}
-  % py.test ../regincr/RegIncrRTL_test.py -v --test-verilog
-\end{verbatim}
 
 \end{frame}
 \end{task}
 
-%-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{View generated Verilog}
-%-------------------------------------------------------------------------
-\vspace{-0.25in}
-\begin{verbatim}
-  % cd    ~/pymtl-tutorial/build
-  % gedit ./RegIncrRTL_0x7a355c5a216e72a4.v
-\end{verbatim}
-
-\lstinputlisting[xleftmargin={0.38in},firstline=4,lastline=16,firstnumber=4]%
-{../../regincr_soln/RegIncrRTL_0x7a355c5a216e72a4.v}
-
+\begin{frame}{\IT{Hands-On:} PyMTL Basics with Max/RegIncr}
+\begin{cbxlist}
+  \1 Task 1.1: Experiment with \TT{Bits}
+  \1 Task 1.2: Interactively simulate a max unit
+  \1 Task 1.3: Write a registered incrementer (RegIncr) model
+  \1 Task 1.4: Test the RegIncr model
+  \1 Task 1.5: Translate the RegIncr model into Verilog
+  \1 Task 1.6: Simulate the RegIncr model with line tracing
+  \1 Task 1.7: Simulate the RegIncr model with VCD dumping
+  \1 \BF{Task 1.8: Compose a pipeline with two RegIncr models}
+  \1 \BF{Task 1.9: Compose a pipeline with N RegIncr models}
+  \1 \BF{Task 1.10: Parameterize test to verify multiple Ns}
+\end{cbxlist}
 \end{frame}
-\end{task}
 
 %-------------------------------------------------------------------------
-\begin{frame}{PyMTL 101: Structural Composition in PyMTL}
+\begin{frame}{Structural Composition in PyMTL}
 %-------------------------------------------------------------------------
-\begin{itemize}
-  \item In PyMTL, more complex designs can be created by hierarchically
-        composing models using structural composition.
-  \smallskip
-  \item Models are structurally composed by connecting their ports using
-        \TT{s.connect()} or \TT{s.connect\_pairs()} statements.
-  \smallskip
-  \item Data is communicated between PyMTL models using \TT{InPorts} and
-        \TT{OutPorts}, not via method calls!
-\end{itemize}
+
+\medskip
+\begin{cbxcols}
+\begin{column}{0.9\tw}
+\begin{cbxlist}
+
+  \1 In PyMTL, more complex designs can be created by hierarchically
+     composing models using structural composition
+
+  \1 Models are structurally composed by connecting their ports
+     using \TT{s.connect()} or \TT{s.connect\_pairs()} statements
+
+  \1 Data is communicated between PyMTL models using \TT{InPorts}
+     and \TT{OutPorts}, not via method calls!
+
+\end{cbxlist}
+\end{column}
+\end{cbxcols}
 \end{frame}
 
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Compose a pipeline with two RegIncrs}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
-\begin{verbatim}
-  % cd    ~/pymtl-tutorial/build
-  % gedit ../regincr/RegIncrPipeline.py
-\end{verbatim}
 
-\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=17,firstnumber=9]%
+\vspace{-0.15in}
+\begin{Verbatim}[commandchars=\\\{\}]
+ % cd    \midtilde/pymtl-tut/build
+ % gedit ../regincr/RegIncrPipeline.py
+\end{Verbatim}
+\vspace{-0.17in}
+
+\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=18,firstnumber=9]%
 {../../regincr_soln/RegIncrPipeline.py}
 
-\begin{verbatim}
-  % py.test ../regincr/RegIncrPipeline_test.py
-\end{verbatim}
+\vspace{-0.2in}
+\begin{Verbatim}
+ % py.test ../regincr/RegIncrPipeline_test.py -sv
+\end{Verbatim}
+
 \end{frame}
 \end{task}
 
-%-------------------------------------------------------------------------
-\begin{frame}{PyMTL 101: Parameterizing Models in PyMTL}
-%-------------------------------------------------------------------------
-\begin{itemize}
-  \item Static elaboration code (everything inside \TT{\_\_init\_\_} that
-        is not in a decorated function) can use the full expressiveness of
-        Python.
-  \smallskip
-  \item Static elaboration code constructs a connectivity graph of
-        components, is always Verilog translatable
+\begin{frame}[fragile]{Line Tracing from Pipelined RegIncr}
 
-        (as long as leaf modules are translatable).
-  \smallskip
-  \item Enables the creation of powerful and highly-parameterizable
-        hardware generators.
-\end{itemize}
+\begin{Verbatim}
+  ../regincr_soln/RegIncrPipeline_test.py::test_simple
+    0: 04 (00 00) 00
+    1: 06 (05 02) 02
+    2: 02 (07 06) 06
+    3: 0f (03 08) 08
+    4: 08 (10 04) 04
+    5: 00 (09 11) 11
+    6: 0a (01 0a) 0a
+    7: 0a (0b 02) 02
+    8: 0a (0b 0c) 0c
+  PASSED
+\end{Verbatim}
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{Parameterizing Models in PyMTL}
+%-------------------------------------------------------------------------
+
+\medskip
+\begin{cbxcols}
+\begin{column}{0.9\tw}
+\begin{cbxlist}
+
+  \1 Static elaboration code (everything inside \TT{\_\_init\_\_} that is
+     not in a decorated function) can use the full expressiveness of
+     Python
+
+  \1 Static elaboration code constructs a connectivity graph of
+     components, is always Verilog translatable \\
+     (as long as leaf modules are translatable)
+
+  \1 Enables the creation of powerful and highly-parameterizable
+     hardware generators
+
+\end{cbxlist}
+\end{column}
+\end{cbxcols}
 \end{frame}
 
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Compose a pipeline with N RegIncrs}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
-\begin{verbatim}
-  % cd    ~/pymtl-tutorial/build
-  % gedit ../regincr/RegIncrParamPipeline.py
-\end{verbatim}
 
-\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=20,firstnumber=9]%
+\vspace{-0.15in}
+\begin{Verbatim}[commandchars=\\\{\}]
+ % cd \midtilde/pymtl-tut/build
+ % gedit ../regincr/RegIncrParamPipeline.py
+\end{Verbatim}
+\vspace{-0.17in}
+
+\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=21,firstnumber=9]%
 {../../regincr_soln/RegIncrParamPipeline.py}
 
-\begin{verbatim}
-  % py.test ../regincr/RegIncrParamPipeline_test.py -v
-\end{verbatim}
+\vspace{-0.2in}
+\begin{Verbatim}
+ % py.test ../regincr/RegIncrParamPipeline_test.py -sv
+\end{Verbatim}
+
 \end{frame}
 \end{task}
 
 %-------------------------------------------------------------------------
-\begin{frame}{PyMTL 101: Parameterizing Tests in PyMTL}
+\begin{frame}{Parameterizing Tests in PyMTL}
 %-------------------------------------------------------------------------
-\begin{itemize}
-  \item We leverage the opensource \TT{py.test} package to drive test
-        collection and execution in PyMTL.
-  \item Significantly simplifies process of writing unit tests, and
-        enables functionality such as parallel/distributed test execution
-        and coverage reporting via plugins.
-  \item More importantly, \TT{py.test} has powerful facilities for writing
-        extensive and highly parameterizable unit tests.
-  \item One example: the \TT{@pytest.mark.parametrize} decorator.
-\end{itemize}
+
+\medskip
+\begin{cbxcols}
+\begin{column}{0.9\tw}
+\begin{cbxlist}
+
+  \1 We leverage the opensource \TT{py.test} package to drive test
+     collection and execution in PyMTL
+
+  \1 Significantly simplifies process of writing unit tests, and enables
+     functionality such as parallel/distributed test execution and
+     coverage reporting via plugins
+
+  \1 More importantly, \TT{py.test} has powerful facilities for writing
+     extensive and highly parameterizable unit tests
+
+  \1 One example: the \TT{@pytest.mark.parametrize} decorator
+
+\end{cbxlist}
+\end{column}
+\end{cbxcols}
 \end{frame}
 
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Parameterize test to verify multiple Ns}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
-\begin{verbatim}
-  % cd    ~/pymtl-tutorial/build
-  % gedit ../regincr/RegIncrParamPipeline_test.py
-\end{verbatim}
+
+\vspace{-0.15in}
+\begin{Verbatim}[commandchars=\\\{\}]
+ % cd \midtilde/pymtl-tut/build
+ % gedit ../regincr/RegIncrParamPipeline_test.py
+\end{Verbatim}
+\vspace{-0.17in}
 
 \lstinputlisting[xleftmargin={0.38in},firstline=46,lastline=51,firstnumber=46]%
 {../../regincr_soln/RegIncrParamPipeline_test.py}
 
-\begin{verbatim}
-  % py.test ../regincr/RegIncrParamPipeline_test.py -v -s
-\end{verbatim}
+\vspace{-0.2in}
+\begin{Verbatim}
+ % py.test ../regincr/RegIncrParamPipeline_test.py -sv
+\end{Verbatim}
+
 \end{frame}
 \end{task}
+
+\begin{frame}[fragile]{Line Tracing from Pipelined RegIncr}
+
+\begin{Verbatim}
+../regincr_soln/RegIncrParamPipeline_test.py::test_simple[5]
+  0: 04 (00 00 00 00 00) 00
+  1: 06 (05 02 02 02 02) 02
+  2: 02 (07 06 03 03 03) 03
+  3: 0f (03 08 07 04 04) 04
+  4: 08 (10 04 09 08 05) 05
+  5: 00 (09 11 05 0a 09) 09
+  6: 0a (01 0a 12 06 0b) 0b
+  7: 0e (0b 02 0b 13 07) 07
+  8: 10 (0f 0c 03 0c 14) 14
+  9: 0c (11 10 0d 04 0d) 0d
+  ...
+PASSED
+\end{Verbatim}
+
+\end{frame}
 

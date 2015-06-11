@@ -21,8 +21,8 @@ def test_simple( dtype, test_verilog ):
 
   model = RegIncr( dtype )
 
-  if test_verilog:
-    model = TranslationTool( model )
+  if test_verilog:                    # add these two lines to
+    model = TranslationTool( model )  # enable testing translation
 
   model.elaborate()
 

@@ -12,6 +12,8 @@
 import argparse
 import random
 
+random.seed(0xdeadbeef)
+
 from pymtl import *
 
 from RegIncrFL  import RegIncrFL
@@ -24,7 +26,7 @@ def parse_cmdline():
 
   p = argparse.ArgumentParser()
 
-  p.add_argument( '--impl',      default='fl', choices=['fl','rtl'],
+  p.add_argument( '--impl',      default='rtl', choices=['fl','rtl'],
                                  help='select implementation to simulate')
   p.add_argument( '--trace',     action='store_true',
                                  help='display line trace')
@@ -69,9 +71,9 @@ def main():
 
   for i in range( int(opts.ncycles) ):
     model.in_.value = random.randrange( 2**32 )
-    sim.cycle()
     if opts.trace:
       sim.print_line_trace()
+    sim.cycle()
 
   print 'Done! Executed for {} cycles.'.format( sim.ncycles )
 

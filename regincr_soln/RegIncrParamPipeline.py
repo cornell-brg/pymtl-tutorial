@@ -16,8 +16,9 @@ class RegIncrParamPipeline( Model ):
 
     assert len( s.incrs ) > 0
 
-    s.connect( s.in_, s.incrs[ 0].in_ )
+    s.connect( s.in_, s.incrs[0].in_ )
     for i in range( nstages - 1 ):
+      # Add more connect statements to finish composition
       s.connect( s.incrs[i].out, s.incrs[i+1].in_ )
     s.connect( s.out, s.incrs[-1].out )
 
