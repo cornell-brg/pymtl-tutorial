@@ -19,7 +19,7 @@ interpreter~\ding{72}}}
 \vspace{-20pt}
 
 \begin{lstlisting}[numbers=none,basicstyle=\ttfamily]
-% python
+% ipython
 >>> def gcd( a, b ):
 ...   while b:
 ...     a, b = b, a%b
@@ -31,6 +31,7 @@ interpreter~\ding{72}}}
 3
 >>> gcd( 9, 6 )
 3
+>>> exit()
 \end{lstlisting}
 
 \end{frame}
@@ -205,7 +206,7 @@ def execute_addu( s, inst ):
   \1 Task 1.2: Investigate test failures
   \1 Task 1.3: Add encoding for \texttt{gcd} instruction
   \1 Task 1.4: Implement semantics
-  \1 Task 1.5: Re-run assembly tests
+  \1 Task 1.5: Use the debug flags
   \1 Task 1.6: Count the GCD cycles
   \1 Task 1.7: Add inline assembly to application
   \1 Task 1.8: Translate and evaluate
@@ -220,7 +221,7 @@ def execute_addu( s, inst ):
   \1 Task 1.2: Investigate test failures
   \1 Task 1.3: Add encoding for \texttt{gcd} instruction
   \1 Task 1.4: Implement semantics
-  \1 Task 1.5: Re-run assembly tests
+  \1 Task 1.5: Use the debug flags
   \1 Task 1.6: Count the GCD cycles
   \1 Task 1.7: Add inline assembly to application
   \1 Task 1.8: Translate and evaluate
@@ -235,7 +236,7 @@ def execute_addu( s, inst ):
   \1 \BF{Task 1.2: Investigate test failures}
   \1 Task 1.3: Add encoding for \texttt{gcd} instruction
   \1 Task 1.4: Implement semantics
-  \1 Task 1.5: Re-run assembly tests
+  \1 Task 1.5: Use the debug flags
   \1 Task 1.6: Count the GCD cycles
   \1 Task 1.7: Add inline assembly to application
   \1 Task 1.8: Translate and evaluate
@@ -250,11 +251,11 @@ def execute_addu( s, inst ):
 \begin{frame}[fragile]{Build and run assembly tests using cross-compiler}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-% cd \midtilde/pydgin-tut/parc/asm_tests_build
+% cd \midtilde/pydgin-tut/parc/asm_tests/build
 % make
 \end{Verbatim}
 
-The following should pass except for gcd:
+All tests should pass except for \TT{gcd}:
 
 \begin{verbatim}
 % make check
@@ -317,7 +318,7 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
   \1 Task 1.2: Investigate test failures
   \1 \BF{Task 1.3: Add encoding for \texttt{gcd} instruction}
   \1 \BF{Task 1.4: Implement semantics}
-  \1 \BF{Task 1.5: Re-run assembly tests}
+  \1 \BF{Task 1.5: Use the debug flags}
   \1 Task 1.6: Count the GCD cycles
   \1 Task 1.7: Add inline assembly to application
   \1 Task 1.8: Translate and evaluate
@@ -370,25 +371,31 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 % cd \midtilde/pydgin-tut/parc
 % gedit isa.py
 \end{Verbatim}
-
-\begin{lstlisting}[firstnumber=319]
+\vspace{-20pt}
+\begin{lstlisting}[firstnumber=342]
 def execute_addu( s, inst ):
   s.rf[ inst.rd ] = trim_32( s.rf[ inst.rs ] + s.rf[ inst.rt ] )
   s.pc += 4
 \end{lstlisting}
-\vspace{-10pt}
-\begin{lstlisting}[firstnumber=976]
+\vspace{-30pt}
+\begin{lstlisting}[firstnumber=329]
 def execute_gcd( s, inst ):
   # TASK: implement gcd here
   s.pc += 4
 \end{lstlisting}
-\vspace{-10pt}
+\vspace{-30pt}
 \begin{lstlisting}[numbers=none]
 def gcd( a, b ):
   while b:
     a, b = b, a%b
   return a
 \end{lstlisting}
+\vspace{-10pt}
+\BF{WARNING:} DO NOT use closures!
+\begin{Verbatim}[commandchars=\\\{\}]
+% cd \midtilde/pydgin-tut/parc/asm_tests/build
+% parc-sim.py --test parc-gcd
+\end{Verbatim}
 
 \end{frame}
 \end{task}
@@ -398,22 +405,24 @@ def gcd( a, b ):
 %-------------------------------------------------------------------------
 
 \begin{task}
-\begin{frame}[fragile]{Re-run assembly tests}
+\begin{frame}[fragile]{Use the debug flags}
+
+{}You can turn on debug flags using a comma-separated list.
+
+\begin{itemize}
+  \item \TT{insts}: instruction dump
+  \item \TT{rf}: registers reads and written to
+  \item \TT{mem}: memory addresses and values reads and written to
+  \item \TT{regdump}: register dump
+  \item \TT{syscalls}: system call information
+\end{itemize}
 
 \begin{Verbatim}[commandchars=\\\{\}]
 % cd \midtilde/pydgin-tut/parc/asm_tests/build
-
-% parc-sim.py --test parc-gcd
-\end{Verbatim}
-
-Try different debug flags:
-
-{\small
-\begin{verbatim}
 % parc-sim.py --test --debug insts         parc-gcd | less
 % parc-sim.py --test --debug insts,rf,mem  parc-gcd | less
-% parc-sim.py --test --debug insts,regdump parc-gcd | less
-\end{verbatim}}
+\end{Verbatim}
+
 {\tiny
 \begin{verbatim}
 808000 24010018 addiu    0        :: RD.RF[0 ] = 00000000 :: WR.RF[1 ] = 00000018
@@ -423,6 +432,11 @@ Try different debug flags:
 808010 241d000e addiu    4        :: RD.RF[0 ] = 00000000 :: WR.RF[29] = 0000000e
 808014 14640032 bne      5        :: RD.RF[3 ] = 00000004 :: RD.RF[4 ] = 00000004
 \end{verbatim}}
+
+\begin{verbatim}
+% parc-sim.py --test --debug insts,regdump parc-gcd | less
+\end{verbatim}
+
 \end{frame}
 \end{task}
 
@@ -438,7 +452,7 @@ Try different debug flags:
   \1 Task 1.2: Investigate test failures
   \1 Task 1.3: Add encoding for \texttt{gcd} instruction
   \1 Task 1.4: Implement semantics
-  \1 Task 1.5: Re-run assembly tests
+  \1 Task 1.5: Use the debug flags
   \1 \BF{Task 1.6: Count the GCD cycles}
   \1 \BF{Task 1.7: Add inline assembly to application}
   \1 \BF{Task 1.8: Translate and evaluate}
@@ -455,20 +469,23 @@ Try different debug flags:
 {}How many times do we loop when executing the \texttt{gcd} instruction?
 
 \begin{itemize}
-  \item gcd semantics (\texttt{parc/isa.py})
-  \item architectural state (\texttt{parc/machine.py})
-  \item uncomment to print the counter (\texttt{parc/parc-sim.py})
+  \item architectural state (add a new counter called \TT{gcd\_ncycles} in
+  \TT{\midtilde/pydgin-tut/parc/machine.py:34})
+  \item GCD semantics (\texttt{\midtilde/pydgin-tut/parc/isa.py})\\
+  \BF{WARNING:} DO NOT use closures!
+  \item uncomment to print the counter
+  (\texttt{\midtilde/pydgin-tut/parc/parc-sim.py:71})
 \end{itemize}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{Verbatim}[fontsize=\small,commandchars=\\\{\}]
 % cd \midtilde/pydgin-tut/parc/asm_tests/build
 % parc-sim.py --test parc-gcd
   [ passed ] parc-gcd
 DONE! Status = 0
 Instructions Executed = 15
 Instructions Executed in Stat Region = 0
-Number of cycles in GCD = 18
-Total number of cycles (assuming non-GCD CPI=1) = 33
+Number of cycles in GCD = 4
+Total number of cycles (assuming non-GCD CPI=1) = 19
 \end{Verbatim}
 
 \end{frame}
