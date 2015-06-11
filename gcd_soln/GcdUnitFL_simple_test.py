@@ -79,7 +79,7 @@ def test():
 
   # Run simulation
 
-  while not model.done():
+  while not model.done() and sim.ncycles < 30:
     sim.print_line_trace()
     sim.cycle()
 
@@ -88,4 +88,6 @@ def test():
   sim.cycle()
   sim.cycle()
   sim.cycle()
+
+  assert model.done()
 
