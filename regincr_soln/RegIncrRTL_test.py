@@ -19,12 +19,16 @@ from RegIncrFL_test import (
 @pytest.mark.parametrize( 'dtype', [8] )
 def test_simple( dtype, test_verilog ):
 
+  # instantiate the model and elaborate it
+
   model = RegIncr( dtype )
 
   if test_verilog:                    # add these two lines to
     model = TranslationTool( model )  # enable testing translation
 
   model.elaborate()
+
+  # create the simulator
 
   sim = SimulationTool( model )
 

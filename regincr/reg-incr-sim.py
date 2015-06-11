@@ -46,10 +46,6 @@ def main():
 
   opts = parse_cmdline()
 
-  #---------------------------------------------------------------------
-  # TASK 3: Add an entry in model_impl_dict for RegIncrRTL below.
-  #---------------------------------------------------------------------
-
   model_impl_dict = {
     'fl'  : RegIncrFL,
     'rtl' : RegIncrRTL,

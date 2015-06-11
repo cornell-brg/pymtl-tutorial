@@ -41,7 +41,7 @@ def gen_simple_test_vectors( nstages ):
 #-----------------------------------------------------------------------
 
 #-----------------------------------------------------------------------
-# TASK 9: Change parametrize to verify more pipeline depths!
+# TASK 2.10: Change parametrize to verify more pipeline depths!
 #-----------------------------------------------------------------------
 @pytest.mark.parametrize( 'nstages', [2] )
 def test_simple( test_verilog, nstages ):

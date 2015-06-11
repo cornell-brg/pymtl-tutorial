@@ -155,8 +155,9 @@
 
 \begin{column}{0.4\tw}
 \begin{lstlisting}[xleftmargin={0in},numbers={none},basicstyle={\ttfamily\small}]
- % cd
+ % cd ~
  % ipython
+
  >>> from pymtl import *
  >>> a = Bits( 8, 5 )
  >>> b = Bits( 8, 3 )
@@ -173,6 +174,7 @@
 
 \begin{column}{0.4\tw}
 \begin{lstlisting}[xleftmargin={0in},numbers={none},basicstyle={\ttfamily\small}]
+
 
 
  >>> c = concat( a, b )
@@ -198,6 +200,7 @@
 \begin{lstlisting}[xleftmargin={0in},numbers={none},basicstyle={\ttfamily\small}]
  % cd ~/pymtl-tut/maxunit
  % ipython
+
  >>> from pymtl import *
  >>> from MaxUnitFL import MaxUnitFL
  >>> model = MaxUnitFL( nbits=8, nports=3 )
@@ -281,12 +284,13 @@
 \begin{task}\begin{frame}[fragile]{Test the RegIncr model}
 %-------------------------------------------------------------------------
 
-\vspace{-0.15in}
+\vspace{-0.19in}
 \begin{Verbatim}[commandchars=\\\{\}]
  % cd    \midtilde/pymtl-tut/build
-
  % py.test ../regincr/RegIncrRTL_test.py --verbose
-
+\end{Verbatim}
+\smallskip
+\begin{Verbatim}
  =============== test session starts ================
  platform darwin -- Python 2.7.5 -- pytest-2.6.4
  plugins: xdist
@@ -379,7 +383,7 @@
 \vspace{-0.2in}
 \begin{Verbatim}[commandchars=\\\{\}]
  % py.test ../regincr/RegIncrRTL_test.py -v --test-verilog
- % gedit ./RegIncrRTL_0x7a355c5a216e72a4.v
+ % gedit ./RegIncrRTL_0x216e72a4.v
 \end{Verbatim}
 
 \end{frame}
@@ -449,10 +453,10 @@
 \vspace{-0.15in}
 \begin{Verbatim}[commandchars=\\\{\}]
  % cd \midtilde/pymtl-tut/build
-
  % python ../regincr/reg-incr-sim.py 10
  % python ../regincr/reg-incr-sim.py 10 --trace
  % python ../regincr/reg-incr-sim.py 20 --trace
+
    0: 04e5f14d (00000000) 00000000
    1: 7839d4fc (04e5f14d) 04e5f14e
    2: 996ab63d (7839d4fc) 7839d4fd
@@ -568,7 +572,7 @@
 \end{Verbatim}
 \vspace{-0.17in}
 
-\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=18,firstnumber=9]%
+\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=21,firstnumber=9]%
 {../../regincr_soln/RegIncrPipeline.py}
 
 \vspace{-0.2in}
@@ -633,8 +637,8 @@
 \end{Verbatim}
 \vspace{-0.17in}
 
-\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=21,firstnumber=9]%
-{../../regincr_soln/RegIncrParamPipeline.py}
+\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=22,firstnumber=9]%
+{../../regincr/RegIncrParamPipeline.py}
 
 \vspace{-0.2in}
 \begin{Verbatim}
@@ -679,12 +683,10 @@
  % cd \midtilde/pymtl-tut/build
  % gedit ../regincr/RegIncrParamPipeline_test.py
 \end{Verbatim}
-\vspace{-0.17in}
 
-\lstinputlisting[xleftmargin={0.38in},firstline=46,lastline=51,firstnumber=46]%
+\lstinputlisting[xleftmargin={0.38in},firstline=43,lastline=51,firstnumber=43]%
 {../../regincr_soln/RegIncrParamPipeline_test.py}
 
-\vspace{-0.2in}
 \begin{Verbatim}
  % py.test ../regincr/RegIncrParamPipeline_test.py -sv
 \end{Verbatim}

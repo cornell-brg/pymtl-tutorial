@@ -17,10 +17,10 @@ class RegIncrParamPipeline( Model ):
     assert len( s.incrs ) > 0
 
     s.connect( s.in_, s.incrs[0].in_ )
-
+    for i in range( nstages - 1 ): pass
     #-------------------------------------------------------------------
-    # TASK 7: Comment out the Exception and implement the
-    #         structural composition above.
+    # TASK 2.9: Comment out the Exception and implement the
+    #           structural composition above.
     #-------------------------------------------------------------------
     #
     # - create connections between RegIncrs

@@ -17,8 +17,8 @@ class RegIncrPipeline( Model ):
     s.connect( s.in_, s.incrs[0].in_ )
 
     #-------------------------------------------------------------------
-    # TASK 6: Comment out the Exception and implement the
-    #         structural composition below.
+    # TASK 2.8: Comment out the Exception and implement the
+    #           structural composition below.
     #-------------------------------------------------------------------
     #
     # - create connections between RegIncrs

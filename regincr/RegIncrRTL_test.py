@@ -24,7 +24,7 @@ def test_simple( dtype, test_verilog ):
   model = RegIncr( dtype )
 
   #---------------------------------------------------------------------
-  # TASK 4: Add verilog translation to the test harness here
+  # TASK 2.5: Add verilog translation to the test harness here
   #---------------------------------------------------------------------
 
   model.elaborate()
