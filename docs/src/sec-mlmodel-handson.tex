@@ -47,7 +47,7 @@
 \end{itemize}
 
 \vspace{-0.15in}
-\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=22,numbers=none]
+\lstinputlisting[xleftmargin={0.38in},firstline=9,lastline=23,numbers=none]
 {../../slide_examples/Structs_test.py}
 
 \end{frame}
@@ -94,17 +94,19 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Create a BitStruct for the GCD request}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
+\vspace{-0.2in}
 \begin{Verbatim}[commandchars=\\\{\}]
   % cd    \midtilde/pymtl-tut/build
   % gedit ../gcd/GcdUnitMsg.py
 \end{Verbatim}
 
-\lstinputlisting[xleftmargin={0.38in},firstline=12,lastline=19,firstnumber=12]%
+\vspace{-.1in}
+\lstinputlisting[xleftmargin={0.38in},firstline=12,lastline=23,firstnumber=12]%
 {../../gcd_soln/GcdUnitMsg.py}
 
+\vspace{-.2in}
 \begin{verbatim}
-  % py.test ../gcd/GcdUnitMsg_test.py -v
+  % py.test ../gcd/GcdUnitMsg_test.py -vs
 \end{verbatim}
 \end{frame}
 \end{task}
@@ -151,7 +153,7 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Build an FL model for the GCD unit}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
+\vspace{-0.2in}
 \begin{Verbatim}[commandchars=\\\{\}]
   % cd    \midtilde/pymtl-tut/build
   % gedit ../gcd/GcdUnitFL.py
@@ -187,7 +189,7 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Create a latency insensitive test}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
+\vspace{-0.2in}
 \begin{Verbatim}[commandchars=\\\{\}]
   % cd    \midtilde/pymtl-tut/build
   % gedit ../gcd/GcdUnitFL_simple_test.py
@@ -197,13 +199,13 @@ fields, one for each operand:
 {../../gcd_soln/GcdUnitFL_simple_test.py}
 
 \begin{verbatim}
-  % py.test ../gcd/GcdUnitFL_simple_test.py -v -s
+  % py.test ../gcd/GcdUnitFL_simple_test.py -vs
 \end{verbatim}
 \end{frame}
 \end{task}
 
 %-------------------------------------------------------------------------
-\begin{frame}{PyMTL 102: Latency Insensitive CL Models}
+\begin{frame}{PyMTL 102: Latency Insensitive FL Models}
 %-------------------------------------------------------------------------
 \vspace{-0.25in}
 \lstinputlisting[xleftmargin={0.38in},firstline=1,lastline=16,numbers=none]%
@@ -247,7 +249,7 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Add timing to the GCD CL model}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
+\vspace{-0.2in}
 \begin{Verbatim}[commandchars=\\\{\}]
   % cd    \midtilde/pymtl-tut/build
   % py.test ../gcd/GcdUnitCL_test.py
@@ -255,10 +257,29 @@ fields, one for each operand:
   % gedit ../gcd/GcdUnitCL.py
 \end{Verbatim}
 
-\vspace{-0.1in}
+  \begin{cbxcols}
+  \begin{column}{0.45\tw}
 \lstinputlisting[xleftmargin={0.38in},firstline=17,lastline=25,firstnumber=17]%
 {../../gcd_soln/GcdUnitCL.py}
+  \end{column}
+  \begin{column}{0.54\tw}
+\begin{lstlisting}[numbers=none]
+# Handle delay to model the
+# gcd unit latency
 
+if s.counter > 0:
+  s.counter -= 1
+  if s.counter == 0:
+    s.resp_q.enq( s.result )
+
+# ...
+s.result,s.counter = \
+  gcd( req_msg.a, req_msg.b )
+\end{lstlisting}
+  \end{column}
+  \end{cbxcols}
+
+\vspace{-.2in}
 \begin{verbatim}
   % py.test ../gcd/GcdUnitCL_test.py -k basic_0x0 -sv
 \end{verbatim}
@@ -269,8 +290,21 @@ fields, one for each operand:
 \begin{frame}{PyMTL 102: Latency Insensitive CL Models}
 %-------------------------------------------------------------------------
 \vspace{-0.25in}
-\lstinputlisting[xleftmargin={0.38in},firstline=1,lastline=16,numbers=none]%
+
+  \begin{cbxcols}
+  \begin{column}{0.45\tw}
+
+\lstinputlisting[basicstyle=\ttfamily\tiny,firstline=1,lastline=30,numbers=none]%
+{../../gcd_soln/cl_trace_err.out}
+
+  \end{column}
+  \begin{column}{0.5\tw}
+
+\lstinputlisting[basicstyle=\ttfamily\tiny,firstline=1,lastline=30,numbers=none]%
 {../../gcd_soln/cl_trace.out}
+
+  \end{column}
+  \end{cbxcols}
 
 \end{frame}
 
@@ -304,7 +338,7 @@ fields, one for each operand:
   \item Latency insensitive hardware generally separates logic into
         control and datapath (shown below).
   \smallskip
-  \item Today, we won’t be writing RTL for GCD, but we’ll be fixing a bug
+  \item Today, we won't be writing RTL for GCD, but we’ll be fixing a bug
         in the RTL implementation of the state machine.
 \end{itemize}
 
