@@ -15,7 +15,7 @@
    sodipodi:version="0.32"
    inkscape:version="0.48.4 r9939"
    version="1.0"
-   sodipodi:docname="tut3-regincr.svg"
+   sodipodi:docname="tut3-regincr-2stage.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <sodipodi:namedview
      id="base"
@@ -27,8 +27,8 @@
      objecttolerance="1"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="4.2114286"
-     inkscape:cx="87.5"
+     inkscape:zoom="5.9575758"
+     inkscape:cx="82.5"
      inkscape:cy="40"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -40,8 +40,8 @@
      width="900px"
      height="700px"
      inkscape:showpageshadow="false"
-     inkscape:window-width="1253"
-     inkscape:window-height="1367"
+     inkscape:window-width="1499"
+     inkscape:window-height="1362"
      inkscape:window-x="21"
      inkscape:window-y="11"
      showguides="true"
@@ -124,7 +124,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
