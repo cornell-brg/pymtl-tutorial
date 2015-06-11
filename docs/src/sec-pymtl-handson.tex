@@ -93,7 +93,7 @@
  % ipython
  >>> from pymtl import *
  >>> from MaxUnitFL import MaxUnitFL
- >>> model = MaxUnitFL(8,3)
+ >>> model = MaxUnitFL( nbits=8, nports=3 )
  >>> model.elaborate()
  >>> sim = SimulationTool(model)
  >>> sim.reset()
