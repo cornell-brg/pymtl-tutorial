@@ -228,6 +228,12 @@ The following should pass except for gcd:
 % make check
 \end{verbatim}
 
+{\small
+\begin{verbatim}
+parc-gcd.out:Exception in execution (pc: 0x00808008), aborting!
+parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
+\end{verbatim}}
+
 \end{frame}
 \end{task}
 
@@ -357,7 +363,15 @@ Try different debug flags:
 % parc-sim.py --test --debug insts,rf,mem  parc-gcd | less
 % parc-sim.py --test --debug insts,regdump parc-gcd | less
 \end{verbatim}}
-
+{\tiny
+\begin{verbatim}
+808000 24010018 addiu    0        :: RD.RF[0 ] = 00000000 :: WR.RF[1 ] = 00000018
+808004 24020064 addiu    1        :: RD.RF[0 ] = 00000000 :: WR.RF[2 ] = 00000064
+808008 9c411811 gcd      2        :: RD.RF[2 ] = 00000064 :: RD.RF[1 ] = 00000018 :: WR.RF[3 ] = 00000004
+80800c 24040004 addiu    3        :: RD.RF[0 ] = 00000000 :: WR.RF[4 ] = 00000004
+808010 241d000e addiu    4        :: RD.RF[0 ] = 00000000 :: WR.RF[29] = 0000000e
+808014 14640032 bne      5        :: RD.RF[3 ] = 00000004 :: RD.RF[4 ] = 00000004
+\end{verbatim}}
 \end{frame}
 \end{task}
 
