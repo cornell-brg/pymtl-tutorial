@@ -24,10 +24,10 @@ class TestHarness (Model):
   def __init__( s, src_msgs, sink_msgs ):
 
     #---------------------------------------------------------------------
-    # TASK 3: Comment out the Exception below.
-    #         Instantiate a test source to inject request messages into
-    #         the DUT, the DUT (i.e., the GcdUnitFL model), a test sink to
-    #         verify response messages from the DUT; then connect them.
+    # TASK 3.3: Comment out the Exception below.
+    #           Instantiate a TestSource to inject request messages into
+    #           the DUT, the DUT (i.e., the GcdUnitFL model), a TestSink
+    #           to verify responses from the DUT; then connect them.
     #---------------------------------------------------------------------
 
     raise NotImplementedError(

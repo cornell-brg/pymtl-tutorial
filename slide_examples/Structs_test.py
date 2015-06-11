@@ -6,18 +6,20 @@ def test_BitStructs():
   class ExampleModel( Model ):
     def __init__( s ):
 
-      # MemReqMsg is a BitStruct datatype
+      # MemReqMsg(addr_nbits, data_nbits) is a BitStruct datatype:
+      # +------+-----------+------+-----------+
+      # | type | addr      | len  | data      |
+      # +------+-----------+------+-----------+
       dtype = MemReqMsg( 32, 32 )
       s.in_ = InPort( dtype )
 
       @s.tick
       def logic():
 
-        # BitStructs are subclasses of Bits,
-        # so we can slice them if we want
+        # BitStructs are subclasses of Bits, we can slice them
         addr, data = s.in_[34:66], s.in_[0:32]
 
-        # But its usually more convenient to use fields!
+        # ... but it's usually more convenient to use fields!
         addr, data = s.in_.addr, s.in_.data
 
         assert s.in_[34:66] == s.in_.addr

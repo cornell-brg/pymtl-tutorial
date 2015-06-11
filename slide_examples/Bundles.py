@@ -16,13 +16,13 @@ class BundleExample( Model ):
 
     s.child = ChildModel( dtype )
 
-    # can connect ports individually
+    # connecting bundled request ports individually
 
     s.connect( s.req.msg, s.child.req.msg )
     s.connect( s.req.val, s.child.req.val )
     s.connect( s.req.rdy, s.child.req.rdy )
 
-    # or connect all ports in bulk
+    # connecting bundled response ports in bulk
 
     s.connect( s.resp,    s.child.resp )
 

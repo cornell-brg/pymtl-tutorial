@@ -176,8 +176,8 @@ class GcdUnitCtrlRTL (Model):
       next_state = s.state.out
 
       #-----------------------------------------------------------------
-      # TASK 5: There is a bug in this state transition logic. Fix the
-      #         bug and verify correct functionality.
+      # TASK 3.5: There is a bug in this state transition logic. Fix the
+      #           bug and verify correct functionality.
       #-----------------------------------------------------------------
 
       # Transitions out of IDLE state

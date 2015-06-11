@@ -10,8 +10,8 @@ from pymtl import *
 # BitStruct designed to hold two operands for a GCD operation.
 
 #-------------------------------------------------------------------------
-# TASK 2: Comment out the Exception below.
-#         Implement GcdUnitMsg code shown on the overhead slides.
+# TASK 3.1: Comment out the Exception below.
+#           Implement GcdUnitMsg code shown on the slides.
 #-------------------------------------------------------------------------
 
 raise NotImplementedError(

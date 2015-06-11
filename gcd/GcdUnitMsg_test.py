@@ -14,9 +14,13 @@ def test_fields():
 
   # Create msg
 
+  print
   msg = GcdUnitReqMsg()
+  print msg
   msg.a = 1
+  print msg
   msg.b = 2
+  print msg
 
   # Verify msg
 
@@ -31,9 +35,13 @@ def test_str():
 
   # Create msg
 
+  print
   msg = GcdUnitReqMsg()
+  print msg
   msg.a = 0xdead
+  print msg
   msg.b = 0xbeef
+  print msg
 
   # Verify string
 

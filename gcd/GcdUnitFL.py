@@ -32,8 +32,8 @@ class GcdUnitFL( Model ):
     def block():
 
       #-------------------------------------------------------------------
-      # TASK 2: Comment out the Exception below.
-      #         Implement GcdUnitFL code shown on the overhead slides.
+      # TASK 3.2: Comment out the Exception below.
+      #           Implement GcdUnitFL code shown on the slides.
       #-------------------------------------------------------------------
 
       raise NotImplementedError(
