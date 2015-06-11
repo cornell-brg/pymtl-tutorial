@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="235"
+   width="245"
    height="80"
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.48.4 r9939"
    version="1.0"
-   sodipodi:docname="tut3-regincr-Nstage.svg"
+   sodipodi:docname="tut3-regincr-2stage.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <sodipodi:namedview
      id="base"
@@ -137,12 +137,12 @@
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
        id="path4324"
-       d="m 159,759 9.9711,0"
+       d="m 159,759 19.9711,0"
        style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;marker-end:url(#TriangleOutM);visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     <rect
        style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect2988"
-       width="165"
+       width="175"
        height="70"
        x="84"
        y="724" />
@@ -165,7 +165,7 @@
        sodipodi:nodetypes="cc" />
     <path
        style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;marker-end:url(#TriangleOutM);visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m 233.64617,759 45,0"
+       d="m 243.64617,759 45,0"
        id="path5269"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -173,11 +173,11 @@
        sodipodi:linespacing="125%"
        id="text5277"
        y="753.38452"
-       x="253.26147"
+       x="263.26147"
        style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
        xml:space="preserve"><tspan
          y="753.38452"
-         x="253.26147"
+         x="263.26147"
          id="tspan5279"
          sodipodi:role="line">s.out</tspan></text>
     <rect
@@ -201,7 +201,7 @@
        style="color:#000000;fill:#ffffff;stroke:#000000;stroke-width:0.75;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     <rect
        y="756.66248"
-       x="246.33713"
+       x="256.33713"
        height="5"
        width="5"
        id="rect4137"
@@ -210,11 +210,11 @@
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
        id="path4139"
-       d="m 246.33719,756.66286 5,5"
+       d="m 256.33719,756.66286 5,5"
        style="color:#000000;fill:#ffffff;stroke:#000000;stroke-width:0.75;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     <path
        style="color:#000000;fill:#ffffff;stroke:#000000;stroke-width:0.75;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m 251.33719,756.66286 -5,5"
+       d="m 261.33719,756.66286 -5,5"
        id="path4141"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -288,34 +288,35 @@
        id="rect4302"
        width="60"
        height="50"
-       x="174"
+       x="184"
        y="734" />
     <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Helvetica;-inkscape-font-specification:Helvetica"
-       x="204.22534"
+       x="214.22534"
        y="754.62305"
        id="text4304"
        sodipodi:linespacing="125%"><tspan
          id="tspan4306"
          sodipodi:role="line"
-         x="204.22534"
+         x="214.22534"
          y="754.62305"
          style="font-weight:bold">RegIncr</tspan><tspan
          id="tspan4308"
          sodipodi:role="line"
-         x="204.22534"
-         y="769.62305">s.incrs[1]</tspan></text>
+         x="214.22534"
+         y="769.62305"
+         dx="0 0 0 0 0 0 0 0 0 0 -1.1953205 -0.71719223">s.incrs[n-1]</tspan></text>
     <rect
        style="color:#000000;fill:#ffffff;stroke:#000000;stroke-width:0.75;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect4310"
        width="5"
        height="5"
-       x="171.69669"
+       x="181.69669"
        y="756.66248" />
     <path
        style="color:#000000;fill:#ffffff;stroke:#000000;stroke-width:0.75;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m 171.69675,756.66286 5,5"
+       d="m 181.69675,756.66286 5,5"
        id="path4312"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -323,10 +324,10 @@
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
        id="path4314"
-       d="m 176.69675,756.66286 -5,5"
+       d="m 186.69675,756.66286 -5,5"
        style="color:#000000;fill:#ffffff;stroke:#000000;stroke-width:0.75;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     <g
-       transform="translate(65,85)"
+       transform="translate(75,85)"
        id="g4316">
       <rect
          style="color:#000000;fill:#ffffff;stroke:#000000;stroke-width:0.75;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
@@ -347,6 +348,40 @@
          id="path4322"
          d="m 171.69675,671.66286 -5,5"
          style="color:#000000;fill:#ffffff;stroke:#000000;stroke-width:0.75;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    </g>
+    <g
+       id="g4503"
+       transform="translate(56.19532,74.282808)">
+      <path
+         transform="matrix(0.3,0,0,0.3,91,691)"
+         d="m 70,-45 a 5,5 0 1 1 -10,0 5,5 0 1 1 10,0 z"
+         sodipodi:ry="5"
+         sodipodi:rx="5"
+         sodipodi:cy="-45"
+         sodipodi:cx="65"
+         id="path4497"
+         style="color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.75;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:type="arc"
+         style="color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.75;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="path4499"
+         sodipodi:cx="65"
+         sodipodi:cy="-45"
+         sodipodi:rx="5"
+         sodipodi:ry="5"
+         d="m 70,-45 a 5,5 0 1 1 -10,0 5,5 0 1 1 10,0 z"
+         transform="matrix(0.3,0,0,0.3,96,691)" />
+      <path
+         transform="matrix(0.3,0,0,0.3,101,691)"
+         d="m 70,-45 a 5,5 0 1 1 -10,0 5,5 0 1 1 10,0 z"
+         sodipodi:ry="5"
+         sodipodi:rx="5"
+         sodipodi:cy="-45"
+         sodipodi:cx="65"
+         id="path4501"
+         style="color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.75;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         sodipodi:type="arc" />
     </g>
   </g>
 </svg>
