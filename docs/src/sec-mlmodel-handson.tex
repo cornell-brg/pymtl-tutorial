@@ -258,24 +258,13 @@ fields, one for each operand:
 \end{Verbatim}
 
   \begin{cbxcols}
-  \begin{column}{0.45\tw}
+  \begin{column}{0.60\tw}
+\lstinputlisting[basicstyle=\ttfamily\tiny,numbersep={-.15in},xleftmargin={0in},firstline=67,lastline=78,firstnumber=67]%
+{../../gcd/GcdUnitCL.py}
+  \end{column}
+  \begin{column}{0.39\tw}
 \lstinputlisting[xleftmargin={0.38in},firstline=17,lastline=25,firstnumber=17]%
 {../../gcd_soln/GcdUnitCL.py}
-  \end{column}
-  \begin{column}{0.54\tw}
-\begin{lstlisting}[basicstyle=\ttfamily\tiny,numbers=none]
-# Handle delay to model the
-# gcd unit latency
-
-if s.counter > 0:
-  s.counter -= 1
-  if s.counter == 0:
-    s.resp_q.enq( s.result )
-
-# ...
-s.result,s.counter = \
-  gcd( req_msg.a, req_msg.b )
-\end{lstlisting}
   \end{column}
   \end{cbxcols}
 
@@ -359,7 +348,7 @@ s.result,s.counter = \
 \vspace{-0.25in}
 \begin{Verbatim}[commandchars=\\\{\}]
   % cd    \midtilde/pymtl-tut/build
-  % py.test ../gcd/GcdUnitRTL_test.py -k basic_0x0 -sv
+  % py.test ../gcd/GcdUnitRTL_test.py -k basic_0x0 -v
   % gedit ../gcd/GcdUnitRTL.py
 \end{Verbatim}
 
@@ -369,7 +358,7 @@ s.result,s.counter = \
 
 \vspace{-0.3in}
 \begin{verbatim}
-  % py.test ../gcd/GcdUnitRTL_test.py -k basic_0x0 -sv
+  % py.test ../gcd/GcdUnitRTL_test.py -k basic_0x0 -v
 \end{verbatim}
 \end{frame}
 \end{task}
@@ -402,16 +391,25 @@ s.result,s.counter = \
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Verify generated Verilog GCD RTL}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
+\vspace{-0.2in}
 \begin{Verbatim}[commandchars=\\\{\}]
   % cd    \midtilde/pymtl-tut/build
   % py.test ../gcd/GcdUnitRTL_test.py --test-verilog -sv
-  % gedit GcdUnitRTL_0x791afe0d4d8c.v
+  % gedit GcdUnitRTL_*.v
 \end{Verbatim}
 
-\vspace{-0.3in}
-\lstinputlisting[xleftmargin={0.38in},firstline=6,lastline=19,firstnumber=4]%
+\vspace{-0.1in}
+\begin{cbxcols}
+\begin{column}{0.5\tw}
+\lstinputlisting[language=verilog,xleftmargin={0.38in},firstline=6,lastline=27,firstnumber=6,basicstyle={\ttfamily\tiny}]%
 {../../gcd_soln/GcdUnitRTL_0x791afe0d4d8c.v}
+\end{column}
+\begin{column}{0.5\tw}
+\lstinputlisting[language=verilog,xleftmargin={0.38in},firstline=28,lastline=49,firstnumber=28,basicstyle={\ttfamily\tiny}]%
+{../../gcd_soln/GcdUnitRTL_0x791afe0d4d8c.v}
+\end{column}
+\end{cbxcols}
+
 \end{frame}
 \end{task}
 
