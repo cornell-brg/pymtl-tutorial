@@ -444,6 +444,38 @@ fields, one for each operand:
 \end{task}
 
 %-------------------------------------------------------------------------
+\begin{frame}{PyMTL In Practice: Matrix Vector Accelerator}
+%-------------------------------------------------------------------------
+
+\begin{itemize}
+  \item In the PyMTL Micro paper, we discuss how multi-level modeling
+        in PyMTL can facilitate the design of coprocessors.
+  \item Selecting FL/CL/RTL models for the cache/processor/accelerator
+        allows designers to tradeoff simulation speed and accuracy.
+  \item PyMTL-generated Verilog passed into Synopsys toolflow for
+        area/energy/timing estimates.
+\end{itemize}
+
+  \vspace{.2in}
+
+  \begin{cbxcols}
+  \begin{column}{0.3\tw}
+  \cbxfigc[.6\tw]{poster-tile.svg.pdf}
+  \end{column}
+
+  \begin{column}{0.4\tw}
+  \cbxfigc{fig-simjit-complexity.svg.pdf}
+  \end{column}
+
+  \begin{column}{0.3\tw}
+  \cbxfigc[.7\tw]{tile-amoeba-small-invert.jpg}
+  \end{column}
+  \end{cbxcols}
+
+\end{frame}
+
+
+%-------------------------------------------------------------------------
 \begin{frame}{PyMTL Next Steps and More Resources}
 %-------------------------------------------------------------------------
 Next Steps:
