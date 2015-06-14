@@ -456,19 +456,49 @@ fields, one for each operand:
         area/energy/timing estimates.
 \end{itemize}
 
-  \vspace{.2in}
-
   \begin{cbxcols}
   \begin{column}{0.3\tw}
-  \cbxfigc[.6\tw]{poster-tile.svg.pdf}
+  \cbxfigc[.9\tw]{poster-tile.svg.pdf}
   \end{column}
 
   \begin{column}{0.4\tw}
+  \vspace{0.2in}
   \cbxfigc{fig-simjit-complexity.svg.pdf}
   \end{column}
 
   \begin{column}{0.3\tw}
-  \cbxfigc[.7\tw]{tile-amoeba-small-invert.jpg}
+  \cbxfigc[\tw]{tile-amoeba-small-invert.jpg}
+  \end{column}
+  \end{cbxcols}
+
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL In Practice: XLOOPS Loops Specialization}
+%-------------------------------------------------------------------------
+
+  \begin{cbxcols}
+  \begin{column}{0.6\tw}
+
+\begin{itemize}
+  \item In the XLOOPS paper (published in MICRO2014), PyMTL was
+        combined with gem5 to evaluate an architecture for loop
+        acceleration.
+  \item gem5 provided access to complex out-of-order processor model as
+        well as a memory system model (red).
+  \item PyMTL was used to quickly build and iterate on a CL model for the
+        loop acceleration unit (blue).
+
+  {\tiny\IT{Srinath, Ilbeyi, et. al. ``Architectural Specialization for
+  Inter-Iteration Loop Dependence Patterns.'' 47th ACM/IEEE Int'l Symp. on
+  Microarchitecture (MICRO-47), Dec. 2014.}}
+\end{itemize}
+  \end{column}
+  \begin{column}{0.4\tw}
+
+  \vspace{0.2in}
+  \cbxfigc[\tw]{xlls-uarch.svg.pdf}
+
   \end{column}
   \end{cbxcols}
 
