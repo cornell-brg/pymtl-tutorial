@@ -37,16 +37,76 @@
 \vspace{0pt}
 
 \colorbox{gray!30!white}{\parbox{1.025\tw}{\rule[-0.4em]{0pt}{1.4em}\centering\textbf{%
-  Location of Tutorial Source%
+  Tutorial Setup%
 }}}
 
 \smallskip\smallskip
-\begin{tabular}{p{\tw}}
-\verb|% cd ~/pymtl-tutorial| \\
-\verb|% cd ~/pydgin-tutorial| \\
-\end{tabular}
+\begin{verbatim}
+  Username: tutorial
+  Password: pymtl
 
-\vspace{0.25in}
+  % cd ~/pymtl-tut
+  % cd ~/pydgin-tut
+\end{verbatim}
+
+\vspace{0.15in}
+\colorbox{gray!30!white}{\parbox{1.025\tw}{\rule[-0.4em]{0pt}{1.4em}\centering\textbf{%
+  Python Basics%
+}}}
+
+\begin{center}
+Whitespace matters! Your code will not run correctly \\ if you use
+improper indentation.
+\end{center}
+
+\vspace{-0.1in}
+\begin{lstlisting}
+# this is a comment
+
+# Assignment to variables
+
+a = 3
+b = 5
+c = a + b
+
+# Printing values
+
+print "hello world!"
+print 3 + 5
+
+# If conditionals
+
+if test:
+  # do stuff if test is true
+elif test2:
+  # do stuff if test2 is true
+else:
+  # do stuff if both tests are false
+
+# For loops
+
+for x in a_sequence:
+  # do stuff for each member of a_sequence
+  # for example, each item in a list
+
+for x in range(10):
+  # do stuff 10 times (0 through 9)
+
+# Lists
+
+lst = [ 1, 2, 3, 4 ] # create list with 4 elements
+print lst[0]         # print first element
+print lst[0:2]       # print first two elements
+
+for x in lst:        # iterate over list and ...
+  print x            #  ... print each element
+\end{lstlisting}
+
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{3.25in}
+\vspace{0pt}
+
 \colorbox{gray!30!white}{\parbox{1.025\tw}{\rule[-0.4em]{0pt}{1.4em}\centering\textbf{%
   PyMTL Model Template%
 }}}
@@ -154,7 +214,19 @@ class MyModel( Model ):
 \end{cbxlist}
 
 \end{minipage}%
-\hfill%
+
+\end{landscape}
+
+\begin{landscape}
+\small
+
+\begin{center}
+  \textbf{\Large PyMTL/Pydgin
+    Tutorial  \hspace{0.5em}\textbullet\hspace{0.5em}
+    ISCA 2015 \hspace{0.5em}\textbullet\hspace{0.5em}
+    Cheat Sheet}
+\end{center}
+
 \begin{minipage}[t]{3.25in}
 \vspace{0pt}
 
@@ -230,20 +302,7 @@ def test_my_model( test_verilog, dump_vcd, dtype ):
 \end{verbatim}
 
 \end{minipage}%
-\par
-
-\end{landscape}
-
-\begin{landscape}
-\small
-
-\begin{center}
-  \textbf{\Large PyMTL/Pydgin
-    Tutorial  \hspace{0.5em}\textbullet\hspace{0.5em}
-    ISCA 2015 \hspace{0.5em}\textbullet\hspace{0.5em}
-    Cheat Sheet}
-\end{center}
-
+\hfill%
 \begin{minipage}[t]{3.25in}
 \vspace{0pt}
 
@@ -322,6 +381,46 @@ def test_my_model( test_verilog, dump_vcd, dtype ):
 \end{optbl}
 
 \end{minipage}
+\hfill%
+\begin{minipage}[t]{3.25in}
+\vspace{0pt}
+
+\colorbox{gray!30!white}{\parbox{1.025\tw}{\rule[-0.4em]{0pt}{1.4em}\centering\textbf{%
+  Pydgin Template
+}}}
+
+\smallskip\smallskip
+\begin{Verbatim}[commandchars=\\\{\}]
+ addu rd, rs, rt             R[rd] = R[rs] + R[rt]
+
+ 31    26 25   21 20   16 15   11 10    6 5      0
++--------+-------+-------+-------+-------+--------+
+|   op   |  rs   |  rt   |  rd   |       |  cmd   |
+| 000000 | src0  | src1  | dst   | 00000 | 100001 |
++--------+-------+-------+-------+-------+--------+
+\end{Verbatim}
+
+\begin{lstlisting}[numbers=none,basicstyle=\ttfamily,xleftmargin={0in}]
+# addu instruction encoding in parc/isa.py
+
+encodings = [
+  # ...
+  ['addu', '000000_xxxxx_xxxxx_xxxxx_00000_100001'],
+  # ...
+]
+
+# addu instruction semantics in parc/isa.py
+# s    = state
+# inst = instruction bits
+
+def execute_addu( s, inst ):
+  s.rf[ inst.rd ] = \
+    trim_32( s.rf[ inst.rs ] + s.rf[ inst.rt ] )
+  s.pc += 4
+\end{lstlisting}
+
+\end{minipage}
+\par
 
 \end{landscape}
 
