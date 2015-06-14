@@ -447,28 +447,34 @@ fields, one for each operand:
 \begin{frame}{PyMTL In Practice: Matrix Vector Accelerator}
 %-------------------------------------------------------------------------
 
-\begin{itemize}
-  \item In the PyMTL paper [MICRO2014], we discuss how multi-level modeling
-        in PyMTL can facilitate the design of coprocessors.
-  \item Selecting FL/CL/RTL models for the cache/processor/accelerator
-        allows designers to tradeoff simulation speed and accuracy.
-  \item PyMTL-generated Verilog passed into Synopsys toolflow for
-        area/energy/timing estimates.
-\end{itemize}
+\begin{cbxlist}
 
+  \1 In the PyMTL paper [MICRO'14], we discuss how multi-level modeling
+     in PyMTL can facilitate the design of coprocessors.
+
+  \1 Selecting FL/CL/RTL models for the cache/processor/accelerator
+     allows designers to tradeoff simulation speed and accuracy.
+
+  \1 PyMTL-generated Verilog passed into Synopsys toolflow for
+     area/energy/timing estimates.
+
+\end{cbxlist}
+
+  \medskip
   \begin{cbxcols}
-  \begin{column}{0.3\tw}
-  \cbxfigc[.9\tw]{poster-tile.svg.pdf}
+
+  \begin{column}{0.25\tw}
+  \cbxfigc{poster-tile.svg.pdf}
   \end{column}
 
-  \begin{column}{0.4\tw}
-  \vspace{0.2in}
-  \cbxfigc{fig-simjit-complexity.svg.pdf}
+  \begin{column}{0.46\tw}
+  \cbxfigc{fig-simjit-complexity-v2.svg.pdf}
   \end{column}
 
-  \begin{column}{0.3\tw}
-  \cbxfigc[\tw]{tile-amoeba-small-invert.jpg}
+  \begin{column}{0.28\tw}
+  \cbxfigc{tile-amoeba-small-invert.jpg}
   \end{column}
+
   \end{cbxcols}
 
 \end{frame}
@@ -478,32 +484,72 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 
   \begin{cbxcols}
-  \begin{column}{0.6\tw}
+  \begin{column}{0.55\tw}
 
-\begin{itemize}
-  \item In the XLOOPS paper (published in MICRO2014), PyMTL was
-        combined with gem5 to evaluate an architecture for loop
-        acceleration.
-  \item gem5 provided access to complex out-of-order processor model as
-        well as a memory system model (red).
-  \item PyMTL was used to quickly build and iterate on a CL model for the
-        loop acceleration unit (blue).
+\begin{cbxlist}
 
-  {\tiny\IT{Srinath, Ilbeyi, et. al. ``Architectural Specialization for
-  Inter-Iteration Loop Dependence Patterns.'' 47th ACM/IEEE Int'l Symp. on
-  Microarchitecture (MICRO-47), Dec. 2014.}}
-\end{itemize}
+  \1 In the XLOOPS paper (published in MICRO'14), PyMTL was combined with
+     gem5 to evaluate an architecture for loop acceleration.
+
+  \1 gem5 provided access to complex out-of-order processor and memory
+     system models (red).
+
+  \1 PyMTL was used to quickly build and iterate on a CL model for the
+     loop acceleration unit (blue).
+
+\end{cbxlist}
+
+  \smallskip\smallskip
+  {\footnotesize\IT{S. Srinath, B. Ilbeyi, et al., ``Architectural
+  Specialization for Inter-Iteration Loop Dependence Patterns.'' 47th
+  ACM/IEEE Int'l Symp. on Microarchitecture, Dec. 2014.}\par}
+
   \end{column}
   \begin{column}{0.4\tw}
 
-  \vspace{0.2in}
-  \cbxfigc[\tw]{xlls-uarch.svg.pdf}
+  \cbxfigc{xlls-uarch.svg.pdf}
 
   \end{column}
   \end{cbxcols}
 
 \end{frame}
 
+%-------------------------------------------------------------------------
+\begin{frame}{PyMTL In Practice: HLS Accelerators}
+%-------------------------------------------------------------------------
+
+  \begin{cbxcols}
+  \begin{column}{0.55\tw}
+
+\begin{cbxlist}
+
+  \1 We are currently experimenting with accelerators generated using
+     high-level synthesis
+
+  \1 We can import the HLS-generated Verilog into PyMTL, and then use
+     PyMTL to verify these accelerators and compose accelerators
+     using various interconnects
+
+  \1 We can also include our own accelerators written in PyMTL using FL,
+     CL, and RTL modeling
+
+\end{cbxlist}
+
+  \end{column}
+  \begin{column}{0.4\tw}
+
+  \cbxfigc{polyhs-uarch.svg.pdf}
+
+  \end{column}
+  \end{cbxcols}
+
+\smallskip
+\begin{cbxlist}
+  \1 We then use PyMTL+gem5 integration to experiment with tightly
+     integrated general-purpose processors with accelerators
+\end{cbxlist}
+
+\end{frame}
 
 %-------------------------------------------------------------------------
 \begin{frame}{PyMTL Next Steps and More Resources}
