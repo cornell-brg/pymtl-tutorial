@@ -25,7 +25,7 @@
 %-------------------------------------------------------------------------
 \begin{frame}{PyMTL 102: Bundled Interfaces}
 %-------------------------------------------------------------------------
-\vspace{-0.18in}
+
 \begin{itemize}
   \item \BF{PortBundles} are used to simplify the handling of multi-signal
         interfaces, such as ValRdy:
@@ -40,7 +40,7 @@
 %-------------------------------------------------------------------------
 \begin{frame}{PyMTL 102: Complex Datatypes}
 %-------------------------------------------------------------------------
-\vspace{-0.18in}
+
 \begin{itemize}
   \item \BF{BitStructs} are used to simplify communicating and interacting
         with complex packages of data:
@@ -94,17 +94,18 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Create a BitStruct for the GCD request}
 %-------------------------------------------------------------------------
-\vspace{-0.2in}
+
+\vspace{-0.15in}
 \begin{Verbatim}[commandchars=\\\{\}]
-  % cd    \midtilde/pymtl-tut/build
+  % cd \midtilde/pymtl-tut/build
   % gedit ../gcd/GcdUnitMsg.py
 \end{Verbatim}
+\vspace{-0.2in}
 
-\vspace{-.1in}
 \lstinputlisting[xleftmargin={0.38in},firstline=12,lastline=23,firstnumber=12]%
 {../../gcd_soln/GcdUnitMsg.py}
 
-\vspace{-.2in}
+\vspace{-0.22in}
 \begin{verbatim}
   % py.test ../gcd/GcdUnitMsg_test.py -vs
 \end{verbatim}
@@ -122,11 +123,11 @@ fields, one for each operand:
         complexities of ValRdy, and expose simplified method interfaces.
 \end{itemize}
 
-  \begin{onlyenv}<1>
+  \begin{onlyenv}<1\h1>
     \cbxfigc<1>{tut3-gcd-queues.svg.pdf}
   \end{onlyenv}
 
-  \begin{onlyenv}<2>
+  \begin{onlyenv}<2\h2>
   \vspace{-0.15in}
   \lstinputlisting[xleftmargin={0.38in},firstline=19,lastline=27,firstnumber=19]%
   {../../gcd/GCDUnitFL.py}
@@ -153,15 +154,18 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Build an FL model for the GCD unit}
 %-------------------------------------------------------------------------
-\vspace{-0.2in}
+
+\vspace{-0.15in}
 \begin{Verbatim}[commandchars=\\\{\}]
-  % cd    \midtilde/pymtl-tut/build
+  % cd \midtilde/pymtl-tut/build
   % gedit ../gcd/GcdUnitFL.py
 \end{Verbatim}
+\vspace{-0.2in}
 
 \lstinputlisting[xleftmargin={0.38in},firstline=31,lastline=41,firstnumber=31]%
 {../../gcd_soln/GcdUnitFL.py}
 
+\vspace{-0.22in}
 \begin{verbatim}
   % py.test ../gcd/GcdUnitFL_test.py -v
 \end{verbatim}
@@ -183,21 +187,25 @@ fields, one for each operand:
         to verify latency insensitivity under various conditions.
 \end{itemize}
 
+  \smallskip
   \cbxfigc{tut3-gcd-srcsink.svg.pdf}
 \end{frame}
 
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Create a latency insensitive test}
 %-------------------------------------------------------------------------
-\vspace{-0.2in}
+
+\vspace{-0.15in}
 \begin{Verbatim}[commandchars=\\\{\}]
-  % cd    \midtilde/pymtl-tut/build
+  % cd \midtilde/pymtl-tut/build
   % gedit ../gcd/GcdUnitFL_simple_test.py
 \end{Verbatim}
+\vspace{-0.2in}
 
 \lstinputlisting[xleftmargin={0.38in},firstline=22,lastline=31,firstnumber=22]%
 {../../gcd_soln/GcdUnitFL_simple_test.py}
 
+\vspace{-0.22in}
 \begin{verbatim}
   % py.test ../gcd/GcdUnitFL_simple_test.py -vs
 \end{verbatim}
@@ -249,9 +257,10 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Add timing to the GCD CL model}
 %-------------------------------------------------------------------------
-\vspace{-0.2in}
+
+\vspace{-0.15in}
 \begin{Verbatim}[commandchars=\\\{\}]
-  % cd    \midtilde/pymtl-tut/build
+  % cd \midtilde/pymtl-tut/build
   % py.test ../gcd/GcdUnitCL_test.py
   % py.test ../gcd/GcdUnitCL_test.py -k basic_0x0 -sv
   % gedit ../gcd/GcdUnitCL.py
@@ -309,6 +318,7 @@ fields, one for each operand:
         productive by providing a better design and testing environment.
 \end{itemize}
 
+  \vspace{0.1in}
   \begin{cbxcols}
   \begin{column}{0.5\tw}
   \cbxfigc[0.75\tw]{tut3-gcd-ctrl.svg.pdf}
@@ -331,6 +341,7 @@ fields, one for each operand:
         in the RTL implementation of the state machine.
 \end{itemize}
 
+  \vspace{0.1in}
   \begin{cbxcols}
   \begin{column}{0.5\tw}
   \cbxfigc[0.75\tw]{tut3-gcd-ctrl-broken.svg.pdf}
@@ -341,18 +352,18 @@ fields, one for each operand:
   \end{cbxcols}
 \end{frame}
 
-
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Fix the bug in the GCD RTL model}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
+
+\vspace{-0.15in}
 \begin{Verbatim}[commandchars=\\\{\}]
-  % cd    \midtilde/pymtl-tut/build
+  % cd \midtilde/pymtl-tut/build
   % py.test ../gcd/GcdUnitRTL_test.py -k basic_0x0 -v
   % gedit ../gcd/GcdUnitRTL.py
 \end{Verbatim}
+\vspace{-0.15in}
 
-\vspace{-0.2in}
   \begin{cbxcols}
   \begin{column}{0.7\tw}
 \lstinputlisting[numbersep={-.2in},xleftmargin={0.18in},firstline=183,lastline=194,firstnumber=183]%
@@ -364,7 +375,7 @@ fields, one for each operand:
   \end{column}
   \end{cbxcols}
 
-\vspace{-0.3in}
+\vspace{-0.22in}
 \begin{verbatim}
   % py.test ../gcd/GcdUnitRTL_test.py -k basic_0x0 -v
 \end{verbatim}
@@ -374,7 +385,8 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{frame}{PyMTL 102: Latency Insensitive RTL Models}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
+
+\vspace{-0.15in}
 \lstinputlisting[xleftmargin={0.38in},firstline=1,lastline=16,numbers=none]%
 {../../gcd_soln/rtl_trace.out}
 
@@ -399,9 +411,10 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Verify generated Verilog GCD RTL}
 %-------------------------------------------------------------------------
-\vspace{-0.2in}
+
+\vspace{-0.15in}
 \begin{Verbatim}[commandchars=\\\{\}]
-  % cd    \midtilde/pymtl-tut/build
+  % cd \midtilde/pymtl-tut/build
   % py.test ../gcd/GcdUnitRTL_test.py --test-verilog -sv
   % gedit GcdUnitRTL_*.v
 \end{Verbatim}
@@ -424,11 +437,12 @@ fields, one for each operand:
 %-------------------------------------------------------------------------
 \begin{task}\begin{frame}[fragile]{Experiment with the GCD simulator}
 %-------------------------------------------------------------------------
-\vspace{-0.25in}
+
+\vspace{-0.15in}
 \begin{Verbatim}[commandchars=\\\{\}]
   # Simulating both the CL and RTL models
 
-  % cd    \midtilde/pymtl-tut/build
+  % cd \midtilde/pymtl-tut/build
   % ../gcd/gcd-sim --stats --impl fl  --input random
   % ../gcd/gcd-sim --stats --impl cl  --input random
   % ../gcd/gcd-sim --stats --impl rtl --input random

@@ -70,6 +70,7 @@ interpreter~\ding{72}}}
 \begin{frame}{Pydgin Framework Overview}
 
 \begin{itemize}
+
   \item \texttt{pydgin/}
   \begin{itemize}
     \item Common, ISA-independent components
@@ -77,6 +78,8 @@ interpreter~\ding{72}}}
     memory, syscall implementations, JIT annotations
     \item A user shouldn't need to modify these
   \end{itemize}
+
+  \vspace{0.1in}
   \item \texttt{parc/}, \texttt{arm/}, \texttt{<your favorite isa>/}
   \begin{itemize}
     \item Architecture implementation
@@ -126,7 +129,7 @@ class State():
  +--------+-------+-------+-------+-------+--------+
 \end{Verbatim}
 
-\vspace{-20pt}
+\vspace{-10pt}
 
 \begin{lstlisting}[numbers=none,basicstyle=\ttfamily]
 class Instruction():
@@ -153,7 +156,7 @@ class Instruction():
  +--------+-------+-------+-------+-------+--------+
 \end{Verbatim}
 
-\vspace{-20pt}
+\vspace{-10pt}
 
 \begin{lstlisting}[numbers=none,basicstyle=\ttfamily]
 # instruction encodings
@@ -277,6 +280,7 @@ parc-gcd.out:Exception message: Invalid instruction 0x9c411811!
 \begin{task}
 \begin{frame}[fragile]{Investigate test failures}
 
+\vspace{-0.2in}
 {\small
 \begin{verbatim}
 parc-gcd.out:Exception in execution (pc: 0x00808008), aborting!
@@ -506,7 +510,7 @@ Total number of cycles (assuming non-GCD CPI=1) = 19
 % gedit ubmark-gcd.cc
 \end{Verbatim}
 
-\vspace{-20pt}
+\vspace{-10pt}
 
 \begin{lstlisting}[language=c,firstnumber=66]
 int gcd_hw( int a, int b ) {
@@ -524,7 +528,7 @@ void gcd_scalar_accel( ... ) {
 }
 \end{lstlisting}
 
-\vspace{-20pt}
+\vspace{-10pt}
 
 \begin{Verbatim}[commandchars=\\\{\}]
 % cd \midtilde/pydgin-tut/bmarks/build

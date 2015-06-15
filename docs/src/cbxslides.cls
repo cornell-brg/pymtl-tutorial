@@ -181,7 +181,7 @@
 
 \setbeamercolor{structure}{fg=black}
 \setbeamercolor{cbxheadline}{fg=cbxschemeD,bg=white}
-\setbeamercolor{cbxfootline}{fg=cbxschemeD!40!white,bg=white}
+\setbeamercolor{cbxfootline}{fg=cbxschemeD!90!white,bg=white}
 \setbeamercolor*{titlelike}{bg=white,fg=black}
 \setbeamercolor*{separation line}{}
 \setbeamercolor*{fine separation line}{}
@@ -350,7 +350,7 @@
   % Current section
   {\hfill{\color{cbxschemeD}\textbf{$\Big($~\parbox{0.5in}{\centering\insertsectionhead\vphantom{g}\rule{0pt}{1em}}}~$\Big)$}}
   % Non-current section
-  {\hfill{\color{cbxschemeD!40!bg}\parbox{0.5in}{\centering\insertsectionhead\vphantom{g}\rule{0pt}{1em}}}}
+  {\hfill{\color{cbxschemeD!90!bg}\parbox{0.5in}{\centering\insertsectionhead\vphantom{g}\rule{0pt}{1em}}}}
 
 \setbeamertemplate{headline}
 {%
@@ -936,10 +936,12 @@
 \newcommand{\insertslides}[3]
 {%
   \pgfmathtruncatemacro{\numslides}{ #3 - #2 + 1 }
-  \foreach \x in {1,...,\numslides} {
+  \pgfmathtruncatemacro{\numslidesminusone}{ #3 - #2 + 1 - 1 }
+  \foreach \x in {1,...,\numslidesminusone} {
     \pgfmathtruncatemacro{\slidenum}{ \x + #2 - 1 }
-    \insertslide<\x>{#1}{\slidenum}
+    \insertslide<\x\h0>{#1}{\slidenum}
   }
+  \insertslide<\numslides\h1>{#1}{#3}
 }
 
 % HACK: normal tilde looks really bad. use this to lower tilde
