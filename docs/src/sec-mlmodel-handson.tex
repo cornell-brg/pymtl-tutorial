@@ -3,8 +3,7 @@
 %=========================================================================
 
 \stepcounter{taskseccount}
-\section[{\it Hands-On} GCD Unit]{}
-\scheduleslide{9}
+\section[Hands-On: GCD Unit]{Hands-On: GCD Unit}
 
 %-------------------------------------------------------------------------
 \begin{frame}{PyMTL 102: The GCD Unit}
@@ -265,14 +264,15 @@ fields, one for each operand:
   % py.test ../gcd/GcdUnitCL_test.py -k basic_0x0 -sv
   % gedit ../gcd/GcdUnitCL.py
 \end{Verbatim}
+\vspace{-0.1in}
 
   \begin{cbxcols}
-  \begin{column}{0.60\tw}
-\lstinputlisting[basicstyle=\ttfamily\tiny,numbersep={-.15in},xleftmargin={0in},firstline=67,lastline=78,firstnumber=67]%
+  \begin{column}{0.65\tw}
+\lstinputlisting[basicstyle=\ttfamily\scriptsize,numbersep={-.25in},xleftmargin={-0.1in},firstline=67,lastline=78,firstnumber=67]%
 {../../gcd/GcdUnitCL.py}
   \end{column}
-  \begin{column}{0.39\tw}
-\lstinputlisting[xleftmargin={0.38in},firstline=17,lastline=25,firstnumber=17]%
+  \begin{column}{0.35\tw}
+\lstinputlisting[basicstyle=\ttfamily\scriptsize,xleftmargin={0.38in},firstline=17,lastline=25,firstnumber=17]%
 {../../gcd_soln/GcdUnitCL.py}
   \end{column}
   \end{cbxcols}
@@ -474,7 +474,7 @@ fields, one for each operand:
 
 \end{cbxlist}
 
-  \medskip
+  \medskip\smallskip
   \begin{cbxcols}
 
   \begin{column}{0.25\tw}
@@ -565,29 +565,34 @@ fields, one for each operand:
 
 \end{frame}
 
-%-------------------------------------------------------------------------
-\begin{frame}{PyMTL Next Steps and More Resources}
-%-------------------------------------------------------------------------
-Next Steps:
-\begin{itemize}
-  \item See the detailed tutorial on the Cornell ECE5745 website:
-        \footnotesize{http://www.csl.cornell.edu/courses/ece5745/handouts/ece5745-tut-pymtl.pdf}
-\end{itemize}
+\begin{frame}{PyMTL In Practice: Recent Test Chip}
+\begin{cbxcols}
 
-\smallskip
-Check out the \BF{/docs} directory in the PyMTL repo for guides on:
-\begin{itemize}
-  \item Writing Pythonic PyMTL Models and Tests
-  \item Writing Verilog Translatable PyMTL RTL
-  \item Importing Verilog Components into PyMTL
-  \item \BF{Coming Soon}: Embedding PyMTL Models into gem5
-\end{itemize}
+  \begin{column}{0.42\tw}
+    \cbxfigbc{asic-chip-annotated.png}
 
-\smallskip
-Become a contributor! We'd love your PyMTL hacks and models!
-\begin{itemize}
-  \item https://github.com/cornell-brg/pymtl
-  \item https://github.com/cornell-brg/pydgin
-\end{itemize}
+    \small\centering
+
+    \smallskip Final layout for RISC processor, 16KB SRAM, and
+    HLS-generated accelerators
+
+    \smallskip
+    2x2mm GF 130nm
+  \end{column}
+
+  \begin{column}{0.53\tw}
+    \cbxfigbc{brg-test-board.jpg}
+
+    \small\centering
+
+    \smallskip
+    Xilinx ZC706 FPGA development board for FPGA prototyping
+
+    \smallskip
+    Custom designed FMC mezzanine card for ASIC test chips
+
+  \end{column}
+
+\end{cbxcols}
 \end{frame}
 

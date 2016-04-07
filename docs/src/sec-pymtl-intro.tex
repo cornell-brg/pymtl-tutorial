@@ -2,19 +2,16 @@
 % Presentation: PyMTL Intro
 %=========================================================================
 
-\section[{\it Presentation} PyMTL Intro]{}
-\scheduleslide{5}
-
-\begin{frame}{Computer Architecture Research Abstractions}
-  \insertslides{pymtl-intro}{1}{2}
-\end{frame}
+\section[Presentation: PyMTL Intro]{Presentation: PyMTL Introduction}
 
 \begin{frame}{Computer Architecture Research Methodologies}
-  \insertslides{pymtl-intro}{3}{5}
-\end{frame}
-
-\begin{frame}{Computer Architecture Research Toolflows}
-  \insertslides{pymtl-intro}{6}{7}
+  \cbxfigc<1\h0>{pymtl-stack_0-split.svg.pdf}
+  \cbxfigc<2\h0>{pymtl-stack_0_1_1a-split.svg.pdf}
+  \cbxfigc<3\h0>{pymtl-stack_0_1_2_2a-split.svg.pdf}
+  \cbxfigc<4\h0>{pymtl-stack_0_1_2_3_3a-split.svg.pdf}
+  \cbxfigc<5\h1>{pymtl-stack_0_1_2_3_4-split.svg.pdf}
+  \cbxfigc<6\h0>{pymtl-stack_0_4_5-split.svg.pdf}
+  \cbxfigc<7\h2>{pymtl-stack_4_5_6-split.svg.pdf}
 \end{frame}
 
 \begin{frame}{Great Ideas From Prior Frameworks}
@@ -27,6 +24,57 @@
 
 \begin{frame}{The PyMTL Framework}
   \insertslides{pymtl-intro}{14}{19}
+\end{frame}
+
+\begin{frame}{What is PyMTL for and not (currently) for?}
+\begin{cbxlist}
+
+  \1 \BF{PyMTL is for ...}
+
+     \2 Taking an accelerator design from concept to implementation
+     \2 Construction of highly-parameterizable RTL chip generators
+     \2 Rapid design, testing, and exploration of hardware mechanisms
+     \2 Quickly prototyping models and interfacing them with GEM5
+     \2 Interfacing models with imported Verilog
+
+  \1 \BF{PyMTL is not (currently) for ...}
+
+     \2 Python high-level synthesis
+     \2 Many-core simulations with hundreds of cores
+     \2 Full-system simulation with real OS support
+     \2 Users needing a complex OOO processor model ``out of the box''
+     \2 Users needing an ARM/x86 processor model ``out of the box''
+     \2 Users needing a mature modeling framework that will not change
+
+\end{cbxlist}
+\end{frame}
+
+\begin{frame}{Why Python?}
+
+  \cbxfloatright{\cbxfigc[0.21\tw]{python-logo.svg.pdf}}
+
+  \begin{cbxlist}
+
+    \1 Python is well regarded as a highly productive \\ language with
+       lightweight, pseudocode-like syntax
+
+    \1 Python supports modern language features to \\ enable rapid, agile
+       development (dynamic typing, \\ reflection, metaprogramming)
+
+    \1 Python has a large and active developer and support community
+
+    \1 Python includes extensive standard and third-party libraries
+
+    \1 Python enables embedded domain-specific languages
+
+    \1 Python facilitates engaging application-level researchers
+
+    \1 Python includes built-in support for integrating with C/C++
+
+    \1 Python performance is improving with advanced JIT compilation
+
+  \end{cbxlist}
+
 \end{frame}
 
 \begin{frame}{PyMTL 101: Traditional Model in Python}

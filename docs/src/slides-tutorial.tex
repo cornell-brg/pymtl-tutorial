@@ -2,7 +2,7 @@
 % LaTeX Document
 %=========================================================================
 
-\documentclass[handout]{cbxslides}
+\documentclass{cbxslides}
 
 % albs modules
 
@@ -17,30 +17,30 @@
 
 \title
 {%
-  PyMTL and Pydgin Tutorial \\
+  PyMTL Tutorial \\
   \rule[0.4em]{0.75\paperwidth}{0.5pt} \\
-  Python Frameworks for Highly Productive \\
+  A Unified Framework for Vertically Integrated \\
   Computer Architecture Research
 }
 
 \author
 {%
-  Derek Lockhart, Berkin Ilbeyi, Christopher Batten
+  Christopher Batten \\ Moyang Wang, Khalid Al-Hawaj, Shunning Jiang
 }
 
-\name      {PyMTL/Pydgin Tutorial: Python Frameworks for Highly Productive Computer Architecture Research}
-\abbrvinst {ISCA 2015}
+\name      {PyMTL: A Unified Framework for Vertically Integrated Computer Architecture Research}
+\abbrvinst {UCSD 2016}
 
 \affiliation
 {%
   Computer Systems Laboratory\\
   School of Electrical and Computer Engineering\\
   Cornell University\\[\baselineskip]
-  42nd Int'l Symp. on Computer Architecture, June 2015
+  DARPA CRAFT Kick-Off @ UCSD, April 2016
 }
 
 \headerwidth {0.95\paperwidth}
-\finalslide  {125}
+\finalslide  {72}
 
 %-------------------------------------------------------------------------
 % Schedule Slide
@@ -84,6 +84,22 @@
   \end{frame}
 }
 
+\newcommand{\outlineslide}[1]
+{%
+  \begin{frame}
+    \vspace{0.2in}
+    \begin{cbxcols}
+      \cbxcol{0.265\tw}{\cbxfig{pymtl-take-away.svg.pdf}}
+      \begin{column}{0.65\tw}
+        \begin{minipage}[t][2in][t]{\tw}
+          \vspace{0pt}
+          \tableofcontents[#1]
+        \end{minipage}
+      \end{column}
+    \end{cbxcols}
+  \end{frame}
+}
+
 %-------------------------------------------------------------------------
 % Document
 %-------------------------------------------------------------------------
@@ -92,52 +108,41 @@
 
 \frame[t,plain]{\titlepage}
 
-\input{sec-overview}
-\input{sec-pydgin-intro}
-\input{sec-pydgin-handson}
+\outlineslide{sectionstyle=shaded/show}
+
 \input{sec-pymtl-intro}
 \input{sec-pymtl-handson}
-
-\section[]{}
-\scheduleslide{7}
-
 \input{sec-mlmodel-intro}
 \input{sec-mlmodel-handson}
 
+%-------------------------------------------------------------------------
+% Next Steps
+%-------------------------------------------------------------------------
+
 \section[]{}
 
-%-------------------------------------------------------------------------
-\begin{frame}{Thank you for coming!}
-%-------------------------------------------------------------------------
-  \begin{cbxcols}
-  \begin{column}{0.5\tw}
-  \vspace{.2in}
-  \cbxfigc{pymtl-flat.svg.pdf}
+\begin{frame}{PyMTL Next Steps and More Resources}
+Next Steps:
+\begin{itemize}
+  \item See the detailed tutorials on the Cornell ECE 4750 website:
+        \TT{http://www.csl.cornell.edu/courses/ece4750/handouts}
+\end{itemize}
 
-  \vspace{.3in}
-  \centering{PyMTL: A Unified Framework for Vertically Integrated Computer
-  Architecture Research}
+\smallskip
+Check out the \BF{/docs} directory in the PyMTL repo for guides on:
+\begin{itemize}
+  \item Writing Pythonic PyMTL Models and Tests
+  \item Writing Verilog Translatable PyMTL RTL
+  %\item Importing Verilog Components into PyMTL
+  %\item \BF{Coming Soon}: Embedding PyMTL Models into gem5
+\end{itemize}
 
-  \vspace{.363in}
-  \centering{[ MICRO 2014 ]}
-  \centering{\footnotesize{https://github.com/cornell-brg/pymtl}}
-  \end{column}
-
-  \begin{column}{0.5\tw}
-  \vspace{.2in}
-  \cbxfigc{pydgin-flat.svg.pdf}
-
-  \vspace{.3in}
-  \centering{Pydgin: Generating Fast Instruction Set Simulators from
-  Simple Architecture Descriptions with Meta-Tracing JIT Compilers}
-
-  \vspace{.2in}
-  \centering{[ ISPASS 2015 ]}
-  \centering{\footnotesize{https://github.com/cornell-brg/pydgin}}
-
-  \end{column}
-  \end{cbxcols}
+\smallskip
+Become a contributor! We'd love your PyMTL hacks and models!
+\begin{itemize}
+  \item \TT{https://github.com/cornell-brg/pymtl}
+  \item \TT{https://github.com/cornell-brg/pydgin}
+\end{itemize}
 \end{frame}
 
 \end{document}
-

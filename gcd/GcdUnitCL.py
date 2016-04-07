@@ -71,7 +71,7 @@ class GcdUnitCL( Model ):
         if s.counter == 0:
           s.resp_q.enq( s.result )
 
-      # If we have a new message and the output queue is not full
+      # If we have a new msg and output queue not full
 
       elif not s.req_q.empty() and not s.resp_q.full():
         req_msg = s.req_q.deq()

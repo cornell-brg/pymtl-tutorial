@@ -27,9 +27,9 @@
 \small
 
 \begin{center}
-  \textbf{\Large PyMTL/Pydgin
+  \textbf{\Large PyMTL
     Tutorial  \hspace{0.5em}\textbullet\hspace{0.5em}
-    ISCA 2015 \hspace{0.5em}\textbullet\hspace{0.5em}
+    USCD 2016 \hspace{0.5em}\textbullet\hspace{0.5em}
     Cheat Sheet}
 \end{center}
 
@@ -46,7 +46,6 @@
   Password: pymtl
 
   % cd ~/pymtl-tut
-  % cd ~/pydgin-tut
 \end{verbatim}
 
 \vspace{0.15in}
@@ -221,12 +220,13 @@ class MyModel( Model ):
 \small
 
 \begin{center}
-  \textbf{\Large PyMTL/Pydgin
+  \textbf{\Large PyMTL
     Tutorial  \hspace{0.5em}\textbullet\hspace{0.5em}
-    ISCA 2015 \hspace{0.5em}\textbullet\hspace{0.5em}
+    USCD 2016 \hspace{0.5em}\textbullet\hspace{0.5em}
     Cheat Sheet}
 \end{center}
 
+\hfill
 \begin{minipage}[t]{3.25in}
 \vspace{0pt}
 
@@ -381,46 +381,7 @@ def test_my_model( test_verilog, dump_vcd, dtype ):
 \end{optbl}
 
 \end{minipage}
-\hfill%
-\begin{minipage}[t]{3.25in}
-\vspace{0pt}
-
-\colorbox{gray!30!white}{\parbox{1.025\tw}{\rule[-0.4em]{0pt}{1.4em}\centering\textbf{%
-  Pydgin Template
-}}}
-
-\smallskip\smallskip
-\begin{Verbatim}[commandchars=\\\{\}]
- addu rd, rs, rt             R[rd] = R[rs] + R[rt]
-
- 31    26 25   21 20   16 15   11 10    6 5      0
-+--------+-------+-------+-------+-------+--------+
-|   op   |  rs   |  rt   |  rd   |       |  cmd   |
-| 000000 | src0  | src1  | dst   | 00000 | 100001 |
-+--------+-------+-------+-------+-------+--------+
-\end{Verbatim}
-
-\begin{lstlisting}[numbers=none,basicstyle=\ttfamily,xleftmargin={0in}]
-# addu instruction encoding in parc/isa.py
-
-encodings = [
-  # ...
-  ['addu', '000000_xxxxx_xxxxx_xxxxx_00000_100001'],
-  # ...
-]
-
-# addu instruction semantics in parc/isa.py
-# s    = state
-# inst = instruction bits
-
-def execute_addu( s, inst ):
-  s.rf[ inst.rd ] = \
-    trim_32( s.rf[ inst.rs ] + s.rf[ inst.rt ] )
-  s.pc += 4
-\end{lstlisting}
-
-\end{minipage}
-\par
+\hfill\mbox{}
 
 \end{landscape}
 
