@@ -75,6 +75,7 @@ fields, one for each operand:
   \1 Task 3.5: Fix the bug in the GCD RTL model
   \1 Task 3.6: Verify generated Verilog GCD RTL
   \1 Task 3.7: Experiment with the GCD simulator
+  \1 Task 3.8: Importing Hand-written GCD Verilog
 \end{cbxlist}
 \end{frame}
 
@@ -87,6 +88,7 @@ fields, one for each operand:
   \1 Task 3.5: Fix the bug in the GCD RTL model
   \1 Task 3.6: Verify generated Verilog GCD RTL
   \1 Task 3.7: Experiment with the GCD simulator
+  \1 Task 3.8: Importing Hand-written GCD Verilog
 \end{cbxlist}
 \end{frame}
 
@@ -129,7 +131,7 @@ fields, one for each operand:
   \begin{onlyenv}<2\h2>
   \vspace{-0.15in}
   \lstinputlisting[xleftmargin={0.38in},firstline=19,lastline=27,firstnumber=19]%
-  {../../gcd/GCDUnitFL.py}
+  {../../gcd/GcdUnitFL.py}
   \end{onlyenv}
 
 \end{frame}
@@ -147,6 +149,7 @@ fields, one for each operand:
   \1 Task 3.5: Fix the bug in the GCD RTL model
   \1 Task 3.6: Verify generated Verilog GCD RTL
   \1 Task 3.7: Experiment with the GCD simulator
+  \1 Task 3.8: Importing Hand-written GCD Verilog
 \end{cbxlist}
 \end{frame}
 
@@ -250,6 +253,7 @@ fields, one for each operand:
   \1 \BF{Task 3.5: Fix the bug in the GCD RTL model}
   \1 Task 3.6: Verify generated Verilog GCD RTL
   \1 Task 3.7: Experiment with the GCD simulator
+  \1 Task 3.8: Importing Hand-written GCD Verilog
 \end{cbxlist}
 \end{frame}
 
@@ -405,6 +409,7 @@ fields, one for each operand:
   \1 Task 3.5: Fix the bug in the GCD RTL model
   \1 \BF{Task 3.6: Verify generated Verilog GCD RTL}
   \1 \BF{Task 3.7: Experiment with the GCD simulator}
+  \1 Task 3.8: Importing Hand-written GCD Verilog
 \end{cbxlist}
 \end{frame}
 
@@ -454,6 +459,45 @@ fields, one for each operand:
   % ../gcd/gcd-sim --impl rtl --input zeros  --trace
 
 \end{Verbatim}
+\end{frame}
+\end{task}
+
+%-------------------------------------------------------------------------
+% Tasklist
+%-------------------------------------------------------------------------
+
+\begin{frame}{\IT{Hands-On:} FL, CL, RTL Modeling of a GCD Unit}
+\begin{cbxlist}
+  \1 Task 3.1: Create a BitStruct for the GCD request
+  \1 Task 3.2: Build an FL model for the GCD unit
+  \1 Task 3.3: Create a latency insensitive test
+  \1 Task 3.4: Add timing to the GCD CL model
+  \1 Task 3.5: Fix the bug in the GCD RTL model
+  \1 Task 3.6: Verify generated Verilog GCD RTL
+  \1 Task 3.7: Experiment with the GCD simulator
+  \1 \BF{Task 3.8: Importing Hand-written GCD Verilog}
+\end{cbxlist}
+\end{frame}
+
+%-------------------------------------------------------------------------
+\begin{task}\begin{frame}[fragile]{Importing Hand-written GCD Verilog}
+%-------------------------------------------------------------------------
+
+\vspace{-0.15in}
+\begin{Verbatim}[commandchars=\\\{\}]
+  % cd \midtilde/pymtl-tut/build
+  % gedit ../gcd/GcdUnitVerilog.py
+  % py.test ../gcd/GcdUnitVerilog_test.py -sv
+\end{Verbatim}
+
+\vspace{-0.1in}
+\begin{cbxcols}
+\begin{column}{0.9\tw}
+\lstinputlisting[numbersep={0.1in},xleftmargin={0.18in},firstline=10,lastline=34,firstnumber=10,basicstyle={\ttfamily\tiny}]%
+{../../gcd_soln/GcdUnitVerilog.py}
+  \end{column}
+\end{cbxcols}
+
 \end{frame}
 \end{task}
 
