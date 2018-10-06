@@ -481,7 +481,7 @@
   \begin{beamercolorbox}
     [wd=\paperwidth,ht=2.3ex,dp=1.4ex,
      leftskip=.15cm,rightskip=.15cm]{cbxfootline}
-    \parbox{0.5in}{\cbx@abbrvinst} \hfill \cbx@name \hfill \parbox{0.5in}{\hfill\insertframenumber~/~\cbx@finalslide}
+    \parbox{0.75in}{\cbx@abbrvinst} \hfill \cbx@name \hfill \parbox{0.75in}{\hfill\insertframenumber~/~\cbx@finalslide}
     %\parbox{1in}{\cbx@abbrvinst} \hfill \cbx@name \hfill \parbox{1in}{\hfill??~/~??}
   \end{beamercolorbox}%
   \vskip0pt%

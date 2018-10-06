@@ -75,7 +75,7 @@ fields, one for each operand:
   \1 Task 3.5: Fix the bug in the GCD RTL model
   \1 Task 3.6: Verify generated Verilog GCD RTL
   \1 Task 3.7: Experiment with the GCD simulator
-  \1 Task 3.8: Importing Hand-written GCD Verilog
+  \1 Task 3.8: Importing hand-written GCD Verilog
 \end{cbxlist}
 \end{frame}
 
@@ -88,7 +88,7 @@ fields, one for each operand:
   \1 Task 3.5: Fix the bug in the GCD RTL model
   \1 Task 3.6: Verify generated Verilog GCD RTL
   \1 Task 3.7: Experiment with the GCD simulator
-  \1 Task 3.8: Importing Hand-written GCD Verilog
+  \1 Task 3.8: Importing hand-written GCD Verilog
 \end{cbxlist}
 \end{frame}
 
@@ -149,7 +149,7 @@ fields, one for each operand:
   \1 Task 3.5: Fix the bug in the GCD RTL model
   \1 Task 3.6: Verify generated Verilog GCD RTL
   \1 Task 3.7: Experiment with the GCD simulator
-  \1 Task 3.8: Importing Hand-written GCD Verilog
+  \1 Task 3.8: Importing hand-written GCD Verilog
 \end{cbxlist}
 \end{frame}
 
@@ -227,6 +227,7 @@ fields, one for each operand:
 \begin{frame}{PyMTL 102: Latency Insensitive CL Models}
 %-------------------------------------------------------------------------
 
+\vspace{-0.1in}
 \begin{itemize}
   \item Cycle-level models add timing information to a functional model
         and can provide a cycle-approximate estimation of performance.
@@ -253,7 +254,7 @@ fields, one for each operand:
   \1 \BF{Task 3.5: Fix the bug in the GCD RTL model}
   \1 Task 3.6: Verify generated Verilog GCD RTL
   \1 Task 3.7: Experiment with the GCD simulator
-  \1 Task 3.8: Importing Hand-written GCD Verilog
+  \1 Task 3.8: Importing hand-written GCD Verilog
 \end{cbxlist}
 \end{frame}
 
@@ -409,7 +410,7 @@ fields, one for each operand:
   \1 Task 3.5: Fix the bug in the GCD RTL model
   \1 \BF{Task 3.6: Verify generated Verilog GCD RTL}
   \1 \BF{Task 3.7: Experiment with the GCD simulator}
-  \1 Task 3.8: Importing Hand-written GCD Verilog
+  \1 Task 3.8: Importing hand-written GCD Verilog
 \end{cbxlist}
 \end{frame}
 
@@ -475,12 +476,12 @@ fields, one for each operand:
   \1 Task 3.5: Fix the bug in the GCD RTL model
   \1 Task 3.6: Verify generated Verilog GCD RTL
   \1 Task 3.7: Experiment with the GCD simulator
-  \1 \BF{Task 3.8: Importing Hand-written GCD Verilog}
+  \1 \BF{Task 3.8: Importing hand-written GCD Verilog}
 \end{cbxlist}
 \end{frame}
 
 %-------------------------------------------------------------------------
-\begin{task}\begin{frame}[fragile]{Importing Hand-written GCD Verilog}
+\begin{task}\begin{frame}[fragile]{Importing hand-written GCD Verilog}
 %-------------------------------------------------------------------------
 
 \vspace{-0.15in}
@@ -502,141 +503,140 @@ fields, one for each operand:
 \end{task}
 
 %-------------------------------------------------------------------------
-\begin{frame}{PyMTL In Practice: Matrix Vector Accelerator}
+% \begin{frame}{PyMTL In Practice: Matrix Vector Accelerator}
 %-------------------------------------------------------------------------
 
-\begin{cbxlist}
-
-  \1 In the PyMTL paper [MICRO'14], we discuss how multi-level modeling
-     in PyMTL can facilitate the design of coprocessors.
-
-  \1 Selecting FL/CL/RTL models for the cache/processor/accelerator
-     allows designers to tradeoff simulation speed and accuracy.
-
-  \1 PyMTL-generated Verilog passed into Synopsys toolflow for
-     area/energy/timing estimates.
-
-\end{cbxlist}
-
-  \medskip\smallskip
-  \begin{cbxcols}
-
-  \begin{column}{0.25\tw}
-  \cbxfigc{poster-tile.svg.pdf}
-  \end{column}
-
-  \begin{column}{0.46\tw}
-  \cbxfigc{fig-simjit-complexity-v2.svg.pdf}
-  \end{column}
-
-  \begin{column}{0.28\tw}
-  \cbxfigc{tile-amoeba-small-invert.jpg}
-  \end{column}
-
-  \end{cbxcols}
-
-\end{frame}
-
-%-------------------------------------------------------------------------
-\begin{frame}{PyMTL In Practice: XLOOPS Loops Specialization}
-%-------------------------------------------------------------------------
-
-  \begin{cbxcols}
-  \begin{column}{0.55\tw}
-
-\begin{cbxlist}
-
-  \1 In the XLOOPS paper (published in MICRO'14), PyMTL was combined with
-     gem5 to evaluate an architecture for loop acceleration.
-
-  \1 gem5 provided access to complex out-of-order processor and memory
-     system models (red).
-
-  \1 PyMTL was used to quickly build and iterate on a CL model for the
-     loop acceleration unit (blue).
-
-\end{cbxlist}
-
-  \smallskip\smallskip
-  {\footnotesize\IT{S. Srinath, B. Ilbeyi, et al., ``Architectural
-  Specialization for Inter-Iteration Loop Dependence Patterns.'' 47th
-  ACM/IEEE Int'l Symp. on Microarchitecture, Dec. 2014.}\par}
-
-  \end{column}
-  \begin{column}{0.4\tw}
-
-  \cbxfigc{xlls-uarch.svg.pdf}
-
-  \end{column}
-  \end{cbxcols}
-
-\end{frame}
+% \begin{cbxlist}
+%
+%   \1 In the PyMTL paper [MICRO'14], we discuss how multi-level modeling
+%      in PyMTL can facilitate the design of coprocessors.
+%
+%   \1 Selecting FL/CL/RTL models for the cache/processor/accelerator
+%      allows designers to tradeoff simulation speed and accuracy.
+%
+%   \1 PyMTL-generated Verilog passed into Synopsys toolflow for
+%      area/energy/timing estimates.
+%
+% \end{cbxlist}
+%
+%   \medskip\smallskip
+%   \begin{cbxcols}
+%
+%   \begin{column}{0.25\tw}
+%   \cbxfigc{poster-tile.svg.pdf}
+%   \end{column}
+%
+%   \begin{column}{0.46\tw}
+%   \cbxfigc{fig-simjit-complexity-v2.svg.pdf}
+%   \end{column}
+%
+%   \begin{column}{0.28\tw}
+%   \cbxfigc{tile-amoeba-small-invert.jpg}
+%   \end{column}
+%
+%   \end{cbxcols}
+%
+% \end{frame}
 
 %-------------------------------------------------------------------------
-\begin{frame}{PyMTL In Practice: HLS Accelerators}
+% \begin{frame}{PyMTL In Practice: XLOOPS Loops Specialization}
 %-------------------------------------------------------------------------
 
-  \begin{cbxcols}
-  \begin{column}{0.55\tw}
+%   \begin{cbxcols}
+%   \begin{column}{0.55\tw}
+%
+% \begin{cbxlist}
+%
+%   \1 In the XLOOPS paper (published in MICRO'14), PyMTL was combined with
+%      gem5 to evaluate an architecture for loop acceleration.
+%
+%   \1 gem5 provided access to complex out-of-order processor and memory
+%      system models (red).
+%
+%   \1 PyMTL was used to quickly build and iterate on a CL model for the
+%      loop acceleration unit (blue).
+%
+% \end{cbxlist}
+%
+%   \smallskip\smallskip
+%   {\footnotesize\IT{S. Srinath, B. Ilbeyi, et al., ``Architectural
+%   Specialization for Inter-Iteration Loop Dependence Patterns.'' 47th
+%   ACM/IEEE Int'l Symp. on Microarchitecture, Dec. 2014.}\par}
+%
+%   \end{column}
+%   \begin{column}{0.4\tw}
+%
+%   \cbxfigc{xlls-uarch.svg.pdf}
+%
+%   \end{column}
+%   \end{cbxcols}
+%
+% \end{frame}
 
-\begin{cbxlist}
+%-------------------------------------------------------------------------
+% \begin{frame}{PyMTL In Practice: HLS Accelerators}
+%-------------------------------------------------------------------------
 
-  \1 We are currently experimenting with accelerators generated using
-     high-level synthesis
-
-  \1 We can import the HLS-generated Verilog into PyMTL, and then use
-     PyMTL to verify these accelerators and compose accelerators
-     using various interconnects
-
-  \1 We can also include our own accelerators written in PyMTL using FL,
-     CL, and RTL modeling
-
-\end{cbxlist}
-
-  \end{column}
-  \begin{column}{0.4\tw}
-
-  \cbxfigc{polyhs-uarch.svg.pdf}
-
-  \end{column}
-  \end{cbxcols}
-
-\smallskip
-\begin{cbxlist}
-  \1 We then use PyMTL+gem5 integration to experiment with tightly
-     integrated general-purpose processors with accelerators
-\end{cbxlist}
-
-\end{frame}
-
-\begin{frame}{PyMTL In Practice: Recent Test Chip}
-\begin{cbxcols}
-
-  \begin{column}{0.42\tw}
-    \cbxfigbc{asic-chip-annotated.png}
-
-    \small\centering
-
-    \smallskip Final layout for RISC processor, 16KB SRAM, and
-    HLS-generated accelerators
-
-    \smallskip
-    2x2mm GF 130nm
-  \end{column}
-
-  \begin{column}{0.53\tw}
-    \cbxfigbc{brg-test-board.jpg}
-
-    \small\centering
-
-    \smallskip
-    Xilinx ZC706 FPGA development board for FPGA prototyping
-
-    \smallskip
-    Custom designed FMC mezzanine card for ASIC test chips
-
-  \end{column}
-
-\end{cbxcols}
-\end{frame}
-
+%   \begin{cbxcols}
+%   \begin{column}{0.55\tw}
+%
+% \begin{cbxlist}
+%
+%   \1 We are currently experimenting with accelerators generated using
+%      high-level synthesis
+%
+%   \1 We can import the HLS-generated Verilog into PyMTL, and then use
+%      PyMTL to verify these accelerators and compose accelerators
+%      using various interconnects
+%
+%   \1 We can also include our own accelerators written in PyMTL using FL,
+%      CL, and RTL modeling
+%
+% \end{cbxlist}
+%
+%   \end{column}
+%   \begin{column}{0.4\tw}
+%
+%   \cbxfigc{polyhs-uarch.svg.pdf}
+%
+%   \end{column}
+%   \end{cbxcols}
+%
+% \smallskip
+% \begin{cbxlist}
+%   \1 We then use PyMTL+gem5 integration to experiment with tightly
+%      integrated general-purpose processors with accelerators
+% \end{cbxlist}
+%
+% \end{frame}
+%
+% \begin{frame}{PyMTL In Practice: Recent Test Chip}
+% \begin{cbxcols}
+%
+%   \begin{column}{0.42\tw}
+%     \cbxfigbc{asic-chip-annotated.png}
+%
+%     \small\centering
+%
+%     \smallskip Final layout for RISC processor, 16KB SRAM, and
+%     HLS-generated accelerators
+%
+%     \smallskip
+%     2x2mm GF 130nm
+%   \end{column}
+%
+%   \begin{column}{0.53\tw}
+%     \cbxfigbc{brg-test-board.jpg}
+%
+%     \small\centering
+%
+%     \smallskip
+%     Xilinx ZC706 FPGA development board for FPGA prototyping
+%
+%     \smallskip
+%     Custom designed FMC mezzanine card for ASIC test chips
+%
+%   \end{column}
+%
+% \end{cbxcols}
+% \end{frame}

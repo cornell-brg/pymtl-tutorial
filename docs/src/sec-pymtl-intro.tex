@@ -4,84 +4,453 @@
 
 \section[Presentation: PyMTL Intro]{Presentation: PyMTL Introduction}
 
-\begin{frame}{Computer Architecture Research Methodologies}
-  \cbxfigc<1\h0>{pymtl-stack_0-split.svg.pdf}
-  \cbxfigc<2\h0>{pymtl-stack_0_1_1a-split.svg.pdf}
-  \cbxfigc<3\h0>{pymtl-stack_0_1_2_2a-split.svg.pdf}
-  \cbxfigc<4\h0>{pymtl-stack_0_1_2_3_3a-split.svg.pdf}
-  \cbxfigc<5\h1>{pymtl-stack_0_1_2_3_4-split.svg.pdf}
-  \cbxfigc<6\h0>{pymtl-stack_0_4_5-split.svg.pdf}
-  \cbxfigc<7\h2>{pymtl-stack_4_5_6-split.svg.pdf}
+\begin{frame}{Multi-Level Modeling Methodologies}
+  \cbxfigc<1\h0>{pymtl-stack-v2_0-split.svg.pdf}
+  \cbxfigc<2\h0>{pymtl-stack-v2_0_2_2a-split.svg.pdf}
+  \cbxfigc<3\h0>{pymtl-stack-v2_0_1_1a_2-split.svg.pdf}
+  \cbxfigc<4\h0>{pymtl-stack-v2_0_1_2_3_3a-split.svg.pdf}
+  \cbxfigc<5\h1>{pymtl-stack-v2_0_1_2_3_4-split.svg.pdf}
+  \cbxfigc<6\h0>{pymtl-stack-v2_0_4_5-split.svg.pdf}
+  \cbxfigc<7\h0>{pymtl-stack-v2_4_5_6-split.svg.pdf}
+  \cbxfigc<8\h0>{pymtl-stack-v2_4_5_6_6a-split.svg.pdf}
+  \cbxfigc<9\h2>{pymtl-stack-v2_4_5_6_6a_6b-split.svg.pdf}
 \end{frame}
 
-\begin{frame}{Great Ideas From Prior Frameworks}
-  \insertslide{pymtl-intro}{8}
+\begin{frame}{VLSI Design Methodologies}
+  \cbxfigc<1\h0>{vlsi-methodology_0-split.svg.pdf}
+  \cbxfigc<2\h0>{vlsi-methodology_0_1-split.svg.pdf}
+  \cbxfigc<3\h1>{vlsi-methodology_0_1_2-split.svg.pdf}
 \end{frame}
 
-\begin{frame}{What is PyMTL?}
-  \insertslides{pymtl-intro}{9}{13}
+\begin{frame}{\IT{Productive} Multi-Level Modeling \IT{and} VLSI Design}
+  \cbxfigc<1\h0>{hgsf_0-split.svg.pdf}
+  \cbxfigc<2\h0>{hgsf_0_1-split.svg.pdf}
+  \cbxfigc<3\h1>{hgsf_0_1_2-split.svg.pdf}
+\end{frame}
+
+
+\begin{frame}[c]
+
+  \cbxfigc[0.5\tw]{pymtl-flat.svg.pdf}
+
+\medskip
+\begin{cbxblock}
+  \Large PyMTL is a Python-based hardware generation \\ and simulation
+  framework for SoC design \\ which enables productive \\ multi-level modeling and VLSI implementation
+\end{cbxblock}
 \end{frame}
 
 \begin{frame}{The PyMTL Framework}
-  \insertslides{pymtl-intro}{14}{19}
+  \cbxfigc<1\h0>{pymtl-flow_0-split.svg.pdf}
+  \cbxfigc<2\h0>{pymtl-flow_0_1-split.svg.pdf}
+  \cbxfigc<3\h0>{pymtl-flow_0_1_2-split.svg.pdf}
+  \cbxfigc<4\h0>{pymtl-flow_0_1_2_3-split.svg.pdf}
+  \cbxfigc<5-\h1>{pymtl-flow_0_1_2_3_4-split.svg.pdf}
+
+  % \begin{onlyenv}<6\h2>
+  % \begin{tikzpicture}[remember picture,overlay]
+  %   \draw[draw=none,fill=white,opacity=0.70]
+  %   (-1,0)
+  %   rectangle
+  %   (12,8.25);
+  %   \node[fill=white,text=red,font=\Huge] at (current page.center)
+  %   {But isn't Python too slow?};
+  % \end{tikzpicture}
+  % \end{onlyenv}
+
 \end{frame}
 
-\begin{frame}{What is PyMTL for and not (currently) for?}
+\begin{frame}[fragile]{PyMTL v2 Syntax and Semantics}
+
+\vspace{-0.2in}
+\begin{lstlisting}
+from pymtl import *
+
+class RegIncrRTL( Model ):
+
+  def __init__( s, dtype ):
+    s.in_  = InPort ( dtype )
+    s.out  = OutPort( dtype )
+    s.tmp  = Wire   ( dtype )
+
+    @s.tick_rtl
+    def seq_logic():
+      s.tmp.next = s.in_
+
+    @s.combinational
+    def comb_logic():
+      s.out.value = s.tmp + 1
+\end{lstlisting}
+
+\vspace{-2.5in}\hfill
+\cbxfigc[0.4\tw]{tut3-regincr.svg.pdf}
+\end{frame}
+
+\begin{frame}[fragile]
+
+\vspace{0.3in}
+\begin{lstlisting}[basicstyle={\ttfamily\footnotesize}]
+class GcdUnitFL( Model ):
+ def __init__( s ):
+
+  # Interface
+  s.req    = InValRdyBundle  ( GcdUnitReqMsg() )
+  s.resp   = OutValRdyBundle ( Bits(16)        )
+
+  # Adapters (e.g., TLM Transactors)
+  s.req_q  = InValRdyQueueAdapter  ( s.req  )
+  s.resp_q = OutValRdyQueueAdapter ( s.resp )
+
+  # Concurrent block
+  @s.tick_fl
+  def block():
+   req_msg = s.req_q.popleft()
+   result = gcd( req_msg.a, req_msg.b )
+   s.resp_q.append( result )
+\end{lstlisting}
+
+\vspace{-3.3in}\hfill
+\cbxfigc[0.6\tw]{tut3-gcd-fl.svg.pdf}
+
+\begin{onlyenv}<2\h0>
+\vspace{2in}
+\begin{tikzpicture}[remember picture,overlay]
+  \draw[draw=none,fill=white,opacity=0.70]
+  (-1,0)
+  rectangle
+  (12,8);
+  \node[fill=white,text=red,font=\Huge] at (current page.center)
+  {But isn't Python too slow?};
+\end{tikzpicture}
+\end{onlyenv}
+
+\end{frame}
+
+% \begin{frame}{What Does PyMTL Enable?}
+%   %\pymtlslides{29}{36}
+%   \pymtlslide<1\h1>{31}
+%   \pymtlslide<2\h2>{33}
+%   \pymtlslide<3\h3>{34}
+%   \pymtlslide<4\h4>{35}
+% \end{frame}
+%
+% \begin{frame}{What Does PyMTL Enable?}
+%   \pymtlslide{37}
+%
+%   \vspace{-1.55in}
+%   \colorbox{white}{
+%     \begin{minipage}[c][0.25in][t]{\tw}\small
+%       \vspace{0.05in}\hspace{0.7em}
+%       (Used to implement CL model in [MICRO'14,MICRO'18])
+%     \end{minipage}
+%   }
+%
+% \begin{onlyenv}<2\h2>
+% \vspace{1.45in}
+% \begin{tikzpicture}[remember picture,overlay]
+%   \draw[draw=none,fill=white,opacity=0.70]
+%   (0,0)
+%   rectangle
+%   (12,7);
+%   \node[fill=white,text=red,font=\Huge] at (current page.center)
+%   {But isn't Python too slow?};
+% \end{tikzpicture}
+% \end{onlyenv}
+%
+% \end{frame}
+
+\begin{frame}{Performance/Productivity Gap}
+Python is growing in popularity in many domains of scientific and
+high-performance computing. \RD{How do they close this gap?}
+
+\medskip\hspace{0.15in}
+\begin{cbxlist}
+  \1 Python-Wrapped C/C++ Libraries \\
+     (NumPy, CVXOPT, NLPy, pythonoCC, gem5)
+  \1 Numerical Just-In-Time Compilers \\
+     (Numba, Parakeet)
+  \1 Just-In-Time Compiled Interpreters \\
+     (PyPy, Pyston)
+  \1 Selective Embedded Just-In-Time Specialization \\
+     (SEJITS)
+\end{cbxlist}
+
+\end{frame}
+
+% \begin{frame}{PyMTL Hybrid Python/C++ Co-Simulation}
+%   \pymtlslides{77}{82}
+%   %\pymtlslide{82}
+% \end{frame}
+
+% \begin{frame}{PyMTL Results: 64-Node Mesh Network}
+%   \cbxfigc<1\h0>{pymtl-results_0_0a-split.svg.pdf}
+%   \cbxfigc<2\h0>{pymtl-results_0_1_1a-split.svg.pdf}
+%   \cbxfigc<3\h0>{pymtl-results_0_1_2_2a-split.svg.pdf}
+%   \cbxfigc<4\h1>{pymtl-results_0_1_2_3_3a-split.svg.pdf}
+%
+%   \vspace{-0.1in}
+%   \begin{center}\small
+%   RTL model of 64-node mesh network with single-cycle routers, elastic
+%   buffer flow control, uniform random traffic, with an injection rate
+%   just before saturation
+%   \end{center}
+%
+% \end{frame}
+
+\begin{frame}{Evaluating HDLs, HGFs, and HGSFs}
+\begin{cbxlist}
+  \1 Apple-to-apple comparison of simulator performance
+  \1 64-bit radix-four integer iterative divider
+  \1 All implementations use same control/datapath split \\ with the same
+     level of detail
+  \1 Modeling and simulation frameworks:
+    \2 Verilog: Commercial verilog simulator, Icarus, Verilator
+    \2 HGF: Chisel
+    \2 HGSFs: PyMTL, MyHDL, PyRTL, Migen
+\end{cbxlist}
+\end{frame}
+
+\begin{frame}{Productivity/Performance Gap}
+
+\cbxfigc<1\h1>{mamba-results-3.png}
+\begin{onlyenv}<1\h1>
+\vspace{-2in}\hfill
+\colorbox{white}{%
+  \begin{minipage}[c][2in][t]{0.8\tw}
+    \mbox{\ }
+  \end{minipage}
+}
+
+\vspace{-1.75in}\hspace*{1.25in}
+\begin{cbxlist}
+  \1 Higher is better
+  \1 Log scale (gap is larger than it seems)
+  \1 Commercial Verilog simulator is \\ 20\X{} faster than Icarus
+ \1 Verilator requires C++ testbench, \\ only works with synthesizable
+  code, \\ takes significant time to compile, \\ but is 200\X{} faster than
+  Icarus
+\end{cbxlist}
+\end{onlyenv}
+
+\cbxfigc<2\h2>{mamba-results-3.png}
+\begin{onlyenv}<2\h2>
+\vspace{-2in}\hfill
+\colorbox{white}{%
+  \begin{minipage}[c][2in][t]{0.67\tw}
+    \mbox{\ }
+  \end{minipage}
+}
+
+\medskip
+\begin{cbxlist}[t]
+  \1 Chisel (HGF) generates Verilog and uses Verilog simulator
+\end{cbxlist}
+\end{onlyenv}
+
+\cbxfigc<3\h3>{mamba-results-3.png}
+\begin{onlyenv}<3\h3>
+\vspace{-1.9in}\hfill
+\colorbox{white}{%
+  \begin{minipage}[c][1.9in][t]{0.088\tw}
+    \mbox{\ }
+  \end{minipage}
+}
+
+\medskip
+\begin{cbxlist}[t]
+  \1 Using CPython interpreter, Python-based HGSFs are much slower than
+  commercial Verilog simulators; even slower than Icarus!
+\end{cbxlist}
+\end{onlyenv}
+
+\cbxfigc<4\h4>{mamba-results-4.png}
+\begin{onlyenv}<4\h4>
+\vspace{-1.9in}\hfill
+\colorbox{white}{%
+  \begin{minipage}[c][1.9in][t]{0.088\tw}
+    \mbox{\ }
+  \end{minipage}
+}
+
+\medskip
+\begin{cbxlist}[t]
+  \1 Using PyPy JIT compiler, Python-based HGSFs achieve $\approx$10\X{}
+  speedup, but still significantly slower than commercial Verilog
+  simulator
+\end{cbxlist}
+\end{onlyenv}
+
+\cbxfigc<5-\h5->{mamba-results-5.png}
+\begin{onlyenv}<5\h5>
+\vspace{-1.9in}\hfill
+\colorbox{white}{%
+  \begin{minipage}[c][1.9in][t]{0.088\tw}
+    \mbox{\ }
+  \end{minipage}
+}
+
+\medskip
+\begin{cbxlist}[t]
+  \1 Hybrid C/C++ co-simulation improves performance but:
+  \2 only works for a synthesizable subset
+  \2 may require designer to simultaneously work with C/C++ and Python
+\end{cbxlist}
+\end{onlyenv}
+
+\begin{onlyenv}<6\h6>
+\medskip
+\begin{cbxlist}
+  \1 Mamba is \BF{20\X{}} faster than PyMTLv2, \BF{4.5\X{}} faster that
+  PyMTLv2 with hybrid co-simulation, comparable to commercial
+  simulators \1 Mamba uses careful co-optimization of the framework and
+  the JIT
+\end{cbxlist}
+\end{onlyenv}
+
+\end{frame}
+
+% \begin{frame}[fragile]{PyMTL v3 Syntax and Semantics}
+%
+% \vspace{-0.2in}
+% \begin{lstlisting}
+% from pymtl import *
+%
+% class RegIncrRTL( Model ):
+%
+%   def __init__( s, dtype ):
+%     s.in_  = InValuePort ( dtype )
+%     s.out  = OutValuePort( dtype )
+%     s.tmp  = Wire        ( dtype )
+%
+%     @s.update_on_edge
+%     def seq_logic():
+%       s.tmp = s.in_
+%
+%     @s.update
+%     def comb_logic():
+%       s.out = s.tmp + 1
+% \end{lstlisting}
+%
+% \vspace{-2.5in}\hfill
+% \cbxfigc[0.4\tw]{tut3-regincr.svg.pdf}
+%
+% \medskip
+% \hfill\cbxfigc[0.5\tw]{update-block-schedule.svg.pdf}
+%
+% \end{frame}
+
+% \begin{frame}{PyMTL v3 Performance}
+%
+% \hspace*{0.02in}
+% \begin{tabular}{lc<{\onslide<2->}c<{\onslide<3->}c<{\onslide<4->}c<{\onslide}}
+% \toprule
+% \centering Technique  & Divider  & 1-Core   & 16-core  & 32-core\\
+% \midrule
+% Event-Driven          & 24K CPS  & 6.6K CPS & 155 CPS  & 66 CPS \\
+% \midrule
+% \multicolumn{5}{l}{\BF{JIT-Aware HGSF}}\\
+% + Static Scheduling   & 13\X{}   & 2.6\X{}  & 1\X{}    & 1.1\X{} \\
+% + Schedule Unrolling  & 16\X{}   & 24\X{}   & 0.4\X{}  & 0.2\X{} \\
+% + Heuristic Toposort  & 18\X{}   & 26\X{}   & 0.5\X{}  & 0.3\X{} \\
+% + Trace Breaking      & 19\X{}   & 34\X{}   & 2\X{}    & 1.5\X{} \\
+% + Consolidation       & 27\X{}   & 34\X{}   & 47\X{}   & 42\X{}  \\
+% \midrule
+% \multicolumn{5}{l}{\BF{HGSF-Aware JIT}}\\
+% + RPython Constructs   & 96\X{}   & 48\X{}   & 62\X{}   & 61\X{} \\
+% + Huge Loop Support   & 96\X{}   & 49\X{}   & 65\X{}   & 67\X{} \\
+% \bottomrule
+% \end{tabular}
+%
+% \begin{onlyenv}<2->
+% \smallskip
+% \hspace*{0.1in}
+% \begin{cbxlist}[t]
+%   \1 RISC-V RV32IM five-stage pipelined cores
+%   \1 Only models cores, no interconnect nor caches
+% \end{cbxlist}
+% \end{onlyenv}
+% \end{frame}
+
+% \begin{frame}{PyMTL v3 Performance with Overheads}
+%   \cbxfigc[0.95\tw]{mamba-results-mcore-1.png}
+%
+%   \parbox{0.5\tw}{\centering\BF{Simulating 1 RISC-V Core}}%
+%   \parbox{0.5\tw}{\centering\BF{Simulating 32 RISC-V Cores}}
+%
+%   \smallskip
+%   \cbxfigc{mamba-perf-eq.png}
+%
+% \begin{onlyenv}<1\h0>
+% \vspace{-2.7in}\hfill
+% \colorbox{white}{%
+%   \begin{minipage}[c][2.25in][t]{0.5\tw}
+%     \mbox{\ }
+%   \end{minipage}
+% }
+% \end{onlyenv}
+% \begin{onlyenv}<2\h0>
+%
+% \end{onlyenv}
+% \end{frame}
+
+\begin{frame}{PyMTL ASIC Tapeouts}
+\begin{cbxcols}
+
+  \begin{column}{0.46\tw}
+    \cbxfigbc[0.93\tw]{asic-chip-annotated.png}
+
+    \small\centering
+
+    \smallskip \BF{BRGTC1 in 2016} \\ RISC processor, 16KB SRAM \\
+    HLS-generated accelerator
+
+    \smallskip
+    2x2mm, 1.2M-trans, IBM 130nm
+  \end{column}
+
+  \begin{column}{0.46\tw}
+    \cbxfigc[0.935\tw]{brgtc2.svg.pdf}
+
+    \small\centering
+
+    \smallskip \BF{BRGTC2 in 2018} \\ 4xRV32IMAF cores with ``smart'' sharing
+    L1\$/LLFU, PLL
+
+    \smallskip
+    1x1.2mm, 6.7M-trans, TSMC 28nm
+
+  \end{column}
+
+\end{cbxcols}
+\end{frame}
+
+\begin{frame}{PyMTL and Open-Source Hardware}
 \begin{cbxlist}
 
-  \1 \BF{PyMTL is for ...}
+ \1 State-of-the-art in open-source HDL simulators
+    \2 \IT{Icarus Verilog:} Verilog interpreter-based simulator
+    \2 \IT{Verilator:} Verilog AOT-compiled simulator
+    \2 \IT{GHDL:} VHDL AOT-compiled simulator
+    \2 No open-source simulator supports modern verification environments
 
-     \2 Taking an accelerator design from concept to implementation
-     \2 Construction of highly-parameterizable RTL chip generators
-     \2 Rapid design, testing, and exploration of hardware mechanisms
-     \2 Quickly prototyping models and interfacing them with GEM5
-     \2 Interfacing models with imported Verilog
+ \1 PyMTL as an open-source design, simulation, verification environment
 
-  \1 \BF{PyMTL is not (currently) for ...}
+    \2 Open-source hardware developers can use Verilog RTL for design and
+       Python, a well-known general-purpose language, for verification
 
-     \2 Python high-level synthesis
-     \2 Many-core simulations with hundreds of cores
-     \2 Full-system simulation with real OS support
-     \2 Users needing a complex OOO processor model ``out of the box''
-     \2 Users needing an ARM/x86 processor model ``out of the box''
-     \2 Users needing a mature modeling framework that will not change
+    \smallskip
+    \2 PyMTL for FL design enables creating high-level golden reference
+       models
+
+    \smallskip
+    \2 PyMTL for RTL design enables creating highly parameterized
+       hardware components which is critical for encouraging reuse in an
+       open-source ecosystem
 
 \end{cbxlist}
 \end{frame}
 
-\begin{frame}{Why Python?}
-
-  \cbxfloatright{\cbxfigc[0.21\tw]{python-logo.svg.pdf}}
-
-  \begin{cbxlist}
-
-    \1 Python is well regarded as a highly productive \\ language with
-       lightweight, pseudocode-like syntax
-
-    \1 Python supports modern language features to \\ enable rapid, agile
-       development (dynamic typing, \\ reflection, metaprogramming)
-
-    \1 Python has a large and active developer and support community
-
-    \1 Python includes extensive standard and third-party libraries
-
-    \1 Python enables embedded domain-specific languages
-
-    \1 Python facilitates engaging application-level researchers
-
-    \1 Python includes built-in support for integrating with C/C++
-
-    \1 Python performance is improving with advanced JIT compilation
-
-  \end{cbxlist}
-
-\end{frame}
-
-\begin{frame}{PyMTL 101: Traditional Model in Python}
-  \insertslide{pymtl-intro}{20}
-\end{frame}
-
-\begin{frame}{PyMTL 101: Model in PyMTL Embedded DSL}
-  \insertslides{pymtl-intro}{21}{25}
+\begin{frame}{PyMTL and Open-Source Hardware}
+\cbxfigc{pymtl-teaching-posh.svg.pdf}
 \end{frame}
 
