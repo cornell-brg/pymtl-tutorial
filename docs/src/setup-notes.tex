@@ -42,26 +42,32 @@
 \end{center}
 
 \vspace{0.1in}
-Plug in the USB drive. Virtual-machine related files are located under the
-\texttt{vm/} directory. If you do not have VirtualBox installed on your
+Plug in the USB drive. If you do not have VirtualBox installed on your
 computer, you need to install it. We have provided installers for Windows,
-Mac OS X, and Linux computers. Depending on your platform, double click on
-the correct installer under the \texttt{vm/} directory:
+Mac OS X, and Linux computers. The installers are included in the directory
+labeled \texttt{virtualbox}. Depending on your platform, locate the
+appropriate installer:
 
 \begin{cbxlist}
 
   \item If your operating system is Windows, double click
-  \texttt{VirtualBox-4.3.28-100309-Win.exe}
+  \texttt{VirtualBox-6.0.8-130520-Win.exe}, located inside \texttt{windows}
+  dircrtry.
   \item If your operating system is Mac OS X, double click
-  \texttt{VirtualBox-4.3.28-100309-OSX.dmg}
+  \texttt{VirtualBox-6.0.8-130520-OSX.dmg}, located inside \texttt{osx}
+  directory.
   \item If your operating system is Linux, double click
-    \texttt{VirtualBox-4.3.28-100309-Linux\_x86.run} or
-    \texttt{VirtualBox-4.3.28-100309-Linux\_amd64.run} depending if your OS is
-    32-bit or 64-bit respectively. If this doesn't work, you might need to
-    run the file from the terminal:
+    \texttt{VirtualBox-6.0-6.0.8\_130520\_...} located inside
+    the directory that better refelcts your distro. If your distro is not
+    included, double click
+    \texttt{VirtualBox-6.0.8-130520-Linux\_amd64.run} inside \texttt{generic}.
+    If double-clicking does not work, you might need to run the file from
+    the terminal:
 
     \begin{verbatim}
-  % sudo sh ./VirtualBox-4.3.28-100309-Linux_x86.run
+      % sudo dpkg -i {FILE_NAME}.deb    # For .deb files
+      % sudo rpm  -i {FILE_NAME}.rpm    # For .rpm files
+      % sudo sh      {FILE_NAME}.run    # For .run files
     \end{verbatim}
 
 \end{cbxlist}
@@ -70,44 +76,32 @@ the correct installer under the \texttt{vm/} directory:
 Follow the directions to install VirtualBox. You might need to enter your
 administrator password.
 
-Once VirtualBox is installed, double click the \texttt{pymtl\_pydgin.ova}
-file. This will decompress and import the virtual machine. This will use
+Once VirtualBox is installed, double click the \texttt{pymtl.ova}
+file, which will decompress and import the virtual machine. The default
+configurations included in the \texttt{OVA} file are recommended to run
+the virtual machine. You can, however, increase the memory to have a better
+experience if your machine allows it. The virtualmachine will use
 about 10 GB on your local hard drive. Once the import is complete, you
 can start the virtual machine by clicking the ``Start'' button in
-VirtualBox.
+VirtualBox. You will see a window pop up and the virtual machine will boot.
 
-You will see a window pop up and the virtual machine will boot. Once
-fully booted, you will see the login screen. You have two options on how
-to interact with the virtual machine: (1)~directly through the virtual
-machine desktop; or (2)~by local SSH. Unless you are an advanced Linux
-user, we recommend that you use the virtual machine desktop.
+Once fully booted, you will be automatically logged in. Then, you can
+resize the window or make it full screen to make it easier to work with
+on your laptop. If the font is too small, you can change the scaling factor
+in the machine settings. To open the machine settings, click on
+\texttt{Machine} -> \texttt{Settings}. Then, change the \texttt{Scale Factor}
+in the \texttt{Display} tab.
 
-%-------------------------------------------------------------------------
-\bigskip\smallskip
-{\large \textbf{Option 1: Interacting through desktop}}
-%-------------------------------------------------------------------------
-
-\medskip\smallskip
-Log in to the virtual machine desktop using the following credentials:
-
-\vspace{-0.05in}
-\begin{verbatim}
-  Username: tutorial
-  Password: pymtl
-\end{verbatim}
-\vspace{-0.05in}
-
-Once logged in, you can resize the window or make it full screen to make
-it easier to work with on your laptop. Many activities require the use of
-command line. For these activities, double click the \texttt{Terminal}
-icon on the desktop, and run the commands as directed. The activities
-will also require you to edit files. For this, we recommend that you use
-\texttt{gedit} unless you have a preference to use more advanced editors
-such as \texttt{vim} or \texttt{emacs}. To familiarize yourself with
-editing on the virtual machine, practice editing and saving a file in
-your home directory. Type the following commands in the shell in the
-\texttt{Terminal} window. The \texttt{\%} characters indicate the shell
-prompt, so do not type this character when entering the commands:
+Many activities require the use of command line. For these
+activities, double click the \texttt{Terminal} icon on the desktop, and run
+the commands as directed. The activities will also require you to edit files.
+For this, we recommend that you use \texttt{gedit} unless you have a
+preference to use more advanced editors such as \texttt{vim} or
+\texttt{emacs}. To familiarize yourself with editing on the virtual machine,
+practice editing and saving a file in your home directory. Type the
+following commands in the shell in the \texttt{Terminal} window. The
+\texttt{\%} characters indicate the shell prompt, so do not type this
+character when entering the commands:
 
 \vspace{-0.05in}
 \begin{verbatim}
@@ -124,62 +118,4 @@ Re-run the command to ensure your changes were saved:
 \end{verbatim}
 \vspace{-0.05in}
 
-%--------------------------------------------------------------------------
-\newpage
-{\large \textbf{Option 2: Interacting using local SSH}}
-%-------------------------------------------------------------------------
-
-\medskip\smallskip The virtual machine is set to listen to local port
-22422 for SSH. You can locally SSH into the virtual machine using a
-terminal on Mac OS X or Linux, or using an SSH client such as
-\texttt{PuTTY} on Windows:
-
-\vspace{-0.1in}
-\begin{verbatim}
-  % ssh -p 22422 -Y tutorial@localhost
-  Username: tutorial
-  Password: pymtl
-\end{verbatim}
-\vspace{-0.1in}
-
-\texttt{gedit}, \texttt{vim}, and \texttt{emacs} are installed on the
-virtual machines. If you need some other software, and if you have
-internet access you can install it.  The tutorial account has
-\texttt{sudo} access, so you can install using \texttt{yum} package
-manager:
-
-\vspace{-0.1in}
-\begin{verbatim}
-  % yum search <program>
-  % sudo yum install <package name>
-\end{verbatim}
-\vspace{-0.1in}
-
-If you want to transfer files between your local computer and the virtual
-machine (for example to copy configuration files for editors), you can use
-\texttt{scp} on your local machine by specifying the port (notice the
-capital \texttt{-P} flag):
-
-\vspace{-0.1in}
-\begin{verbatim}
-  % scp -P 22422 <local files> tutorial@localhost:<remote dir>
-\end{verbatim}
-\vspace{-0.1in}
-
-One activity requires the use of \texttt{gtkwave} waveform viewer. The
-\texttt{-Y} flag for the \texttt{ssh} command enables forwarding for X11
-Window System. X11 forwarding might not work if you have a Windows or Mac
-OS X laptop. You should test out if you can see the \texttt{gtkwave}
-window using this:
-
-\vspace{-0.1in}
-\begin{verbatim}
-  % gtkwave
-\end{verbatim}
-\vspace{-0.1in}
-
-If \texttt{gtkwave} window does not show up, then you will need to use the
-Option 1 for the activity that requires \texttt{gtkwave}.
-
 \end{document}
-
